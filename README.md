@@ -21,7 +21,6 @@ This app's purpose is here:
 # Installation 📦
 
 ```
-git clone https://github.com/jsappme/node-binance-trader
 npm start or firebase deploy
 ```
 
