@@ -40,7 +40,7 @@ class Level1 extends Phaser.Scene {
         image5 = this.add.image(700,450,'bin');
         image5.setScale(0.2);
         groundImg = this.add.image(600,100,'ground');
-        groundImg.setScale(0.4);
+        groundImg.setScale(1);
 
 
 
@@ -54,6 +54,8 @@ class Level1 extends Phaser.Scene {
         whaleImg.setScale(0.3);
         //Adds the collider for the objects
         // this.physics.add.collider(this.trash,this.ground);
+
+
 
 
     }
