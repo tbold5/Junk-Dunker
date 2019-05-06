@@ -48,12 +48,12 @@ class Level1 extends Phaser.Scene {
         trashImg = this.physics.add.sprite(400,50,'trash');
         trashImg.setScale(0.5)
         trashImg.body.setGravity(300);
-        this.trashImg.setCollideWorldBounds(true);
+        trashImg.setCollideWorldBounds(true);
 
         whaleImg = this.add.image(800,450,'whale');
         whaleImg.setScale(0.3);
         //Adds the collider for the objects
-        this.physics.add.collider(this.ground,this.trash);
+        // this.physics.add.collider(this.trash,this.ground);
 
 
     }
