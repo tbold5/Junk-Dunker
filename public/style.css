@@ -1,3 +1,7 @@
+p{
+    font-size: 6px;
+}
+
 .myTitle{
     text-align: center;
 }
@@ -28,11 +32,27 @@ h1{
     /*z-index: -1;*/
 /*}*/
 
-.nes-container{
+.myContainer{
     background-image: url("https://i.pinimg.com/originals/75/d4/79/75d4796cf08ddb745ab1b452c6d6f557.gif");
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
     width: 100%;
     position: fixed;
+}
+
+.nes-badge{
+    display: block;
+    margin: 0 auto;
+    margin-top: 8em;
+}
+
+.mod {
+    display: none;
+    position: relative;
+    z-index: 10;
+}
+
+.trophy {
+    float: left;
 }
