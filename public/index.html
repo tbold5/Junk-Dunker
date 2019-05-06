@@ -6,7 +6,8 @@
     <title>Welcome to Firebase Hosting</title>
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="style.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/5.11.1/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
@@ -19,7 +20,7 @@
   </head>
   <body>
   <!--<div class="myContainer">-->
-    <div class='nes-container'>
+    <div class='nes-container myContainer'>
       <div>
         <section class="icon-list">
 
@@ -50,15 +51,48 @@
         <br>
         <div class="myBlock">
           <button type="button" class="nes-btn is-success">Play</button>
-          <button type="button" class="nes-btn is-warning">Leader board</button>
+
+            <button type="button" class="nes-btn is-warning lead">Leader Board</button>
+
           <button type="button" class="nes-btn is-error">Settings</button>
         </div>
       </div>
     </div>
   <!--</div>-->
+  <div class="mod">
+    <div class="nes-container is-rounded is-dark">
+      <p class="title">
+        The Leader Board
+      </p>
+      <div class="nes-container is-rounded left">
+        <i class="nes-icon trophy"></i>
+        <p>User: <span>Bor</span></p>
+        <p>Score: <span>500</span></p>
+      </div>
+      <div class="nes-container is-rounded left">
+        <i class="nes-icon trophy"></i>
+        <p>User: <span>Bor</span></p>
+        <p>Score: <span>500</span></p>
+      </div>
+      <div class="nes-container is-rounded left">
+        <i class="nes-icon trophy"></i>
+        <p>User: <span>Bor</span></p>
+        <p>Score: <span>500</span></p>
+      </div>
+      <div class="nes-container is-rounded left">
+        <i class="nes-icon trophy"></i>
+        <p>User: <span>Bor</span></p>
+        <p>Score: <span>500</span></p>
+      </div>
+    </div>
+  </div>
     <script src="app.js">
   var test;
   var moretest;
+  var lets;
+  
     </script>
+  <!--Hey guys I am adding more script files here ,Pamir-->
+  <script src="input.js"></script>
   </body>
 </html>
