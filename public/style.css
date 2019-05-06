@@ -1,0 +1,38 @@
+.myTitle{
+    text-align: center;
+}
+.myBlock {
+    display: block;
+}
+.nes-btn{
+    font-size: 14px;
+}
+.gif > img{
+    display: block;
+    margin: 0 auto;
+    height: 200px;
+    width: 200px;
+    padding-top: 25px;
+}
+h1{
+    color: #02803b;
+    font-size: 22px;
+}
+/*.myContainer{*/
+    /*background-image: url("https://i.pinimg.com/originals/75/d4/79/75d4796cf08ddb745ab1b452c6d6f557.gif");*/
+    /*background-size: cover;*/
+    /*background-repeat: no-repeat;*/
+    /*height: 100%;*/
+    /*width: 100%;*/
+    /*position: fixed;*/
+    /*z-index: -1;*/
+/*}*/
+
+.nes-container{
+    background-image: url("https://i.pinimg.com/originals/75/d4/79/75d4796cf08ddb745ab1b452c6d6f557.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
