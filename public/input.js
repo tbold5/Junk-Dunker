@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', event => {
         if ( $( '.mod' ).is( ":hidden" ) ) {
             $( ".mod" ).slideDown( "slow" );
         } else {
-            $( ".mod" ).hide();
+            $( ".mod" ).slideUp('slow');
         }
     });
 });
