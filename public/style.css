@@ -56,3 +56,8 @@ h1{
 .trophy {
     float: left;
 }
+
+.not{
+    z-index: 2;
+    color: rgb(85, 26, 139);
+}
