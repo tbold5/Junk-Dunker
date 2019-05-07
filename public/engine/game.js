@@ -17,7 +17,7 @@ var config = {
             }
         }
     },
-    scene: [Intro,Level1]
+    scene: [Level1]
 };
 
 var game = new Phaser.Game(config);
