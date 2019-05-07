@@ -3,30 +3,29 @@
 We are a passionate team of 6 whose mission is to teach people about recyling and environmental problems
 
 
-# What is this app? 📡
-
-This app's purpose is here:
+# What is our purpose? 📡
 
 * Teach about environment
 * Universal color coded bins
 * Better recycling
-* something
-* somethting else
+* Fun educational content
+* For every age group
 
 # Requirements
 
 * Git version control
 * [Node.JS v8 min.](http://nodejs.org)
+* Firebase tools
 
 # Installation 📦
 
 ```
-npm start or firebase deploy
+firebase deploy
 ```
 
 # Configuration 🛠️
 
-1. do this 
+1. If y
 2. then do this
 
 # Usage ⚡️
@@ -42,9 +41,9 @@ nbt
 
 # Roadmap 🚧
 
-* ✔️  Point 1
-* ✔️  Point 2
-* Haven't done yet
+* ✔️  Main Page
+* ✔️  Game Page
+* 
 *
 
 
@@ -60,4 +59,4 @@ You assume all responsibility and liability.
 # Final Notes 🙏
 bbb
 Feel free to fork and add new pull request to this repo.
-If you have any questions/suggestions, or simply you need some help building 
+If you have any questions/suggestions, email us at super6@company.com
