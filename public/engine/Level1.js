@@ -26,8 +26,8 @@ class Level1 extends Phaser.Scene {
         this.load.image('ground', 'images/platform.png');
         this.load.image('trash','images/trash.png');
         this.load.image('bin','images/bin.png');
-        this.load.image('bags', '/public/images/bags.png');
-        this.load.image('beerBottle','/public/images/beerbottle.png');
+        this.load.image('bags', 'images/bags.png');
+        this.load.image('beerBottle','images/beerbottle.png');
         this.load.audio('pop',['audio/pop.mp3']);
     }
 
