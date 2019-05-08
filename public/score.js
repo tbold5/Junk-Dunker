@@ -4,14 +4,15 @@ function getScores() {
     while(board.hasChildNodes()){
         board.removeChild(board.firstChild);
     }
-    var scores = firebase.database().ref("scores/");
+    var scores = firebase.database().ref("scores/").orderByChild("score");
+    console.log(scores);
     scores.on(
         "value",
         function (snap) {
             snap.forEach(function (snap) {
                 name = snap.key;
                 e = firebase.database().ref("scores/" + snap.key);
-                e.orderByChild("score").limitToFirst(1).on(
+                e.orderByChild("score").limitToLast(1).on(
                     "child_added",
                     function (snop) {
                         att = document.createAttribute("class");
