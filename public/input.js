@@ -6,9 +6,10 @@ document.addEventListener('DOMContentLoaded', event => {
         if ( $( '.mod' ).is( ":hidden" ) ) {
             getScores();
             $( ".mod" ).slideDown( "slow" );
-        } else {
-            $( ".mod" ).slideUp('slow');
         }
+    });
+    $(".lead-exit").click(function () {
+        $( ".mod" ).slideUp('slow');
     });
     var provider = new firebase.auth.GoogleAuthProvider();
 
