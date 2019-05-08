@@ -73,20 +73,20 @@ class Level1 extends Phaser.Scene {
         image5.setScale(0.3);
 
         // Creates the falling trash on the page
-        trashImg = this.physics.add.sprite(400,50,'trash');
+        trashImg = this.physics.add.sprite(gameWidth / 2, 50,'trash');
         trashImg.setScale(0.5);
         trashImg.setCollideWorldBounds(true);
         trashImg.setGravity(0,100);
 
         // Creates bag image
-        bagImg = this.physics.add.sprite(380,50,'bags');
+        bagImg = this.physics.add.sprite(gameWidth / 2, 50,'bags');
         bagImg.setScale(0.9);
         bagImg.setCollideWorldBounds(true);
         bagImg.setGravity(0,100);
 
 
         //Create beer bottle sprite
-        beerBottle = this.physics.add.sprite(420,50,'beerBottle');
+        beerBottle = this.physics.add.sprite(gameWidth / 2, 50,'beerBottle');
         beerBottle.setScale(0.9);
         beerBottle.setCollideWorldBounds(true);
 
