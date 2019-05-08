@@ -4,12 +4,22 @@ document.addEventListener('DOMContentLoaded', event => {
     let isIn = false;
     $(".lead").click(function() {
         if ( $( '.mod' ).is( ":hidden" ) ) {
-            getScores();
+            // getScores();
             $( ".mod" ).slideDown( "slow" );
         } else {
             $( ".mod" ).slideUp('slow');
         }
     });
+document.addEventListener('DOMContentLoader', event =>{
+    let isIn = false;
+    $(".set").click(function(){
+        if($('.settings').is(":hidden")){
+            $(".settings").slideDown(":hidden");
+        } else {
+            $(".settings").slideUp("slow");
+        }
+    });
+})
     var provider = new firebase.auth.GoogleAuthProvider();
 
     function googleSignin() {
