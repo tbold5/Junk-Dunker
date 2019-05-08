@@ -27,12 +27,14 @@ function getScores() {
                         user = document.createElement("p");
                         usa = document.createElement("span");
                         usa.innerHTML = name;
-                        user.innerHTML = "User: " + usa;
+                        user.innerHTML = "User: ";
+                        user.appendChild(usa);
                         board.appendChild(user);
                         score = document.createElement("p");
                         scor = document.createElement("span");
                         scor.innerHTML = value;
-                        score.innerHTML = "Score: " + scor;
+                        score.innerHTML = "Score: ";
+                        score.appendChild(scor);
                         board.appendChild(score);
 
                     }
