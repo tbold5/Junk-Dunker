@@ -31,8 +31,16 @@ h1{
     /*position: fixed;*/
     /*z-index: -1;*/
 /*}*/
-
 .myContainer{
+    background-image: url("https://i.pinimg.com/originals/75/d4/79/75d4796cf08ddb745ab1b452c6d6f557.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+
+.settingsContainer{
     background-image: url("https://i.pinimg.com/originals/75/d4/79/75d4796cf08ddb745ab1b452c6d6f557.gif");
     background-size: cover;
     background-repeat: no-repeat;
@@ -44,7 +52,11 @@ h1{
 .nes-badge{
     display: block;
     margin: 0 auto;
-    margin-top: 8em;
+}
+.settings {
+    display: none;
+    position: relative;
+    z-index: 10;
 }
 
 .mod {
@@ -60,4 +72,11 @@ h1{
 .not{
     z-index: 2;
     color: rgb(85, 26, 139);
+}
+
+.setButtons{
+    display: block;
+    margin: 0 auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
