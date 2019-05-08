@@ -1,9 +1,5 @@
 function getScores() {
     let name = "";
-    att = document.createAttribute("class");
-    att.value = "nes-container is-rounded left";
-    attr = document.createAttribute("class");
-    attr.value = "nes-icon trophy";
     var board = document.getElementById("board");
     while(board.hasChildNodes()){
         board.removeChild(board.firstChild);
@@ -18,6 +14,10 @@ function getScores() {
                 e.orderByChild("score").limitToFirst(1).on(
                     "child_added",
                     function (snop) {
+                        att = document.createAttribute("class");
+                        att.value = "nes-container is-rounded left";
+                        attr = document.createAttribute("class");
+                        attr.value = "nes-icon trophy";
                         value = snop.val();
                         divs = document.createElement("div");
                         divs.setAttributeNode(att);
