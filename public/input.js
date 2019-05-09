@@ -1,9 +1,11 @@
 
-
+// Listens to event change
 document.addEventListener('DOMContentLoaded', event => {
-    // userId is the reference that we talked about, use it to create an association between auth and database
+// userId is the reference that we talked about, use it to create an association between auth and database
     let userId;
+//assign false to boolean variable
     let isIn = false;
+// slides 
     $(".lead").click(function() {
         if ( $( '.mod' ).is( ":hidden" ) ) {
             // getScores();
@@ -22,16 +24,16 @@ document.addEventListener('DOMContentLoaded', event => {
     });
     $(".retButtons").click(function(){
         $(".settings").slideUp("fast");
-    });  
-    var provider = new firebase.auth.GoogleAuthProvider();
+    }); 
 
+    var provider = new firebase.auth.GoogleAuthProvider();
     function googleSignin() {
         firebase.auth().signInWithPopup(provider).then(function(result) {
             var token = result.credential.accessToken;
             userId = result.user.uid;
             console.log(token)
             console.log(user)
-
+            verifyUserInDatabase(userId);
             isIn = true;
             $('#login').text('Logout');
         }).catch(function(error) {
@@ -42,11 +44,6 @@ document.addEventListener('DOMContentLoaded', event => {
             console.log(error.message)
 
         });
-
-
-
-
-
     }
 
     function googleSignOut(){
@@ -68,7 +65,20 @@ document.addEventListener('DOMContentLoaded', event => {
         }
 
     });
-
+    function verifyUserInDatabase(currentUser){
+            const firestore = firebase.firestore();
+            const userName = firestore.collection('Users');
+            const query = userName.where('userId', '==', currentUser);
+            console.log(query);
+            // if(userId == query){
+            //     if (Uid == query){
+            //         query.get().then(snapshot => {
+                   
+            //         }
+            //     }
+            // }
+        }
+        
 
     // Will add  a function to check if they have an user name
     //if the user doesn't have, create a pop up and ask for a user id.
