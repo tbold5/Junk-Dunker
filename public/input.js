@@ -6,13 +6,23 @@ document.addEventListener('DOMContentLoaded', event => {
     let isIn = false;
     $(".lead").click(function() {
         if ( $( '.mod' ).is( ":hidden" ) ) {
-            getScores();
+            // getScores();
             $( ".mod" ).slideDown( "slow" );
-        }
+        } else {
+            $( ".mod" ).slideUp('slow');
+        };
     });
     $(".lead-exit").click(function () {
         $( ".mod" ).slideUp('slow');
     });
+    $(".set").click(function(){
+        if ( $('.settings').is(":hidden")){
+            $(".settings").slideDown("slow");
+        }
+    });
+    $(".retButtons").click(function(){
+        $(".settings").slideUp("fast");
+    });  
     var provider = new firebase.auth.GoogleAuthProvider();
 
     function googleSignin() {
