@@ -42,6 +42,8 @@ document.addEventListener('DOMContentLoaded', event => {
             console.log(token)
             console.log(userId)
 
+
+
             isIn = true;
             $('#login').text('Logout');
         }).catch(function(error) {
@@ -79,6 +81,15 @@ document.addEventListener('DOMContentLoaded', event => {
 
     });
 
+    createjs.Sound.on("fileload", handleLoadComplete);
+    createjs.Sound.alternateExtensions = ["mp3"];
+    createjs.Sound.registerSound({src:"./engine/audio/music.mp3", id:"sound"});
+    function handleLoadComplete() {
+        createjs.Sound.play("sound");
+    }
+    document.querySelector('body').addEventListener('click', function(){
+        handleLoadComplete();
+    })
 
     // Will add  a function to check if they have an user name
     //if the user doesn't have, create a pop up and ask for a user id.
