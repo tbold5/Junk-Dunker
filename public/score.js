@@ -40,7 +40,7 @@ function getScoresOlde() {
                         console.log(snop);
                         let container = $('#board');
                         let item = "<div class = 'nes-container is-rounded'>" +
-                            "<p class='highScore'><i class=\"nes-icon trophy\"></i>\nnew Div is here <span id='score'>score goes here</span><p/>" +
+                            "<p class='highScore'><i class=\"nes-icon trophy\"></i>new Div is here <span id='score'>score goes here</span><p/>" +
                             "<div/>";
                         $(item).appendTo(container);
                     }

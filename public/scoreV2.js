@@ -15,26 +15,12 @@ function renderScore(doc) {
         board.removeChild(board.firstChild);
     }
     let name = doc.data().UserName;
-    att = document.createAttribute("class");
-    att.value = "nes-container is-rounded left";
-    attr = document.createAttribute("class");
-    attr.value = "nes-icon trophy";
+    console.log(name);
     value = doc.data().HighScore;
-    divs = document.createElement("div");
-    divs.setAttributeNode(att);
-    board.appendChild(divs);
-    trophy = document.createElement("i");
-    trophy.setAttributeNode(attr);
-    user = document.createElement("p");
-    usa = document.createElement("span");
-    usa.innerHTML = name;
-    user.innerHTML = "User: ";
-    user.appendChild(usa);
-    board.appendChild(user);
-    score = document.createElement("p");
-    scor = document.createElement("span");
-    scor.innerHTML = value;
-    score.innerHTML = "Score: ";
-    score.appendChild(scor);
-    board.appendChild(score);
+    let container = $('#board');
+    let item = `<div class = 'nes-container is-rounded'>` +
+        `<p class='highScore'><i class=\"nes-icon trophy\"></i>${name}:  ` +
+        `<span id='score'>${value}</span><p/>` +
+        `<div/>`;
+    $(item).appendTo(container);
 }

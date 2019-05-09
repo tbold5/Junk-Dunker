@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', event => {
     let isIn = false;
     $(".lead").click(function() {
         if ( $( '.mod' ).is( ":hidden" ) ) {
-            // getScores();
+            getScores();
             $( ".mod" ).slideDown( "slow" );
         } else {
             $( ".mod" ).slideUp('slow');
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', event => {
             var token = result.credential.accessToken;
             userId = result.user.uid;
             console.log(token)
-            console.log(user)
+            console.log(userId)
 
             isIn = true;
             $('#login').text('Logout');
