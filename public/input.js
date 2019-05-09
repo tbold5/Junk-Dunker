@@ -8,18 +8,16 @@ document.addEventListener('DOMContentLoaded', event => {
             $( ".mod" ).slideDown( "slow" );
         } else {
             $( ".mod" ).slideUp('slow');
-        }
-    });
-document.addEventListener('DOMContentLoader', event =>{
-    let isIn = false;
+        };
+        
     $(".set").click(function(){
-        if($('.settings').is(":hidden")){
-            $(".settings").slideDown(":hidden");
+        if ( $('.settings').is(":hidden")){
+            $(".settings").slideDown("slow");
         } else {
             $(".settings").slideUp("slow");
         }
-    });
-})
+    });  
+});
     var provider = new firebase.auth.GoogleAuthProvider();
 
     function googleSignin() {

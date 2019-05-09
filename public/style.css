@@ -52,6 +52,7 @@ h1{
 .nes-badge{
     display: block;
     margin: 0 auto;
+    margin-top: 8em;
 }
 .settings {
     display: none;
@@ -79,4 +80,8 @@ h1{
     margin: 0 auto;
     margin-top: 2em;
     margin-bottom: 2em;
+}
+.retButtons{
+    display: block;
+    margin: 0 auto;
 }
