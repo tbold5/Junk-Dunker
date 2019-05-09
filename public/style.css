@@ -80,7 +80,22 @@ h1{
     color: rgb(85, 26, 139);
 }
 
-
+.musicButton{
+    display: block;
+    margin: 0 auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+.sfxButton{
+    display: block;
+    margin: 0 auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+.retButton{
+    display: block;
+    margin: 0 auto;
+}
 .lead-exit {
     float: right;
     z-index: 2;
@@ -95,4 +110,64 @@ h1{
 }
 .highScore {
     text-align: center;
+}
+.help {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    height: 99%;
+    width: 99%;
+}
+
+.helpContainer{
+    height: 100%;
+    width: 99%;
+    position: fixed;
+}
+.helpBadge{
+    display: block;
+    margin: 0 auto;
+    margin-top: 5em;
+}
+.helpBox{
+    display: block;
+    margin: 0 auto;
+    margin-top: 2em;
+}
+.blueBin{
+    height: 50px;
+    width: 50px;
+}
+.redBin{
+    height: 50px;
+    width: 50px;
+}
+.yellowBin{
+    height: 50px;
+    width: 50px
+}
+.greenBin{
+    height: 50px;
+    width: 50px;
+}
+.greyBin{
+    height: 50px;
+    width: 50px;
+}
+.sodaCan{
+    height: 30px;
+    width: 15px;
+}
+.newspaper{
+    height: 25px;
+    width: 35px;
+}
+.waterBottle{
+    height: 35px;
+    width: 15px;
+}
+.helpReturn{
+    display: block;
+    margin: 0 auto;
+    margin-top: 1em;
 }
