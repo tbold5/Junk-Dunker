@@ -1,6 +1,8 @@
 
 
 document.addEventListener('DOMContentLoaded', event => {
+    // userId is the reference that we talked about, use it to create an association between auth and database
+    let userId;
     let isIn = false;
     clicked = true;
     $(".lead").click(function() {
@@ -26,10 +28,10 @@ document.addEventListener('DOMContentLoaded', event => {
 
     function googleSignin() {
         firebase.auth().signInWithPopup(provider).then(function(result) {
-            // var token = result.credential.accessToken;
-            // var user = result.user;
-            // console.log(token)
-            // console.log(user)
+            var token = result.credential.accessToken;
+            userId = result.user.uid;
+            console.log(token)
+            console.log(user)
 
             isIn = true;
             $('#login').text('Logout');
@@ -67,5 +69,9 @@ document.addEventListener('DOMContentLoaded', event => {
         }
 
     });
+
+
+    // Will add  a function to check if they have an user name
+    //if the user doesn't have, create a pop up and ask for a user id.
 
 });

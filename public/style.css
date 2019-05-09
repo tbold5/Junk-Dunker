@@ -2,7 +2,11 @@ p{
     font-size: 6px;
 }
 
-.myTitle{
+.myTitle, .title{
+    text-align: center;
+}
+
+.title{
     text-align: center;
 }
 .myBlock {
@@ -67,7 +71,7 @@ h1{
 }
 
 .trophy {
-    float: left;
+    margin: 0 15px;
 }
 
 .not{
@@ -90,4 +94,11 @@ h1{
 .retButton{
     display: block;
     margin: 0 auto;
+}
+
+.leaderTitleSection{
+    margin-bottom: 10px;
+}
+.highScore {
+    text-align: center;
 }
