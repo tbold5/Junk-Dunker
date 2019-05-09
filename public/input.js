@@ -1,10 +1,11 @@
 
 
 document.addEventListener('DOMContentLoaded', event => {
+    getScores();
     let isIn = false;
     $(".lead").click(function() {
         if ( $( '.mod' ).is( ":hidden" ) ) {
-            getScores();
+            // getScores();
             $( ".mod" ).slideDown( "slow" );
         }
     });
