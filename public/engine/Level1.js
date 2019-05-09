@@ -17,6 +17,7 @@ var scoreText;
 var score = 0;
 var beerBottle;
 var popSound;
+var border;
 
 class Level1 extends Phaser.Scene {
     constructor() {
@@ -26,11 +27,6 @@ class Level1 extends Phaser.Scene {
     }
 
     preload() {
-
-        this.load.script(
-            'webfont',
-            'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
-        );
 
         // Loads all the audio files
         this.load.audio('bgmusic', ['audio/music.mp3']);
@@ -48,6 +44,9 @@ class Level1 extends Phaser.Scene {
 
         this.load.image('ground', 'images/platform.png');
         this.load.image('bg', 'images/backGround.gif');
+
+        // loads the border
+        this.load.image('border', 'images/border.png');
 
         // loads all the garbage
         this.load.image('bags', 'images/bags.png');
@@ -68,10 +67,21 @@ class Level1 extends Phaser.Scene {
         scoreText.setText('Score: ' + score);
     }
 
+    changeGravity(sprite) {
+        sprite.setGravity(0,4000);
+    }
+
 
     create() {
         gameWidth = game.config.width;
         gameHeight = game.config.height;
+
+        // Creates border
+        border = this.physics.add.sprite(gameWidth / 2.5 ,50,'border');
+        border.setScale(0.5);
+        border.body.immovable = true;
+        border.body.moves = false;
+
 
         // this.cameras.main.setBackgroundColor('#00BFFF');
         // creates the music
@@ -120,12 +130,13 @@ class Level1 extends Phaser.Scene {
         greenBin.setScale(gameWidth/4500);
 
         // Creates cardboard box image
-        boardBoxImg = this.physics.add.sprite(gameWidth / 2, 50, 'boardBox');
+        boardBoxImg = this.physics.add.sprite(gameWidth - 50, 0, 'boardBox');
         boardBoxImg.setScale(gameWidth / 750);
+        boardBoxImg.body.setVelocityX(-100);
         boardBoxImg.setGravity(0, 50);
 
         // Creates the falling trash on the page
-        trashImg = this.physics.add.sprite(gameWidth / 2, 50, 'trash');
+        trashImg = this.physics.add.sprite(gameWidth - 50, 0, 'trash');
         trashImg.setScale(gameWidth / 750);
         trashImg.setCollideWorldBounds(true);
         trashImg.setGravity(0, 300);
@@ -134,22 +145,39 @@ class Level1 extends Phaser.Scene {
         bagImg = this.physics.add.sprite(gameWidth - 50, 0, 'bags');
         bagImg.setScale(gameWidth / 450);
         bagImg.setCollideWorldBounds(true);
-        bagImg.body.setVelocityX(-100);
+        bagImg.body.setVelocityX(-1000);
         bagImg.setGravity(0, 500);
 
 
         // Creates detergent sprite
-        detergentImg = this.physics.add.sprite(gameWidth / 2, 50, 'detergent');
+        detergentImg = this.physics.add.sprite(gameWidth - 50, 0, 'detergent');
         detergentImg.setScale(gameWidth / 450);
+        detergentImg.body.setVelocityX(-1000);
         detergentImg.setCollideWorldBounds(true);
         detergentImg.setGravity(0, 200);
 
-        //Create beer bottle sprite
-        beerBottle = this.physics.add.sprite(gameWidth / 2, 50, 'beerBottle');
+
+
+
+        // Create beer bottle sprite
+        beerBottle = this.physics.add.sprite(gameWidth - 50, 0, 'beerBottle');
         beerBottle.setScale(gameWidth / 450);
+        beerBottle.body.setVelocityX(-150);
+        beerBottle.setGravity(0,200);
         beerBottle.setCollideWorldBounds(true);
 
+        // garbages = this.physics.add.staticGroup();
+        //
+        //
+        // beerBottle = garbages.create(gameWidth - 50, 0, 'beerBottle').setScale(gameWidth / 450);
+
+
         this.physics.add.collider(bagImg, groundImg);
+        this.physics.add.collider(bagImg,border);
+        this.physics.add.collider(detergentImg,border);
+
+
+
 
 
         //Adds the collider for the objects
@@ -159,8 +187,9 @@ class Level1 extends Phaser.Scene {
 
 
     update(time, delta) {
-        this.physics.add.overlap(greenBin, trashImg, this.collectGarbage, null, this);
-        this.physics.add.overlap(greenBin, bagImg, this.collectGarbage, null, this);
+        this.physics.add.overlap(greenBin, beerBottle, this.collectGarbage, null, this);
+        // this.physics.add.overlap(greenBin, bagImg, this.collectGarbage, null, this);
+
 
 
     }
