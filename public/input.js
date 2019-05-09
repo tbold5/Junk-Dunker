@@ -2,6 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', event => {
     let isIn = false;
+    clicked = true;
     $(".lead").click(function() {
         if ( $( '.mod' ).is( ":hidden" ) ) {
             // getScores();
@@ -18,9 +19,9 @@ document.addEventListener('DOMContentLoaded', event => {
             $(".settings").slideDown("slow");
         }
     });
-    $(".retButtons").click(function(){
+    $(".retButton").click(function(){
         $(".settings").slideUp("fast");
-    });  
+    });
     var provider = new firebase.auth.GoogleAuthProvider();
 
     function googleSignin() {

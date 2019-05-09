@@ -75,13 +75,19 @@ h1{
     color: rgb(85, 26, 139);
 }
 
-.setButtons{
+.musicButton{
     display: block;
     margin: 0 auto;
     margin-top: 2em;
     margin-bottom: 2em;
 }
-.retButtons{
+.sfxButton{
+    display: block;
+    margin: 0 auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+.retButton{
     display: block;
     margin: 0 auto;
 }
