@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', event => {
             var token = result.credential.accessToken;
             userId = result.user.uid;
             console.log(token)
-            console.log(user)
+            console.log(userId)
 
             isIn = true;
             $('#login').text('Logout');

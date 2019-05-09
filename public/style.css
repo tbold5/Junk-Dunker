@@ -13,7 +13,8 @@ p{
     display: block;
 }
 .nes-btn{
-    font-size: 14px;
+    /*font-size: 14px;*/
+    height: 6vh;
 }
 .gif > img{
     display: block;
