@@ -2,12 +2,13 @@
 
 document.addEventListener('DOMContentLoaded', event => {
     // userId is the reference that we talked about, use it to create an association between auth and database
+    getScores();
     let userId;
     let isIn = false;
     clicked = true;
     $(".lead").click(function() {
         if ( $( '.mod' ).is( ":hidden" ) ) {
-            // getScores();
+            //getScores();
             $( ".mod" ).slideDown( "slow" );
         } else {
             $( ".mod" ).slideUp('slow');
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', event => {
             var token = result.credential.accessToken;
             userId = result.user.uid;
             console.log(token)
-            console.log(user)
+            console.log(userId)
 
             isIn = true;
             $('#login').text('Logout');
