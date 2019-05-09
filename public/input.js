@@ -2,11 +2,12 @@
 
 document.addEventListener('DOMContentLoaded', event => {
     // userId is the reference that we talked about, use it to create an association between auth and database
+    getScores();
     let userId;
     let isIn = false;
     $(".lead").click(function() {
         if ( $( '.mod' ).is( ":hidden" ) ) {
-            getScores();
+            //getScores();
             $( ".mod" ).slideDown( "slow" );
         } else {
             $( ".mod" ).slideUp('slow');
