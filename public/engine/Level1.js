@@ -18,6 +18,7 @@ var score = 0;
 var beerBottle;
 var popSound;
 var border;
+var container;
 
 class Level1 extends Phaser.Scene {
     constructor() {
@@ -62,7 +63,7 @@ class Level1 extends Phaser.Scene {
     collectGarbage(bin, img) {
         img.disableBody(true, true);
         console.log("Bob is here");
-        score += 10;
+        score += 1000000;
         popSound.play();
         scoreText.setText('Score: ' + score);
     }
@@ -83,10 +84,9 @@ class Level1 extends Phaser.Scene {
         border.body.moves = false;
 
 
-        // this.cameras.main.setBackgroundColor('#00BFFF');
         // creates the music
-        // this.bgmusic = this.sound.add('bgmusic');
-        // this.bgmusic.play();
+        this.bgmusic = this.sound.add('bgmusic');
+        this.bgmusic.play();
 
         // Creates the background image
         this.backGround = this.add.image(gameWidth / 2, gameHeight / 2, 'bg');
@@ -154,7 +154,7 @@ class Level1 extends Phaser.Scene {
         detergentImg.setScale(gameWidth / 450);
         detergentImg.body.setVelocityX(-1000);
         detergentImg.setCollideWorldBounds(true);
-        detergentImg.setGravity(0, 200);
+        detergentImg.setGravity(0, 2000);
 
 
 
@@ -162,8 +162,8 @@ class Level1 extends Phaser.Scene {
         // Create beer bottle sprite
         beerBottle = this.physics.add.sprite(gameWidth - 50, 0, 'beerBottle');
         beerBottle.setScale(gameWidth / 450);
-        beerBottle.body.setVelocityX(-150);
-        beerBottle.setGravity(0,200);
+        beerBottle.body.setVelocityX(-1500);
+        beerBottle.setGravity(0,2000);
         beerBottle.setCollideWorldBounds(true);
 
         // garbages = this.physics.add.staticGroup();
@@ -176,6 +176,14 @@ class Level1 extends Phaser.Scene {
         this.physics.add.collider(bagImg,border);
         this.physics.add.collider(detergentImg,border);
 
+        // creating a container for garbages
+        container = this.add.container(400,300);
+        container.add([bagImg,detergentImg]);
+        this.physics.add.collider(garbages,border);
+
+
+
+
 
 
 
@@ -187,8 +195,8 @@ class Level1 extends Phaser.Scene {
 
 
     update(time, delta) {
-        this.physics.add.overlap(greenBin, beerBottle, this.collectGarbage, null, this);
-        // this.physics.add.overlap(greenBin, bagImg, this.collectGarbage, null, this);
+        // this.physics.add.overlap(greenBin, garbages, this.collectGarbage, null, this);
+        // this.physics.add.overlap(greenBin, garbages, this.collectGarbage, null, this);
 
 
 
