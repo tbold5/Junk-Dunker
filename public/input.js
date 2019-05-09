@@ -2,7 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', event => {
     // userId is the reference that we talked about, use it to create an association between auth and database
-    // getScores();
+    getScores();
     let userId;
     let isIn = false;
     clicked = true;
