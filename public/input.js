@@ -81,14 +81,19 @@ document.addEventListener('DOMContentLoaded', event => {
 
     });
 
-    createjs.Sound.on("fileload", handleLoadComplete);
+    let audioStarted = false;
     createjs.Sound.alternateExtensions = ["mp3"];
     createjs.Sound.registerSound({src:"./engine/audio/music.mp3", id:"sound"});
     function handleLoadComplete() {
-        createjs.Sound.play("sound");
+        var props = new createjs.PlayPropsConfig().set({interrupt: createjs.Sound.INTERRUPT_ANY, loop: -1, volume: 0.5})
+        createjs.Sound.play("sound", props);
     }
     document.querySelector('body').addEventListener('click', function(){
-        handleLoadComplete();
+        if(!audioStarted){
+            handleLoadComplete();
+            audioStarted = true;
+        }
+
     })
 
     // Will add  a function to check if they have an user name
