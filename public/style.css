@@ -113,16 +113,15 @@ h1{
 }
 .help {
     display: none;
-    position: relative;
+    position: fixed;
     z-index: 10;
+    height: 99%;
+    width: 99%;
 }
 
 .helpContainer{
-    background-image: url("https://i.pinimg.com/originals/75/d4/79/75d4796cf08ddb745ab1b452c6d6f557.gif");
-    background-size: cover;
-    background-repeat: no-repeat;
     height: 100%;
-    width: 100%;
+    width: 99%;
     position: fixed;
 }
 .helpBadge{
