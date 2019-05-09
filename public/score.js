@@ -5,6 +5,7 @@ function getScores() {
         board.removeChild(board.firstChild);
     }
     var scores = firebase.database().ref("scores/").orderByChild("score");
+    score.orderByValue().limitToFirst10;
     console.log(scores);
     scores.on(
         "value",
@@ -37,7 +38,7 @@ function getScores() {
                         score.innerHTML = "Score: ";
                         score.appendChild(scor);
                         board.appendChild(score);
-
+//https://moretest-22401.firebaseapp.com/engine/index.html
                     }
                 )
             })
