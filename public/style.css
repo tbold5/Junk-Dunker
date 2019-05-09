@@ -2,7 +2,11 @@ p{
     font-size: 6px;
 }
 
-.myTitle{
+.myTitle, .title{
+    text-align: center;
+}
+
+.title{
     text-align: center;
 }
 .myBlock {
@@ -54,10 +58,26 @@ h1{
 }
 
 .trophy {
-    float: left;
+    margin: 0 15px;
 }
 
 .not{
     z-index: 2;
     color: rgb(85, 26, 139);
+}
+
+.lead-exit {
+    float: right;
+    z-index: 2;
+}
+
+#board > div {
+    margin: 0 auto;
+}
+
+.leaderTitleSection{
+    margin-bottom: 10px;
+}
+.highScore {
+    text-align: center;
 }
