@@ -1,4 +1,4 @@
-function getScores() {
+function getScoresOlde() {
     let name = "";
     var board = document.getElementById("board");
     while(board.hasChildNodes()){
