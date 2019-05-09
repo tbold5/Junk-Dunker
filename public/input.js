@@ -2,9 +2,10 @@
 
 document.addEventListener('DOMContentLoaded', event => {
     // userId is the reference that we talked about, use it to create an association between auth and database
-    getScores();
+    // getScores();
     let userId;
     let isIn = false;
+    clicked = true;
     $(".lead").click(function() {
         if ( $( '.mod' ).is( ":hidden" ) ) {
             //getScores();
@@ -19,11 +20,19 @@ document.addEventListener('DOMContentLoaded', event => {
     $(".set").click(function(){
         if ( $('.settings').is(":hidden")){
             $(".settings").slideDown("slow");
-        }
+        };
     });
-    $(".retButtons").click(function(){
+    $(".retButton").click(function(){
         $(".settings").slideUp("fast");
-    });  
+    });
+    $(".helpButton").click(function(){
+        if( $('.help').is(":hidden")){
+            $(".help").slideDown("slow");
+        };
+    });
+    $(".helpReturn").click(function(){
+        $(".help").slideUp("fast");
+    });
     var provider = new firebase.auth.GoogleAuthProvider();
 
     function googleSignin() {
