@@ -95,10 +95,79 @@ h1{
     display: block;
     margin: 0 auto;
 }
+.lead-exit {
+    float: right;
+    z-index: 2;
+}
+
+#board > div {
+    margin: 0 auto;
+}
 
 .leaderTitleSection{
     margin-bottom: 10px;
 }
 .highScore {
     text-align: center;
+}
+.help {
+    display: none;
+    position: relative;
+    z-index: 10;
+}
+
+.helpContainer{
+    background-image: url("https://i.pinimg.com/originals/75/d4/79/75d4796cf08ddb745ab1b452c6d6f557.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+.helpBadge{
+    display: block;
+    margin: 0 auto;
+    margin-top: 5em;
+}
+.helpBox{
+    display: block;
+    margin: 0 auto;
+    margin-top: 2em;
+}
+.blueBin{
+    height: 50px;
+    width: 50px;
+}
+.redBin{
+    height: 50px;
+    width: 50px;
+}
+.yellowBin{
+    height: 50px;
+    width: 50px
+}
+.greenBin{
+    height: 50px;
+    width: 50px;
+}
+.greyBin{
+    height: 50px;
+    width: 50px;
+}
+.sodaCan{
+    height: 30px;
+    width: 15px;
+}
+.newspaper{
+    height: 25px;
+    width: 35px;
+}
+.waterBottle{
+    height: 35px;
+    width: 15px;
+}
+.helpReturn{
+    display: block;
+    margin: 0 auto;
+    margin-top: 1em;
 }

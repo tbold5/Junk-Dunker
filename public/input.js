@@ -19,10 +19,18 @@ document.addEventListener('DOMContentLoaded', event => {
     $(".set").click(function(){
         if ( $('.settings').is(":hidden")){
             $(".settings").slideDown("slow");
-        }
+        };
     });
     $(".retButton").click(function(){
         $(".settings").slideUp("fast");
+    });
+    $(".helpButton").click(function(){
+        if( $('.help').is(":hidden")){
+            $(".help").slideDown("slow");
+        };
+    });
+    $(".helpReturn").click(function(){
+        $(".help").slideUp("fast");
     });
     var provider = new firebase.auth.GoogleAuthProvider();
 
