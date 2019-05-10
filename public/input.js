@@ -1,10 +1,14 @@
 document.addEventListener('DOMContentLoaded', event => {
     // userId is the reference that we talked about, use it to create an association between auth and database
-
     // getScores();
+
+    let hasUserName;
+    let userData;
+
     // Declares array named userName
     let userName = [];
     //Creates database object from firebase
+
     var db = firebase.firestore();
     // Declares variable userId
     let userId;
@@ -16,6 +20,9 @@ document.addEventListener('DOMContentLoaded', event => {
     $(".lead").click(function() {
         // Determines if  mod element is hidden
         if ( $( '.mod' ).is( ":hidden" ) ) {
+
+            getScores();
+
             //getScores();
             // Mod element moves slowly down the screen
             $( ".mod" ).slideDown( "slow" );
@@ -24,6 +31,12 @@ document.addEventListener('DOMContentLoaded', event => {
             $( ".mod" ).slideUp('slow');
         };
     });
+
+    $(".confirm").click(function () {
+        createUser();
+        $(".userNameAsk").slideUp('slow');
+    });
+
 
     // Click on lead-exit element slides element mod up the screen
     $(".lead-exit").click(function () {
@@ -76,6 +89,8 @@ document.addEventListener('DOMContentLoaded', event => {
             isIn = true;
             // 
             $('#login').text('Logout');
+            // userData = await getAllUserData(userId);
+            await checkIfHasName(userId);
             //Assigns user data asynchronously 
             userName = await getAllUserData();
             //Prints asynchronously to console
@@ -86,10 +101,13 @@ document.addEventListener('DOMContentLoaded', event => {
             var errorMessage = error.message;
             //Prints error code
             console.log(error.code);
-            //Prints error message
+            if(error.code === undefined){
+                $('.userNameAsk').slideDown('slow');
+            }
+          //Prints error message
             console.log(error.message)
-        });
 
+        });
     }
 
     // Create signout function
@@ -127,6 +145,7 @@ document.addEventListener('DOMContentLoaded', event => {
     createjs.Sound.alternateExtensions = ["mp3"];
     //Identifies path to audio file
     createjs.Sound.registerSound({src:"./engine/audio/music.mp3", id:"sound"});
+
     // Plays audio with options
     function handleLoadComplete() {
         //Creates optional play properties for audio
@@ -134,6 +153,7 @@ document.addEventListener('DOMContentLoaded', event => {
         // Plays audio
         createjs.Sound.play("sound", props);
     }
+
      
     // Listens for click on body element and determines if audio plays
     document.querySelector('body').addEventListener('click', function(){
@@ -146,20 +166,31 @@ document.addEventListener('DOMContentLoaded', event => {
 
     // Will add  a function to check if they have an user name
     //if the user doesn't have, create a pop up and ask for a user id.
-    async function getAllUserData() {
-        let bigData = [];
-        db.collection("Users").get().then(async function (querySnapshot) {
+
+    async function getAllUserData(id) {
+        let bigData;
+       await db.collection("Users").get().then(async function (querySnapshot) {
+
             console.log(querySnapshot);
             let i = 0;
             await querySnapshot.forEach(async function (doc) {
 
                 // doc.data() is never undefined for query doc snapshots
                 console.log(doc.id, " => ", doc.data());
-                bigData[i++] = await doc.data();
+                if(doc.id === id){
+                    bigData = await doc.data();
+                }
             });
         });
-        return bigData;
+        return await bigData;
     }
+
+    async function checkIfHasName(id){
+        await getAllUserData(id).then(async function(data){
+            console.log(data.UserName);
+        })
+    }
+
 
     // async function checkTheUser(){
     //     userName = await getDataTest();
@@ -169,4 +200,15 @@ document.addEventListener('DOMContentLoaded', event => {
     //     console.log(userName);
     // }
 
+    function createUser() {
+        db.collection('Users').doc(userId).set({
+            UserName : $('#name_field').val(),
+            HighScore : 0
+        }).then(function () {
+            console.log("Doc written successfully");
+        })
+    }
+    function getCurrentUser() {
+        return userId;
+    }
 });
