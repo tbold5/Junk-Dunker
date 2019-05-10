@@ -2,10 +2,12 @@
 
 document.addEventListener('DOMContentLoaded', event => {
     // userId is the reference that we talked about, use it to create an association between auth and database
+
     // getScores();
     let hasUserName;
     let userData;
     var db = firebase.firestore();
+
     let userId;
     let isIn = false;
     clicked = true;
@@ -58,6 +60,7 @@ document.addEventListener('DOMContentLoaded', event => {
                 $('.userNameAsk').slideDown('slow');
             }
             console.log(error.message)
+
         });
     }
 
