@@ -42,6 +42,9 @@ document.addEventListener('DOMContentLoaded', event => {
     $(".helpReturn").click(function(){
         $(".help").slideUp("fast");
     });
+    $(".balance").click(function() {
+        startGame();
+    });
     var provider = new firebase.auth.GoogleAuthProvider();
 
      async function googleSignin() {
@@ -142,5 +145,10 @@ document.addEventListener('DOMContentLoaded', event => {
     }
     function getCurrentUser() {
         return userId;
+    }
+
+    //Doesn't really start the game.
+    function startGame() {
+
     }
 });
