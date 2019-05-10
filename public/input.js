@@ -145,7 +145,6 @@ document.addEventListener('DOMContentLoaded', event => {
     createjs.Sound.alternateExtensions = ["mp3"];
     //Identifies path to audio file
     createjs.Sound.registerSound({src:"./engine/audio/music.mp3", id:"sound"});
-
     // Plays audio with options
     function handleLoadComplete() {
         //Creates optional play properties for audio
@@ -154,7 +153,6 @@ document.addEventListener('DOMContentLoaded', event => {
         createjs.Sound.play("sound", props);
     }
 
-     
     // Listens for click on body element and determines if audio plays
     document.querySelector('body').addEventListener('click', function(){
         if(!audioStarted){
@@ -166,7 +164,7 @@ document.addEventListener('DOMContentLoaded', event => {
 
     // Will add  a function to check if they have an user name
     //if the user doesn't have, create a pop up and ask for a user id.
-
+    // Gets all users' data asynchronously
     async function getAllUserData(id) {
         let bigData;
        await db.collection("Users").get().then(async function (querySnapshot) {
@@ -184,7 +182,7 @@ document.addEventListener('DOMContentLoaded', event => {
         });
         return await bigData;
     }
-
+    //Verifies if user is previous player
     async function checkIfHasName(id){
         await getAllUserData(id).then(async function(data){
             console.log(data.UserName);
@@ -200,6 +198,7 @@ document.addEventListener('DOMContentLoaded', event => {
     //     console.log(userName);
     // }
 
+    //Creates new user
     function createUser() {
         db.collection('Users').doc(userId).set({
             UserName : $('#name_field').val(),
@@ -208,6 +207,7 @@ document.addEventListener('DOMContentLoaded', event => {
             console.log("Doc written successfully");
         })
     }
+    //Returns the current user ID
     function getCurrentUser() {
         return userId;
     }
