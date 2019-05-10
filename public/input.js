@@ -19,6 +19,10 @@ document.addEventListener('DOMContentLoaded', event => {
             $( ".mod" ).slideUp('slow');
         };
     });
+    $(".confirm").click(function () {
+        createUser();
+        $(".userNameAsk").slideUp('slow');
+    });
     $(".lead-exit").click(function () {
         $( ".mod" ).slideUp('slow');
     });
@@ -126,5 +130,17 @@ document.addEventListener('DOMContentLoaded', event => {
         await getAllUserData(id).then(async function(data){
             console.log(data.UserName);
         })
+    }
+
+    function createUser() {
+        db.collection('Users').doc(userId).set({
+            UserName : $('#name_field').val(),
+            HighScore : 0
+        }).then(function () {
+            console.log("Doc written successfully");
+        })
+    }
+    function getCurrentUser() {
+        return userId;
     }
 });
