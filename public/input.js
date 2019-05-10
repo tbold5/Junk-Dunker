@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', event => {
 
             console.log(error.code)
             console.log(error.message)
-
+        // changed code
         });
 
 
