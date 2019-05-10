@@ -71,6 +71,8 @@ class Level1 extends Phaser.Scene {
         score += 1000000;
         popSound.play();
         scoreText.setText('Score: ' + score);
+        this.destroyHealth();
+
     }
 
     // Destorys the health if the wrong trash is entered
@@ -93,6 +95,11 @@ class Level1 extends Phaser.Scene {
         }
 
     }
+
+    // onObjectClicked(pointer,gameObject)
+    // {
+    //     gameObject.moveTo(100,500);
+    // }
 
     create() {
         gameWidth = game.config.width;
@@ -134,6 +141,16 @@ class Level1 extends Phaser.Scene {
         blueBin = this.physics.add.sprite(gameWidth / 1.14, gameHeight - 50, 'blueBin');
         blueBin.setScale(gameWidth/9000);
 
+        yellowBin.setInteractive();
+        greyBin.setInteractive();
+        redBin.setInteractive();
+        blueBin.setInteractive();
+
+        this.input.setDraggable(greyBin);
+        this.input.setDraggable(redBin);
+        this.input.setDraggable(blueBin);
+        this.input.setDraggable(yellowBin);
+
         // Creates the ground image to hold the items
         groundImg = this.physics.add.sprite(gameWidth / 1.14, gameHeight / 8, 'ground');
         groundImg.setScale(0.5);
@@ -149,6 +166,11 @@ class Level1 extends Phaser.Scene {
         // Creates the middle bin
         greenBin = this.physics.add.sprite(gameWidth / 2, gameHeight / 1.5, 'greenBin');
         greenBin.setScale(gameWidth/4500);
+
+        greenBin.setInteractive();
+        this.input.setDraggable(greenBin);
+
+
 
         // Creates cardboard box image
         boardBoxImg = this.physics.add.sprite(gameWidth - 50, 0, 'boardBox');
@@ -167,7 +189,7 @@ class Level1 extends Phaser.Scene {
         bagImg.setScale(gameWidth / 450);
         bagImg.setCollideWorldBounds(true);
         bagImg.body.setVelocityX(-1000);
-        bagImg.setGravity(0, 500);
+        bagImg.setGravity(0, 100);
 
 
         // Creates detergent sprite
@@ -214,18 +236,22 @@ class Level1 extends Phaser.Scene {
 
 
         //Adds the collider for the objects
-        this.keys = this.input.keyboard.addKeys('SPACE');
 
 
     }
 
 
     update(time, delta) {
-        if (this.keys.SPACE.isDown) {
-            score+= 1000000;
-            scoreText.setText('Score: ' + score);
-            this.pop.play();
-        }
+        // Destorys the bins once clicked
+        // this.input.on('gameobjectdown',this.onObjectClicked);
+
+
+        this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+
+            gameObject.x = dragX;
+            gameObject.y = dragY;
+
+        });
         this.physics.add.overlap(greenBin, bagImg, this.collectGarbage, null, this);
         this.physics.add.overlap(greenBin, detergentImg, this.collectGarbage, null, this);
         this.physics.add.overlap(greenBin, boardBoxImg, this.collectGarbage, null, this);
