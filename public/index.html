@@ -9,7 +9,9 @@
       <link rel="stylesheet" href="style.css">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
     <!-- update the version number as needed -->
-    <script defer src="/__/firebase/5.11.1/firebase-app.js"></script>
+    <!--<script defer src="/__/firebase/5.11.1/firebase-app.js"></script>-->
+    <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-firestore.js"></script>
     <!-- include only the Firebase features as you need -->
     <script defer src="/__/firebase/5.11.1/firebase-auth.js"></script>
     <script defer src="/__/firebase/5.11.1/firebase-database.js"></script>
@@ -17,6 +19,7 @@
     <script defer src="/__/firebase/5.11.1/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
+    <script src="https://code.createjs.com/1.0.0/soundjs.min.js"></script>
   </head>
   <body>
   <!--<div class="myContainer">-->
@@ -41,18 +44,17 @@
       <br>
       <br>
       <div class='gif'>
-        <img src="https://cdn.dribbble.com/users/106247/screenshots/1766006/recyclo.gif" alt="">
+        <img src="./images/recyclo2.gif" alt="">
       </div>
       <br>
       <br>
       <div class="myTitle">
         <h1>Junk Dunker</h1>
-        <br>
-        <br>
         <div class="myBlock">
           <a href="./engine/index.html"><button type="button" class="nes-btn is-success ">Play</button></a>
             <button type="button" class="nes-btn is-warning lead">Leader Board</button>
             <button type="button" class="nes-btn is-primary" id="login">Login</button>
+            <button type="button" class="nes-btn helpButton">Help</button>
             <button type="button" class="nes-btn is-error set">Settings</button>
         </div>
       </div>
@@ -71,20 +73,63 @@
       </div>
     </div>
   </div>
+  <!--Div for settings page-->
   <div class="settings">
     <div class="settingsContainer">
       <a href="#" class="nes-badge">
           <span class="is-dark">Options</span>
       </a>
-      <button type = button class ="nes-btn is-primary setButtons">Music: ON</button>
-      <button type = button class ="nes-btn is-primary setButtons">Sound: ON</button>
-      <button type = button class ="nes-btn is-success retButtons">Return</button>
+      <button type = button class ="nes-btn is-primary musicButton">Music: ON</button>
+      <button type = button class ="nes-btn is-primary sfxButton">Sound: ON</button>
+      <button type = button class ="nes-btn is-success retButton">Return</button>
+    </div>
+  </div>
+    <!--Div for help page-->
+  <div class="help">
+    <div class ="nes-container is-rounded is-dark helpContainer">
+      <a href="#" class="nes-badge helpBadge">
+        <span class="is-dark">Help</span>
+      </a>
+      <div class="helpBox">
+        <div class="nes-container is-rounded blueContainer">
+          <img class="blueBin" src="./images/bluebin1.png">
+          <img class="sodaCan" src="./images/sodacan.png">
+          <img class="newspaper" src="./images/newspaper.png">
+          <img class="waterBottle" src="./images/water.png">
+        </div>
+        <div class="nes-container is-rounded redContainer">
+          <img class="redBin" src="./images/redbin1.png">
+        </div>
+        <div class="nes-container is-rounded greyContainer">
+          <img class="greyBin" src="./images/greybin1.png">
+        </div>
+        <div class="nes-container is-rounded greenContainer">
+          <img class="greenBin" src="./images/greenbin1.png">
+        </div>
+        <div class="nes-container is-rounded yellowContainer">
+          <img class="yellowBin" src="./images/yellowbin1.png">
+        </div>
+          <button type = button class ="nes-btn is-success helpReturn">Return</button>
+      </div>
+    </div>
+  </div>
+  <!--Div for user name input-->
+  <div class="userNameAsk">
+    <div class="nes-container with-title is-dark is-centered">
+      <p class="title">Specify your User Name</p>
+      <div class="nes-field">
+        <label for="name_field">Your name</label>
+        <input type="text" id="name_field" class="nes-input">
+      </div>
     </div>
   </div>
 
   <script src="app.js"></script>
   <!--Hey guys I am adding more script files here ,Pamir-->
   <script src="input.js"></script>
-  <script src="score.js"></script>
+  <script src="scoreV2.js"></script>
+  <audio autoplay>
+    <!--<source src="./engine/audio/music.mp3" type="audio/mpeg">-->
+  </audio>
   </body>
 </html>

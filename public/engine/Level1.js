@@ -224,7 +224,6 @@ class Level1 extends Phaser.Scene {
         if (this.keys.SPACE.isDown) {
             score+= 1000000;
             scoreText.setText('Score: ' + score);
-
             this.pop.play();
         }
         this.physics.add.overlap(greenBin, bagImg, this.collectGarbage, null, this);
