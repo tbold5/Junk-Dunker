@@ -2,14 +2,19 @@ p{
     font-size: 6px;
 }
 
-.myTitle{
+.myTitle, .title{
+    text-align: center;
+}
+
+.title{
     text-align: center;
 }
 .myBlock {
     display: block;
 }
 .nes-btn{
-    font-size: 14px;
+    /*font-size: 14px;*/
+    height: 6vh;
 }
 .gif > img{
     display: block;
@@ -31,8 +36,16 @@ h1{
     /*position: fixed;*/
     /*z-index: -1;*/
 /*}*/
-
 .myContainer{
+    background-image: url("https://i.pinimg.com/originals/75/d4/79/75d4796cf08ddb745ab1b452c6d6f557.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+
+.settingsContainer{
     background-image: url("https://i.pinimg.com/originals/75/d4/79/75d4796cf08ddb745ab1b452c6d6f557.gif");
     background-size: cover;
     background-repeat: no-repeat;
@@ -46,6 +59,11 @@ h1{
     margin: 0 auto;
     margin-top: 8em;
 }
+.settings {
+    display: none;
+    position: relative;
+    z-index: 10;
+}
 
 .mod {
     display: none;
@@ -54,10 +72,102 @@ h1{
 }
 
 .trophy {
-    float: left;
+    margin: 0 15px;
 }
 
 .not{
     z-index: 2;
     color: rgb(85, 26, 139);
+}
+
+.musicButton{
+    display: block;
+    margin: 0 auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+.sfxButton{
+    display: block;
+    margin: 0 auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+.retButton{
+    display: block;
+    margin: 0 auto;
+}
+.lead-exit {
+    float: right;
+    z-index: 2;
+}
+
+#board > div {
+    margin: 0 auto;
+}
+
+.leaderTitleSection{
+    margin-bottom: 10px;
+}
+.highScore {
+    text-align: center;
+}
+.help {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    height: 99%;
+    width: 99%;
+}
+
+.helpContainer{
+    height: 100%;
+    width: 99%;
+    position: fixed;
+}
+.helpBadge{
+    display: block;
+    margin: 0 auto;
+    margin-top: 5em;
+}
+.helpBox{
+    display: block;
+    margin: 0 auto;
+    margin-top: 2em;
+}
+.blueBin{
+    height: 50px;
+    width: 50px;
+}
+.redBin{
+    height: 50px;
+    width: 50px;
+}
+.yellowBin{
+    height: 50px;
+    width: 50px
+}
+.greenBin{
+    height: 50px;
+    width: 50px;
+}
+.greyBin{
+    height: 50px;
+    width: 50px;
+}
+.sodaCan{
+    height: 30px;
+    width: 15px;
+}
+.newspaper{
+    height: 25px;
+    width: 35px;
+}
+.waterBottle{
+    height: 35px;
+    width: 15px;
+}
+.helpReturn{
+    display: block;
+    margin: 0 auto;
+    margin-top: 1em;
 }
