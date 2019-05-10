@@ -2,7 +2,11 @@
 
 document.addEventListener('DOMContentLoaded', event => {
     // userId is the reference that we talked about, use it to create an association between auth and database
-    getScores();
+
+    // getScores();
+    let userName = [];
+    var db = firebase.firestore();
+
     let userId;
     let isIn = false;
     clicked = true;
@@ -35,29 +39,25 @@ document.addEventListener('DOMContentLoaded', event => {
     });
     var provider = new firebase.auth.GoogleAuthProvider();
 
-    function googleSignin() {
-        firebase.auth().signInWithPopup(provider).then(function(result) {
+     async function googleSignin() {
+        firebase.auth().signInWithPopup(provider).then( async function(result) {
             var token = result.credential.accessToken;
             userId = result.user.uid;
-            console.log(token)
-            console.log(userId)
-
-
+            console.log(token);
+            console.log(userId);
 
             isIn = true;
             $('#login').text('Logout');
+            userName = await getAllUserData();
+            await console.log(userName);
         }).catch(function(error) {
             var errorCode = error.code;
             var errorMessage = error.message;
 
-            console.log(error.code)
+            console.log(error.code);
             console.log(error.message)
 
         });
-
-
-
-
 
     }
 
@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', event => {
             googleSignin()
         } else {
             googleSignOut();
-
         }
 
     });
@@ -98,5 +97,27 @@ document.addEventListener('DOMContentLoaded', event => {
 
     // Will add  a function to check if they have an user name
     //if the user doesn't have, create a pop up and ask for a user id.
+
+    async function getAllUserData() {
+        let bigData = [];
+        db.collection("Users").get().then(async function (querySnapshot) {
+            console.log(querySnapshot);
+            let i = 0;
+            await querySnapshot.forEach(async function (doc) {
+
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.id, " => ", doc.data());
+                bigData[i++] = await doc.data();
+            });
+        });
+        return bigData;
+    }
+    // async function checkTheUser(){
+    //     userName = await getDataTest();
+    // }
+    //
+    // async function doSomething(){
+    //     console.log(userName);
+    // }
 
 });
