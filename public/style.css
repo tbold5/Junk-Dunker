@@ -52,7 +52,9 @@ h1{
     height: 100%;
     width: 100%;
     position: fixed;
+
 }
+
 
 .nes-badge{
     display: block;
@@ -170,4 +172,10 @@ h1{
     display: block;
     margin: 0 auto;
     margin-top: 1em;
+}
+
+.userNameAsk{
+    display: none;
+    position: relative;
+    z-index: 10;
 }
