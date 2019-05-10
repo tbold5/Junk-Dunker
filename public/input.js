@@ -1,12 +1,7 @@
 
 // Listens to event change
 document.addEventListener('DOMContentLoaded', event => {
-<<<<<<< HEAD
 // userId is the reference that we talked about, use it to create an association between auth and database
-=======
-    // userId is the reference that we talked about, use it to create an association between auth and database
-    getScores();
->>>>>>> 9d952011d1e905850b45add36edda2add3cdd6e5
     let userId;
 //assign false to boolean variable
     let isIn = false;
@@ -68,23 +63,40 @@ document.addEventListener('DOMContentLoaded', event => {
             googleSignOut();
 
         }
-
     });
+
+    //Verfies user in database
     function verifyUserInDatabase(currentUser){
             const firestore = firebase.firestore();
-            const userName = firestore.collection('Users');
-            const query = userName.where('userId', '==', currentUser);
-            console.log(query);
-            // if(userId == query){
-            //     if (Uid == query){
-            //         query.get().then(snapshot => {
-                   
-            //         }
-            //     }
-            // }
-        }
+            const userName = firestore.collection('Users').doc('Document ID');
+            //firestore.collection("Users").get().then(function (querySnapshot) {
+                //querySnapshot.forEach(function (doc) {
+                    // doc.data() is never undefined for query doc snapshots
+                    console.log(doc.id, " => ", doc.data());
+                
+            
+            });
         
-
+            console.log(userName);
+            docRef.get().then(function(doc) {
+                console.log(doc.data);
+            })
+            
+            // const query = userName.where('Users', '==', currentUser);
+            // // console.log(query);
+            //     if(query == "" || query == null){
+            //         validateLogin();
+            //  }
+        })
+    // Creates login popup for new user
+    function validateLogin() {
+        console.log('hey')
+            var popup = document.getElementById("popup");
+                popup.classList.toggle("show");
+                document.getElementById("errorMsg").innerHTML = "User name must be filled in";
+                return false;
+    }
+        
     // Will add  a function to check if they have an user name
     //if the user doesn't have, create a pop up and ask for a user id.
 
