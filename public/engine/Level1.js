@@ -19,6 +19,7 @@ var beerBottle;
 var popSound;
 var border;
 var container;
+var healthDecreased = 0;
 
 class Level1 extends Phaser.Scene {
     constructor() {
@@ -30,7 +31,7 @@ class Level1 extends Phaser.Scene {
     preload() {
 
         // Loads all the audio files
-        this.load.audio('bgmusic', ['audio/music.mp3']);
+        // this.load.audio('bgmusic', ['audio/music.mp3']);
         this.load.audio('pop', ['audio/pop.mp3']);
 
         // loads all the recycling bins
@@ -41,7 +42,10 @@ class Level1 extends Phaser.Scene {
         this.load.image('greenBin', 'images/greenbin1.png');
 
         // loads the health bar
-        this.load.image('health', 'images/health.png');
+        this.load.image('health', 'images/3Heart.png');
+        this.load.image('twoHeart', 'images/TwoHeart.png');
+        this.load.image('oneHeart', 'images/OneHeart.png');
+        this.load.image('noHeart', 'images/ZeroHeart.png');
 
         this.load.image('ground', 'images/platform.png');
         this.load.image('bg', 'images/backGround.gif');
@@ -60,6 +64,7 @@ class Level1 extends Phaser.Scene {
     }
 
 
+    // Makes the garbage upon collision with bin
     collectGarbage(bin, img) {
         img.disableBody(true, true);
         console.log("Bob is here");
@@ -68,25 +73,41 @@ class Level1 extends Phaser.Scene {
         scoreText.setText('Score: ' + score);
     }
 
-    changeGravity(sprite) {
-        sprite.setGravity(0,4000);
-    }
+    // Destorys the health if the wrong trash is entered
 
+    destroyHealth(){
+        if(healthDecreased === 2){
+            healthBar.destroy();
+            healthBar = this.add.image(50, 100, 'noHeart');
+            healthBar.setScale(2.3);
+        } else if (healthDecreased === 1) {
+            healthBar.destroy();
+            healthBar = this.add.image(50, 100, 'oneHeart');
+            healthBar.setScale(2.3);
+            healthDecreased +=1;
+        } else {
+            healthBar.destroy();
+            healthBar = this.add.image(50, 100, 'twoHeart');
+            healthBar.setScale(2.3);
+            healthDecreased +=1;
+        }
+
+    }
 
     create() {
         gameWidth = game.config.width;
         gameHeight = game.config.height;
 
-        // Creates border
-        border = this.physics.add.sprite(gameWidth / 2.5 ,50,'border');
+        // Creates border for trash to bounce off of
+        border = this.physics.add.sprite(gameWidth / 2.3 ,50,'border');
         border.setScale(0.5);
         border.body.immovable = true;
         border.body.moves = false;
 
 
         // creates the music
-        this.bgmusic = this.sound.add('bgmusic');
-        this.bgmusic.play();
+        // this.bgmusic = this.sound.add('bgmusic');
+        // this.bgmusic.play();
 
         // Creates the background image
         this.backGround = this.add.image(gameWidth / 2, gameHeight / 2, 'bg');
@@ -122,7 +143,7 @@ class Level1 extends Phaser.Scene {
 
         // Creates the health bar
         healthBar = this.add.image(50, 100, 'health');
-        healthBar.setScale(0.3);
+        healthBar.setScale(2.3);
 
 
         // Creates the middle bin
@@ -132,8 +153,8 @@ class Level1 extends Phaser.Scene {
         // Creates cardboard box image
         boardBoxImg = this.physics.add.sprite(gameWidth - 50, 0, 'boardBox');
         boardBoxImg.setScale(gameWidth / 750);
-        boardBoxImg.body.setVelocityX(-100);
-        boardBoxImg.setGravity(0, 50);
+        boardBoxImg.body.setVelocityX(-1000);
+        boardBoxImg.setGravity(0, 250);
 
         // Creates the falling trash on the page
         trashImg = this.physics.add.sprite(gameWidth - 50, 0, 'trash');
@@ -175,11 +196,15 @@ class Level1 extends Phaser.Scene {
         this.physics.add.collider(bagImg, groundImg);
         this.physics.add.collider(bagImg,border);
         this.physics.add.collider(detergentImg,border);
+        this.physics.add.collider(boardBoxImg,border);
+
+
+
 
         // creating a container for garbages
-        container = this.add.container(400,300);
-        container.add([bagImg,detergentImg]);
-        this.physics.add.collider(garbages,border);
+        // container = this.add.container(400,300);
+        // container.add([bagImg,detergentImg]);
+        // this.physics.add.collider(garbages,border);
 
 
 
@@ -189,14 +214,22 @@ class Level1 extends Phaser.Scene {
 
 
         //Adds the collider for the objects
+        this.keys = this.input.keyboard.addKeys('SPACE');
 
 
     }
 
 
     update(time, delta) {
-        // this.physics.add.overlap(greenBin, garbages, this.collectGarbage, null, this);
-        // this.physics.add.overlap(greenBin, garbages, this.collectGarbage, null, this);
+        if (this.keys.SPACE.isDown) {
+            score+= 1000000;
+            scoreText.setText('Score: ' + score);
+            this.pop.play();
+        }
+        this.physics.add.overlap(greenBin, bagImg, this.collectGarbage, null, this);
+        this.physics.add.overlap(greenBin, detergentImg, this.collectGarbage, null, this);
+        this.physics.add.overlap(greenBin, boardBoxImg, this.collectGarbage, null, this);
+
 
 
 
