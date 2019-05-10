@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', event => {
     // userId is the reference that we talked about, use it to create an association between auth and database
     // getScores();
-
+    // Declares variable 
     let hasUserName;
+    // Declares variabe
     let userData;
 
     // Declares array named userName
@@ -108,7 +109,7 @@ document.addEventListener('DOMContentLoaded', event => {
     // Declared asynchronous function for signin
      async function googleSignin() {
          // Authenticate Firebase using Google provider object.
-         // Promptd users to sign in with their Google Account 
+         // Prompts users to sign in with their Google Account 
          // either by opening a pop-up window or by redirecting to the sign-in page.
         firebase.auth().signInWithPopup(provider).then( async function(result) {
             //Assigns generated token to variable token
