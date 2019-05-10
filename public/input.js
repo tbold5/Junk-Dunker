@@ -69,6 +69,12 @@ document.addEventListener('DOMContentLoaded', event => {
         $(".help").slideUp("fast");
     });
 
+    $(".balance").click(function() {
+        startGame();
+    });
+    var provider = new firebase.auth.GoogleAuthProvider();
+
+
     // Creates an instance called provider of the Google provider object
     var provider = new firebase.auth.GoogleAuthProvider();
     // Declared asynchronous function for signin
@@ -210,5 +216,10 @@ document.addEventListener('DOMContentLoaded', event => {
     }
     function getCurrentUser() {
         return userId;
+    }
+
+    //Doesn't really start the game.
+    function startGame() {
+
     }
 });
