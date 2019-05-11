@@ -44,6 +44,14 @@ h1{
     width: 100%;
     position: fixed;
 }
+.myDeath {
+    background-image: url("https://i.imgur.com/iXefvO8.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
 
 .settingsContainer{
     background-image: url("https://i.pinimg.com/originals/75/d4/79/75d4796cf08ddb745ab1b452c6d6f557.gif");
@@ -182,4 +190,17 @@ h1{
     display: none;
     position: relative;
     z-index: 10;
+}
+
+.disintegration-container canvas {
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    transition: transform 1s, opacity 1s;
+    transform: rotate(0deg) translate(0px, 0px);
+}
+.hidden{
+    display: none;
 }

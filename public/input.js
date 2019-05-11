@@ -70,9 +70,9 @@ document.addEventListener('DOMContentLoaded', event => {
         $(".help").slideUp("fast");
     });
 
-    $(".balance").click(function() {
-        startGame();
-    });
+    //$(".balance").click(function() {
+        //startGame();
+    //});
     var provider = new firebase.auth.GoogleAuthProvider();
 
 
@@ -220,7 +220,15 @@ document.addEventListener('DOMContentLoaded', event => {
     }
 
     //Doesn't really start the game.
-    function startGame() {
+    //function startGame() {
+        //let everything = document.getElementById("yes");
+        //while(everything.hasChildNodes()){
+            //everything.removeChild(everything.firstChild);
+        //}
+        //let container = $('#yes');
+        //let item = `<div class = 'myDeath'>` +
+            //`<div/>`;
+        //$(item).appendTo(container);
 
-    }
+    //}
 });
