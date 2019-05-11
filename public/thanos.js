@@ -60,19 +60,19 @@ rotate(${15 * (Math.random() - 0.5)}deg)`;
             return;
         }
         hasClicked = true;
-        $('.myContainer').fadeOut(2000);
+        $('.myContainer').fadeOut(3000);
 
         [...document.querySelectorAll(".myContainer")].forEach(($elm, i) => {
 
             setTimeout(() => {
                 disintegrate($elm)
-            },  1);
+            },  200);
 
         });
         $('.myContainer').fadeIn(2000);
         setTimeout(()=>{
             $('.myContainer').css("background-image", "url(https://i.imgur.com/49fWx8Y.gif)")
-        }, 2000)
+        }, 3000)
 
     });
 });
