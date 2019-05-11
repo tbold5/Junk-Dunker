@@ -1,54 +1,85 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <!-- Head section for entire game, contents invisible-->
+<head>
+
+      <!-- Document Title -->
+      <title>Welcome to Firebase Hosting</title>
+
+      <!-- Declares character encoding (charset) -->
+      <meta charset="utf-8">
+
+      <!--
+      Visibility of view for user. The width=device-width sets width of the page to 
+      follow the screen-width of device.
+      Initial-scale=1.0 part sets initial zoom level when page is first loaded by the browser. 
+      -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+      <!-- @links path for fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+
+       <!-- @links path for cascade style fonts -->
+      <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
+
+      <!-- @link describes presentation of document -->
+      <link rel="stylesheet" href="style.css">
+
+       <!-- @script path for Cloudfare jquery -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <!-- update the version number as needed -->
-    <!--<script defer src="/__/firebase/5.11.1/firebase-app.js"></script>-->
-    <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-firestore.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/5.11.1/firebase-auth.js"></script>
-    <script defer src="/__/firebase/5.11.1/firebase-database.js"></script>
-    <script defer src="/__/firebase/5.11.1/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/5.11.1/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
-    <script src="https://code.createjs.com/1.0.0/soundjs.min.js"></script>
+
+      <!-- <script defer src="/__/firebase/5.11.1/firebase-app.js"></script> -->
+      <!-- @script source of firebase. Firebase features required for this game-->
+      <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-firestore.js"></script>
+
+      <!-- 
+      Firebase features required for this game. Defer
+      tells browser only execute script file once the HTML 
+      document has been fully parsed. 
+      -->
+      <script defer src="/__/firebase/5.11.1/firebase-auth.js"></script>
+      <script defer src="/__/firebase/5.11.1/firebase-database.js"></script>
+      <script defer src="/__/firebase/5.11.1/firebase-messaging.js"></script>
+      <script defer src="/__/firebase/5.11.1/firebase-storage.js"></script>
+      <script defer src="/__/firebase/init.js"></script>
+      
+      <!-- @script for audio play -->
+      <script src="https://code.createjs.com/1.0.0/soundjs.min.js"></script>
+
   </head>
 
+   <!-- @tag body section visible -->
+  <body>
+  <!-- @tag class holds all elements-->
   <body id="yes">
 
   <!--<div class="myContainer">-->
     <div class='nes-container myContainer'>
       <div>
+          <!--@tag class,  class of list of signin options-->
         <section class="icon-list">
 
-          <!-- twitter -->
+          <!-- @tag class of twitter -->
           <i class="nes-icon twitter"></i>
 
-          <!-- facebook -->
+          <!-- @tag class of facebook -->
           <i class="nes-icon facebook "></i>
 
-          <!-- instagram -->
+          <!-- @tag class of instagram -->
           <i class="nes-icon instagram"></i>
 
-          <!-- github -->
+          <!-- @tag class of github -->
           <i class="nes-icon github"></i>
 
-        </section>
+        </section><!--#class of signin icons-->
       </div>
       <br>
       <br>
+      <!--@tag class is image with its path -->
       <div class='gif'>
         <img src="./images/recyclo2.gif" alt="">
-      </div>
+      </div><!--#class gif-->
       <br>
       <br>
       <div class="myTitle">
@@ -59,25 +90,23 @@
             <button type="button" class="nes-btn is-primary" id="login">Login</button>
             <button type="button" class="nes-btn helpButton item">Help</button>
             <button type="button" class="nes-btn is-error set">Settings</button>
-        </div>
-      </div>
-    </div>
-  <!--</div>-->
+        </div><!-- #class myBlock -->
+      </div><!-- #class myTitle -->
+    </div><!-- #class myContainer -->
   <div class="mod">
     <div class="nes-container is-rounded is-dark">
       <div class="leaderTitleSection">
         <p class="title">
           The Leader Board
-        </p>
+        </p><!-- @paragraph title -->
         <button type="button" class="nes-btn is-warning lead-exit">X</button>
-      </div>
+      </div><!-- #class leaderTitleSection -->
 
       <div id="board">
-      </div>
-    </div>
-  </div>
-  <!--Div for settings page-->
-  <div class="settings">
+      </div><!-- #class myContainer -->
+    </div><!-- #class nes-container is-rounded is-dark -->
+  </div><!-- #class mod -->
+  <div class="settings"><!--#class for settings page-->
     <div class="settingsContainer">
       <a href="#" class="nes-badge">
           <span class="is-dark">Options</span>
@@ -87,8 +116,8 @@
       <button type = button class ="nes-btn is-success retButton">Return</button>
     </div>
   </div>
-    <!--Div for help page-->
-  <div class="help">
+   
+  <div class="help"><!-- div for help page -->
     <div class ="nes-container is-rounded is-dark helpContainer">
       <a href="#" class="nes-badge helpBadge">
         <span class="is-dark">Help</span>
@@ -99,24 +128,24 @@
           <img class="sodaCan" src="./images/sodacan.png">
           <img class="newspaper" src="./images/newspaper.png">
           <img class="waterBottle" src="./images/water.png">
-        </div>
+        </div><!-- #class nes-container is-rounded blueContainer-->
         <div class="nes-container is-rounded redContainer">
           <img class="redBin" src="./images/redbin1.png">
-        </div>
+        </div><!-- #class nes-container is-rounded redContainer -->
         <div class="nes-container is-rounded greyContainer">
           <img class="greyBin" src="./images/greybin1.png">
-        </div>
+        </div><!-- #class nes-container is-rounded greyContainer -->
         <div class="nes-container is-rounded greenContainer">
           <img class="greenBin" src="./images/greenbin1.png">
-        </div>
+        </div><!-- #class nes-container is-rounded greenContainer" -->
         <div class="nes-container is-rounded yellowContainer">
           <img class="yellowBin" src="./images/yellowbin1.png">
-        </div>
+        </div><!-- #class nes-container is-rounded yellowContainer" -->
           <button type = button class ="nes-btn is-success helpReturn">Return</button>
-      </div>
-    </div>
-  </div>
-  <!--Div for user name input-->
+      </div><!-- div nes-container is-rounded yellowContainer" -->
+    </div><!-- div helpBox -->
+  </div><!-- div help -->
+  <!-- div for user name input -->
   <div class="userNameAsk">
     <div class="nes-container with-title is-dark is-centered">
       <p class="title">Specify your User Name</p>
@@ -124,6 +153,22 @@
         <label for="name_field">Your name</label>
         <input type="text" id="name_field" class="nes-input">
         <button type = button class="nes-btn is-rounded confirm">Submit</button>
+      </div><!--#class nes-field-->
+    </div><!--#class .nes-container with-title is-dark is-centered-->
+  </div><!--#class userNameAsk-->
+  <div class="nothing">
+    <!-- #tag class Image of Hand set -->
+    <img class="balance" src="./images/glove.png" alt="">
+  </div><!-- #class nothing -->
+    <!-- Loads other files -->
+    <script src="app.js"></script>
+    <script src="input.js"></script>
+    <script src="scoreV2.js"></script>
+  <!-- Sets audio file -->
+  <audio autoplay>
+    <!-- <source src="./engine/audio/music.mp3" type="audio/mpeg"> -->
+  </audio><!-- @audio -->
+</body>
       </div>
     </div>
   </div>

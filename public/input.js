@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', event => {
     // userId is the reference that we talked about, use it to create an association between auth and database
     // getScores();
-
+    // Declares variable 
     let hasUserName;
+    // Declares variabe
     let userData;
 
     // Declares array named userName
@@ -80,7 +81,7 @@ document.addEventListener('DOMContentLoaded', event => {
     // Declared asynchronous function for signin
      async function googleSignin() {
          // Authenticate Firebase using Google provider object.
-         // Promptd users to sign in with their Google Account 
+         // Prompts users to sign in with their Google Account 
          // either by opening a pop-up window or by redirecting to the sign-in page.
         firebase.auth().signInWithPopup(provider).then( async function(result) {
             //Assigns generated token to variable token
@@ -151,7 +152,6 @@ document.addEventListener('DOMContentLoaded', event => {
     createjs.Sound.alternateExtensions = ["mp3"];
     //Identifies path to audio file
     createjs.Sound.registerSound({src:"./engine/audio/music.mp3", id:"sound"});
-
     // Plays audio with options
     function handleLoadComplete() {
         //Creates optional play properties for audio
@@ -160,7 +160,6 @@ document.addEventListener('DOMContentLoaded', event => {
         createjs.Sound.play("sound", props);
     }
 
-     
     // Listens for click on body element and determines if audio plays
     document.querySelector('body').addEventListener('click', function(){
         if(!audioStarted){
@@ -172,7 +171,7 @@ document.addEventListener('DOMContentLoaded', event => {
 
     // Will add  a function to check if they have an user name
     //if the user doesn't have, create a pop up and ask for a user id.
-
+    // Gets all users' data asynchronously
     async function getAllUserData(id) {
         let bigData;
        await db.collection("Users").get().then(async function (querySnapshot) {
@@ -190,7 +189,7 @@ document.addEventListener('DOMContentLoaded', event => {
         });
         return await bigData;
     }
-
+    //Verifies if user is previous player
     async function checkIfHasName(id){
         await getAllUserData(id).then(async function(data){
             console.log(data.UserName);
@@ -206,6 +205,7 @@ document.addEventListener('DOMContentLoaded', event => {
     //     console.log(userName);
     // }
 
+    //Creates new user
     function createUser() {
         db.collection('Users').doc(userId).set({
             UserName : $('#name_field').val(),
@@ -214,6 +214,7 @@ document.addEventListener('DOMContentLoaded', event => {
             console.log("Doc written successfully");
         })
     }
+    //Returns the current user ID
     function getCurrentUser() {
         return userId;
     }
