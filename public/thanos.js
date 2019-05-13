@@ -54,11 +54,17 @@ rotate(${15 * (Math.random() - 0.5)}deg)`;
         });
     }
 
+    $(".balance").click(function() {
+        startGame();
+    });
     let hasClicked = false;
-    document.body.addEventListener("click", () => {
+    function startGame() {
+
+        //document.body.addEventListener("click", () => {
         if (hasClicked) {
             return;
         }
+        //}
         hasClicked = true;
         $('.myContainer').fadeOut(3000);
 
@@ -74,5 +80,5 @@ rotate(${15 * (Math.random() - 0.5)}deg)`;
             $('.myContainer').css("background-image", "url(https://i.imgur.com/49fWx8Y.gif)")
         }, 3000)
 
-    });
+    }
 });

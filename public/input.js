@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', event => {
     // userId is the reference that we talked about, use it to create an association between auth and database
-    // getScores();
+    //getScores();
     // Declares variable 
     let hasUserName;
     // Declares variabe
@@ -21,16 +21,13 @@ document.addEventListener('DOMContentLoaded', event => {
     $(".lead").click(function() {
         // Determines if  mod element is hidden
         if ( $( '.mod' ).is( ":hidden" ) ) {
-
             getScores();
-
-            //getScores();
             // Mod element moves slowly down the screen
             $( ".mod" ).slideDown( "slow" );
-        } else {
+        } //else {
             // Mod element moves slowly up the screen
-            $( ".mod" ).slideUp('slow');
-        };
+            //$( ".mod" ).slideUp('slow');
+        //};
     });
 
     $(".confirm").click(function () {
