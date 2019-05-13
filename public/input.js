@@ -217,6 +217,13 @@ document.addEventListener('DOMContentLoaded', event => {
     function getCurrentUser() {
         return userId;
     }
+    
+    $('.pixelThanos').click(function(){
+        $('.balance').slideDown("fast");
+    })
+    $('.balance').click(function(){
+        $(".help").slideUp("fast");
+    })
 
     //Doesn't really start the game.
     //function startGame() {
