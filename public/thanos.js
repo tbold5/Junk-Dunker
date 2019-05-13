@@ -55,7 +55,8 @@ rotate(${15 * (Math.random() - 0.5)}deg)`;
     }
 
     let hasClicked = false;
-    document.body.addEventListener("click", () => {
+    let thanosClick = document.querySelector('.balance');
+    thanosClick.addEventListener("click", () => {
         if (hasClicked) {
             return;
         }
