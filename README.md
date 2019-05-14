@@ -1,6 +1,6 @@
 # Time to know your bin 🤔
 
-We are a passionate team of 6 whose mission is to teach people about recycling and environmental problems
+We are a passionate team of 6 whose mission is to teach people about recycling and environmental problems.
 Visit our app at [here](https://moretest-22401.firebaseapp.com/)
 
 
