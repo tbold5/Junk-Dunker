@@ -1,15 +1,16 @@
 # Time to know your bin 🤔
 
-We are a passionate team of 6 whose mission is to teach people about recyling and environmental problems
+We are a passionate team of 6 whose mission is to teach people about recycling and environmental problems
+Visit our app at [here] (https://moretest-22401.firebaseapp.com/)
 
 
 # What is our purpose? 📡
 
 * Teach about environment
-* Universal color coded bins
-* Better recycling
+* Teach universal color coded bins
+* Better recycling habits
 * Fun educational content
-* For every age group
+* Appeal every age group
 
 # Requirements
 
@@ -20,7 +21,7 @@ We are a passionate team of 6 whose mission is to teach people about recyling an
 # Installation 📦
 
 ```
-firebase deploy
+Git clone
 ```
 
 # Configuration 🛠️
@@ -31,20 +32,16 @@ firebase deploy
 # Usage ⚡️
 
 ```
-node index.js
+firebase Serve
 ```
-or simply:
 
-```
-nbt
-```
 
 # Roadmap 🚧
 
 * ✔️  Main Page
 * ✔️  Game Page
-* 
-*
+* ✔️  Leader Board
+* ✔️  Easter Egg 
 
 
 # Disclaimer 📖
@@ -57,6 +54,6 @@ You assume all responsibility and liability.
 ```
 
 # Final Notes 🙏
-bbb
+Thank you for playing our game, don't forget to recycling properly
 Feel free to fork and add new pull request to this repo.
 If you have any questions/suggestions, email us at super6@company.com
