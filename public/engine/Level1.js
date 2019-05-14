@@ -50,7 +50,7 @@ class Level1 extends Phaser.Scene {
     }
     preload() {
         // Loads all the audio files
-        this.load.audio('bgmusic', ['audio/newmusic.mp3']);
+        this.load.audio('bgmusic', ['audio/gameplaymusic.mp3']);
         this.load.audio('pop', ['audio/pop.mp3']);
         // loads all the recycling bins
         this.load.image('greyBin', 'images/greybin1.png');
