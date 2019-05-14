@@ -145,30 +145,42 @@ document.addEventListener('DOMContentLoaded', event => {
 
     });
 
+     var sound = new Howl({
+         src: ['./engine/audio/newmusic.mp3'],
+         loop: true,
+         volume: 0.5,
+         onplayerror: function () {
+             sound.once('unlock', function() {
+                 sound.play();
+             });
+         }
+     });
+     sound.play();
+
     //Assigns false to audioStart variable 
-    let audioStarted = false;
+    //let audioStarted = false;
     //Assigns audio mp3 extension
-    createjs.Sound.alternateExtensions = ["mp3"];
+    //createjs.Sound.alternateExtensions = ["mp3"];
     //Identifies path to audio file
-    createjs.Sound.registerSound({src:"./engine/audio/music.mp3", id:"sound"});
+    //createjs.Sound.registerSound({src:"./engine/audio/music.mp3", id:"sound"});
 
     // Plays audio with options
-    function handleLoadComplete() {
+    //function handleLoadComplete() {
         //Creates optional play properties for audio
-        var props = new createjs.PlayPropsConfig().set({interrupt: createjs.Sound.INTERRUPT_ANY, loop: -1, volume: 0.5})
+        //var props = new createjs.PlayPropsConfig().set({interrupt: createjs.Sound.INTERRUPT_ANY, loop: -1, volume: 0.5})
         // Plays audio
-        createjs.Sound.play("sound", props);
-    }
+        //createjs.Sound.play("sound", props);
+    //}
 
      
     // Listens for click on body element and determines if audio plays
-    document.querySelector('body').addEventListener('click', function(){
-        if(!audioStarted){
-            handleLoadComplete();
-            audioStarted = true;
-        }
+    //document.querySelector('body').addEventListener('click', function(){
+        //if(!audioStarted){
+            //handleLoadComplete();
+            //audioStarted = true;
+        //}
 
-    })
+    //})
 
     // Will add  a function to check if they have an user name
     //if the user doesn't have, create a pop up and ask for a user id.
