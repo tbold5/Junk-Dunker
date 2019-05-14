@@ -46,7 +46,7 @@ class Level1 extends Phaser.Scene {
         this.load.image('greyBin', 'images/greybin1.png');
         this.load.image('blueBin', 'images/bluebin1.png');
         this.load.image('yellowBin', 'images/yellowbin1.png');
-        this.load.image('blackBin', 'images/blackBin.png');
+        this.load.image('blackBin', 'images/blackbin.png');
         this.load.image('greenBin', 'images/greenbin1.png');
         // loads the health bar
         this.load.image('health', 'images/3Heart.png');
