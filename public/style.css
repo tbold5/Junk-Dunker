@@ -44,6 +44,14 @@ h1{
     width: 100%;
     position: fixed;
 }
+.myDeath {
+    background-image: url("https://i.imgur.com/iXefvO8.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
 
 .settingsContainer{
     background-image: url("https://i.pinimg.com/originals/75/d4/79/75d4796cf08ddb745ab1b452c6d6f557.gif");
@@ -52,7 +60,9 @@ h1{
     height: 100%;
     width: 100%;
     position: fixed;
+
 }
+
 
 .nes-badge{
     display: block;
@@ -80,7 +90,22 @@ h1{
     color: rgb(85, 26, 139);
 }
 
-
+.musicButton{
+    display: block;
+    margin: 0 auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+.sfxButton{
+    display: block;
+    margin: 0 auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+.retButton{
+    display: block;
+    margin: 0 auto;
+}
 .lead-exit {
     float: right;
     z-index: 2;
@@ -96,30 +121,124 @@ h1{
 .highScore {
     text-align: center;
 }
-
-.popup {
-    visibility: invisible;
-    margin: 70px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 5px;
-    width: 30%;
+.help {
+    display: none;
     position: relative;
-    transition: all 5s ease-in-out;
-  }
+    z-index: 10;
+    width: 100%;
+}
 
-  .popup .popuptext {
-    visibility: hidden;
-    width: 160px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px 0;
+
+.helpBadge{
+    display: block;
+    margin: 0 auto;
+    margin-top: 5em;
+}
+.helpBox{
+    display: block;
+    margin: 0 auto;
+    margin-top: 2em;
+}
+.blueBin{
+    height: 50px;
+    width: 50px;
+}
+.redBin{
+    height: 50px;
+    width: 50px;
+}
+.yellowBin{
+    height: 50px;
+    width: 50px
+}
+.greenBin{
+    height: 50px;
+    width: 50px;
+}
+.greyBin{
+    height: 50px;
+    width: 50px;
+}
+.sodaCan{
+    height: 30px;
+    width: 15px;
+}
+.newspaper{
+    height: 25px;
+    width: 35px;
+}
+.waterBottle{
+    height: 35px;
+    width: 15px;
+}
+.helpReturn{
+    display: block;
+    margin: 0 auto;
+    margin-top: 1em;
+}
+.nothing {
+    bottom: 8px;
+    right: 16px;
+    position: fixed;
+}
+.userNameAsk{
+    display: none;
+    position: relative;
+    z-index: 10;
+}
+
+.disintegration-container canvas {
+    z-index: -1;
     position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -80px;
-  }
-  
+    left: 0;
+    top: 0;
+    opacity: 1;
+    transition: transform 1s, opacity 1s;
+    transform: rotate(0deg) translate(0px, 0px);
+}
+.hidden{
+    display: none;
+}
+.beerBottle{
+    height: 30px;
+    width: 10px;
+}
+.pixelThanos{
+    height: 25px;
+    width: 25px;
+}
+.sodaBottle{
+    height: 30px;
+    width: 10px;
+}
+.cardboardBox{
+    height: 25px;
+    width: 35px;
+}
+.sprayCan{
+    height: 30px;
+    width: 10px;
+}
+.tinCan{
+    height: 30px;
+    width: 20px;
+}
+.pizzaBox{
+    height: 25px;
+    width: 35px;
+}
+.jar{
+    height: 30px;
+    width: 20px;
+}
+.detergent{
+    height: 30px;
+    width: 20px;
+}
+.paperBag{
+    height: 25px;
+    width: 20px;
+}
+.balance{
+    display: none;
+}
