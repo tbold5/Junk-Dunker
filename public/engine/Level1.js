@@ -33,7 +33,11 @@ var binList;
 var paperList;
 var pauseButton;
 var musicOn = true;
-
+var isPaper = ['boardBox', 'bags', 'newsPaper', 'pizzaBox'];
+var isGlass = ['beerBottle'];
+var isTrash = ['trash'];
+var isPlastic = ['detergent', 'waterBottle', 'milk'];
+var isCompost = [''];
 class Level1 extends Phaser.Scene {
     constructor() {
         super({
@@ -110,23 +114,75 @@ class Level1 extends Phaser.Scene {
         this.load.image('pauseButton', 'images/milk.png');
     }
 
+    // Checks if the garbage is Paper and returns true if it is
+    isPaper(imgName) {
+        for (let i = 0; i < isPaper.length; i++) {
+            if (imgName == isPaper[i]) {
+                return true
+            }
+        }
+    }
+
+    // Checks if the garbage is Glass and returns true if it is
+    isGlass(imgName) {
+        for (let i = 0; i < isGlass.length; i++) {
+            if (imgName == isGlass[i]) {
+                return true
+            }
+        }
+    }
+
+    // Checks if the garbage is Trash and returns true if it is
+    isTrash(imgName) {
+        for (let i = 0; i < isTrash.length; i++) {
+            if (imgName == isTrash[i]){
+                return true
+            }
+        }
+    }
+
+    // Checks if the garbage is Plastic and returns true if it is
+    isPlastic(imgName) {
+        for (let i = 0; i < isPlastic.length; i++) {
+            if (imgName == isPlastic[i]){
+                return true
+            }
+        }
+    }
+
+    // Checks if the garbage is Compost and returns true if it is
+    isCompost(imgName) {
+        for (let i = 0; i < isCompost.length; i++) {
+            if (imgName == isCompost[i]){
+                return true
+            }
+        }
+    }
+
+    addScore(img) {
+        img.disableBody(true, true);
+        score += 1;
+        popSound.play();
+        scoreText.setText('Score: ' + score);
+    }
 
     // Makes the garbage upon collision with bin
     collectGarbage(bin, img) {
-        if (bin.name === 'greenBin' && img.name === 'trash' ) {
-            img.disableBody(true, true);
-            score += 1;
-            popSound.play();
-            scoreText.setText('Score: ' + score);
-            console.log(img.name)
+        if ((bin.name === 'yellowBin') && (this.isPaper(img.name))) {
+            this.addScore(img)
+        } else if ((bin.name === 'greyBin') && (this.isGlass(img.name))) {
+            this.addScore(img)
+        } else if ((bin.name === 'blackBin') && (this.isTrash(img.name))) {
+            this.addScore(img)
+        } else if ((bin.name === 'blueBin') && (this.isPlastic(img.name))) {
+            this.addScore(img)
+        } else if ((bin.name === 'greenBin') && (this.isCompost(img.name))) {
+            this.addScore(img)
         } else {
             img.disableBody(true, true);
             this.destroyHealth();
             score -= 1;
             scoreText.setText('Score: ' + score);
-            console.log(bin.name);
-            console.log(img.name)
-
         }
     }
     // Destroys the health if the wrong trash is entered
@@ -265,7 +321,6 @@ class Level1 extends Phaser.Scene {
             this.physics.add.collider(trashList[i], border);
             this.physics.add.collider(trashList[i], groundImg);
         }
-
         for (let i = 0; i < binList.length; i++) {
             for (let j = 0; j < trashList.length; j++) {
                 this.physics.add.overlap(binList[i], trashList[j], this.collectGarbage, null, this);
