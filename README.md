@@ -1,7 +1,7 @@
 # Time to know your bin 🤔
 
 We are a passionate team of 6 whose mission is to teach people about recycling and environmental problems
-Visit our app at [here] (https://moretest-22401.firebaseapp.com/)
+Visit our app at [here](https://moretest-22401.firebaseapp.com/)
 
 
 # What is our purpose? 📡
