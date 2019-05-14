@@ -37,6 +37,18 @@ document.addEventListener('DOMContentLoaded', event => {
         $(".userNameAsk").slideUp('slow');
     });
 
+    $(".musicButton").click(function () {
+        if(muted == false) {
+            sound.mute(true);
+            muted = true;
+            document.getElementById('music').innerHTML = "Music: OFF";
+        } else {
+            sound.mute(false);
+            muted = false;
+            document.getElementById('music').innerHTML = "Music: ON";
+        }
+
+    });
 
     // Click on lead-exit element slides element mod up the screen
     $(".lead-exit").click(function () {
@@ -156,6 +168,7 @@ document.addEventListener('DOMContentLoaded', event => {
          }
      });
      sound.play();
+     var muted = false;
 
     //Assigns false to audioStart variable 
     //let audioStarted = false;
