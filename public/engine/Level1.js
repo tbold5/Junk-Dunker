@@ -31,6 +31,7 @@ var itemList = ['beerBottle', 'detergent', 'boardBox', 'bags', 'trash', 'waterBo
 var trashList;
 var binList;
 var paperList;
+
 class Level1 extends Phaser.Scene {
     constructor() {
         super({
@@ -49,13 +50,25 @@ class Level1 extends Phaser.Scene {
         this.load.image('greenBin', 'images/greenbin1.png');
         // loads the health bar
         this.load.image('health', 'images/3Heart.png');
+
+        // loads the two heart image
         this.load.image('twoHeart', 'images/TwoHeart.png');
+
+        // loads the one heart image
         this.load.image('oneHeart', 'images/OneHeart.png');
+
+        // loads the no heart image
         this.load.image('noHeart', 'images/ZeroHeart.png');
+
+        // loads the platform image
         this.load.image('ground', 'images/platform.png');
+
+        // loads the background image
         this.load.image('bg', 'images/backGround.gif');
+
         // loads the border
         this.load.image('border', 'images/border.png');
+
         // loads all the garbage image
         this.load.image('bags', 'images/bags.png');
 
@@ -82,10 +95,13 @@ class Level1 extends Phaser.Scene {
 
         // loads the pizza box image
         this.load.image('pizzaBox', 'images/pizzabox.png');
+
         // loads the mug image
         this.load.image('mug', 'images/porcelainmug.png');
+
         // loads the tin can box image
         this.load.image('tinCan', 'images/tincan.png');
+
         // loads the pizza box image
         this.load.image('waterBottle', 'images/water.png');
     }
@@ -178,23 +194,34 @@ class Level1 extends Phaser.Scene {
         // this.pop.play();
         // Creates the images on the page
 
+
+        // Creates the black bin
         blackBin = this.physics.add.sprite(gameWidth / 8, gameHeight - 50, 'blackBin');
         blackBin.setScale(gameWidth / 9000);
         blackBin.name = 'blackBin';
+
+        // Creates the yellow bin
         yellowBin = this.physics.add.sprite(gameWidth / 2.7, gameHeight - 50, 'yellowBin');
         yellowBin.setScale(gameWidth / 9000);
         yellowBin.name = 'yellowBin';
+
+        // Creates  the grey bin
         greyBin = this.physics.add.sprite(gameWidth / 1.6, gameHeight - 50, 'greyBin');
         greyBin.setScale(gameWidth / 9000);
         greyBin.name = 'greyBin';
+
+        // Creates theb blue bin
         blueBin = this.physics.add.sprite(gameWidth / 1.14, gameHeight - 50, 'blueBin');
         blueBin.setScale(gameWidth / 9000);
         blueBin.name = 'blueBin';
+
+        // Creates the bin to be draggable
         yellowBin.setInteractive();
         greyBin.setInteractive();
         blackBin.setInteractive();
         blueBin.setInteractive();
 
+        // Allows users to drag the bins
         this.input.setDraggable(greyBin);
         this.input.setDraggable(blackBin);
         this.input.setDraggable(blueBin);
@@ -227,6 +254,7 @@ class Level1 extends Phaser.Scene {
         binList = [greenBin, greyBin, blueBin, blackBin, yellowBin];
 
         paperList = [boardBoxImg, bagImg, trashImg];
+
         // Lets trash objects collide with invisible wall
         for (let i = 0; i < trashList.length; i++) {
             trashList[i] = this.physics.add.sprite(gameWidth - 50, 0, itemList[i]);
@@ -243,10 +271,10 @@ class Level1 extends Phaser.Scene {
         for (let i = 0; i < binList.length; i++) {
             for (let j = 0; j < trashList.length; j++) {
                 this.physics.add.overlap(binList[i], trashList[j], this.collectGarbage, null, this);
+                binList[i].setCollideWorldBounds(true);
             }
         }
     }
-
 
     update(time, delta) {
         // Destorys the bins once clicked
