@@ -31,6 +31,8 @@ var itemList = ['beerBottle', 'detergent', 'boardBox', 'bags', 'trash', 'waterBo
 var trashList;
 var binList;
 var paperList;
+var pauseButton;
+var musicOn = true;
 
 class Level1 extends Phaser.Scene {
     constructor() {
@@ -40,7 +42,7 @@ class Level1 extends Phaser.Scene {
     }
     preload() {
         // Loads all the audio files
-        // this.load.audio('bgmusic', ['audio/music.mp3']);
+        this.load.audio('bgmusic', ['audio/music.mp3']);
         this.load.audio('pop', ['audio/pop.mp3']);
         // loads all the recycling bins
         this.load.image('greyBin', 'images/greybin1.png');
@@ -104,21 +106,27 @@ class Level1 extends Phaser.Scene {
 
         // loads the pizza box image
         this.load.image('waterBottle', 'images/water.png');
+
+        this.load.image('pauseButton', 'images/milk.png');
     }
 
 
     // Makes the garbage upon collision with bin
     collectGarbage(bin, img) {
-        if (greenList.includes('detergentImg')) {
+        if (bin.name === 'greenBin' && img.name === 'trash' ) {
             img.disableBody(true, true);
             score += 1;
             popSound.play();
             scoreText.setText('Score: ' + score);
             console.log(img.name)
         } else {
+            img.disableBody(true, true);
             this.destroyHealth();
             score -= 1;
             scoreText.setText('Score: ' + score);
+            console.log(bin.name);
+            console.log(img.name)
+
         }
     }
     // Destroys the health if the wrong trash is entered
@@ -141,28 +149,14 @@ class Level1 extends Phaser.Scene {
         }
 
     }
-
+    //
     // onObjectClicked(pointer,gameObject)
     // {
-    //     var mainBin = greenBin;
-    //     var clickedBin = gameObject['name'];
-    //     // When red bin is clicked
-    //     if (clickedBin) {
-    //         gameObject.setScale(gameWidth / 4500);
-    //         gameObject.x = gameWidth / 2;
-    //         gameObject.y = gameHeight / 1.5;
-    //         mainBin.x = gameWidth / 8;
-    //         mainBin.y = gameHeight - 50;
-    //         mainBin.setScale(gameWidth / 9000);
-    //         mainBin = gameObject;
-    //         clickedBin = greenBin;
-    //         console.log('main bin: ', mainBin.name);
-    //         console.log('clicked bin: ', clickedBin.name)
-    //     }
-
+    //     this.bgmusic.pause();
     // }
 
     create() {
+
         // currentMiddleBin = greenBin;
         gameWidth = game.config.width;
         gameHeight = game.config.height;
@@ -173,10 +167,13 @@ class Level1 extends Phaser.Scene {
         border.body.immovable = true;
         border.body.moves = false;
 
-
         // creates the music
-        // this.bgmusic = this.sound.add('bgmusic');
-        // this.bgmusic.play();
+        this.bgmusic = this.sound.add('bgmusic');
+        this.bgmusic.play();
+
+
+        // Creates the pause button image
+        pauseButton = this.add.sprite(250, 250, 'pauseButton');
 
         // Creates the background image
         this.backGround = this.add.image(gameWidth / 2, gameHeight / 2, 'bg');
@@ -263,6 +260,7 @@ class Level1 extends Phaser.Scene {
             trashList[i].body.setVelocityX(Math.random() * -1000);
             trashList[i].setGravity(0, Math.random() * 100);
             trashList[i].setCollideWorldBounds(true);
+
             // trashList[i].setBounce(0.1);
             this.physics.add.collider(trashList[i], border);
             this.physics.add.collider(trashList[i], groundImg);
@@ -274,9 +272,16 @@ class Level1 extends Phaser.Scene {
                 binList[i].setCollideWorldBounds(true);
             }
         }
+
+        pauseButton = this.physics.add.sprite(250,250,'pizzaBox');
+
+
+
+
     }
 
     update(time, delta) {
+
         // Destorys the bins once clicked
         // this.input.on('gameobjectdown',this.onObjectClicked);
         //
@@ -288,6 +293,25 @@ class Level1 extends Phaser.Scene {
 
         });
 
+
+        //  Toggles the sound of the game to on or off
+        pauseButton.setInteractive({ useHandCursor: true })
+        .on('pointerdown', () => {
+                if(musicOn) {
+                    pauseButton.destroy();
+                    this.bgmusic.pause();
+                    musicOn = false;
+                    pauseButton = this.add.sprite(250, 250, 'pizzabox');
+
+                }else {
+                    this.bgmusic.resume();
+                     musicOn = true;
+                    pauseButton = this.add.sprite(250, 250, 'pauseButton');
+
+                }
+            }, this);
+
+
         // for (let i = 0; i < binList.length; i++) {
         //     for (let j = 0; j < trashList.length; j++) {
         //         if (this.isPaper(trashImg)) {
@@ -295,6 +319,8 @@ class Level1 extends Phaser.Scene {
         //         }
         //     }
         // }
+
+
 
 
 
