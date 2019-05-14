@@ -123,17 +123,12 @@ h1{
 }
 .help {
     display: none;
-    position: fixed;
+    position: relative;
     z-index: 10;
-    height: 99%;
-    width: 99%;
+    width: 100%;
 }
 
-.helpContainer{
-    height: 100%;
-    width: 99%;
-    position: fixed;
-}
+
 .helpBadge{
     display: block;
     margin: 0 auto;
@@ -202,5 +197,48 @@ h1{
     transform: rotate(0deg) translate(0px, 0px);
 }
 .hidden{
+    display: none;
+}
+.beerBottle{
+    height: 30px;
+    width: 10px;
+}
+.pixelThanos{
+    height: 25px;
+    width: 25px;
+}
+.sodaBottle{
+    height: 30px;
+    width: 10px;
+}
+.cardboardBox{
+    height: 25px;
+    width: 35px;
+}
+.sprayCan{
+    height: 30px;
+    width: 10px;
+}
+.tinCan{
+    height: 30px;
+    width: 20px;
+}
+.pizzaBox{
+    height: 25px;
+    width: 35px;
+}
+.jar{
+    height: 30px;
+    width: 20px;
+}
+.detergent{
+    height: 30px;
+    width: 20px;
+}
+.paperBag{
+    height: 25px;
+    width: 20px;
+}
+.balance{
     display: none;
 }
