@@ -1,25 +1,47 @@
 var healthBar;
 var blueBin;
-var redBin;
+var blackBin;
 var greenBin;
 var yellowBin;
 var greyBin;
 var bagImg;
-var groundImg;
-var trashImg;
 var boardBoxImg;
 var detergentImg;
+var jarImg;
+var milkImg;
+var newsPaperImg;
+var tinCanImg;
+var pizzaBoxImg;
+var plasticBagImg;
+var treeBranchImg;
+var sodaCanImg;
+var waterBottleImg;
+var sprayCanImg;
+var mugImg;
 var music;
 var platforms;
 var gameWidth;
 var gameHeight;
 var scoreText;
 var score = 0;
-var beerBottle;
+var beerBottleImg;
 var popSound;
 var border;
 var container;
 var healthDecreased = 0;
+var trashList;
+var binList;
+var paperList;
+var muteButton;
+var backGroundImg;
+var musicOn = true;
+var isPaper = ['boardBox', 'bags', 'newsPaper', 'pizzaBox'];
+var isGlass = ['beerBottle', 'glass', 'jar', 'sodaCan', 'sprayCan'];
+var isTrash = ['plasticBag'];
+var isPlastic = ['detergent', 'waterBottle', 'milk'];
+var isCompost = ['treeBranch'];
+var itemList = ['beerBottle', 'detergent', 'boardBox', 'bags', 'waterBottle', 'milk', 'newsPaper',
+    'tinCan', 'pizzaBox', 'mug', 'plasticBag', 'treeBranch', 'jar', 'sodaCan', 'sprayCan'];
 
 class Level1 extends Phaser.Scene {
     constructor() {
@@ -27,61 +49,192 @@ class Level1 extends Phaser.Scene {
             key: 'Level1'
         });
     }
-
     preload() {
-
         // Loads all the audio files
-        // this.load.audio('bgmusic', ['audio/music.mp3']);
+        this.load.audio('bgmusic', ['audio/gameplaymusic.mp3']);
         this.load.audio('pop', ['audio/pop.mp3']);
-
         // loads all the recycling bins
         this.load.image('greyBin', 'images/greybin1.png');
         this.load.image('blueBin', 'images/bluebin1.png');
         this.load.image('yellowBin', 'images/yellowbin1.png');
-        this.load.image('redBin', 'images/redbin1.png');
+        this.load.image('blackBin', 'images/blackbin.png');
         this.load.image('greenBin', 'images/greenbin1.png');
-
         // loads the health bar
         this.load.image('health', 'images/3Heart.png');
+
+        // loads the two heart image
         this.load.image('twoHeart', 'images/TwoHeart.png');
+
+        // loads the one heart image
         this.load.image('oneHeart', 'images/OneHeart.png');
+
+        // loads the no heart image
         this.load.image('noHeart', 'images/ZeroHeart.png');
 
-        this.load.image('ground', 'images/platform.png');
+        // loads the background image
         this.load.image('bg', 'images/backGround.gif');
 
         // loads the border
         this.load.image('border', 'images/border.png');
 
-        // loads all the garbage
+        // loads all the garbage image
         this.load.image('bags', 'images/bags.png');
+
+        // loads the detergent image
         this.load.image('detergent', 'images/detergent.png');
+
+        // loads the beer bottle image
         this.load.image('beerBottle', 'images/beerbottle.png');
+
+        // loads the cardboard box image
         this.load.image('boardBox', 'images/cardboardbox.png');
-        this.load.image('trash', 'images/trash.png');
 
+        // loads the jar image
+        this.load.image('jar', 'images/jar.png');
 
+        //loads the milk image
+        this.load.image('milk', 'images/milk.png');
+
+        // loads the newspaper image
+        this.load.image('newsPaper', 'images/newspaper.png');
+
+        // loads the pizza box image
+        this.load.image('pizzaBox', 'images/pizzabox.png');
+
+        // loads the mug image
+        this.load.image('mug', 'images/porcelainmug.png');
+
+        // loads the tin can box image
+        this.load.image('tinCan', 'images/tincan.png');
+
+        // loads the pizza box image
+        this.load.image('waterBottle', 'images/water.png');
+
+        // loads the plastic bag image
+        this.load.image('plasticBag', 'images/plasticbag.png');
+
+        // loads the tree branch image
+        this.load.image('treeBranch', 'images/treebranch.png');
+
+        // loads the soda can image
+        this.load.image('sodaCan', 'images/sodacan.png');
+
+        // loads the spray can image
+        this.load.image('sprayCan', 'images/spraycan.png');
+
+        this.load.image('muted', 'images/muted.png');
+
+        this.load.image('notMuted', 'images/notmuted.png');
     }
 
+    // Checks if the garbage is Paper and returns true if it is
+    isPaper(imgName) {
+        for (let i = 0; i < isPaper.length; i++) {
+            if (imgName === isPaper[i]) {
+                return true
+            }
+        }
+    }
+
+    // Checks if the garbage is Glass and returns true if it is
+    isGlass(imgName) {
+        for (let i = 0; i < isGlass.length; i++) {
+            if (imgName === isGlass[i]) {
+                return true
+            }
+        }
+    }
+
+    // Checks if the garbage is Trash and returns true if it is
+    isTrash(imgName) {
+        for (let i = 0; i < isTrash.length; i++) {
+            if (imgName === isTrash[i]){
+                return true
+            }
+        }
+    }
+
+    // Checks if the garbage is Plastic and returns true if it is
+    isPlastic(imgName) {
+        for (let i = 0; i < isPlastic.length; i++) {
+            if (imgName === isPlastic[i]){
+                return true
+            }
+        }
+    }
+
+    // Checks if the garbage is Compost and returns true if it is
+    isCompost(imgName) {
+        for (let i = 0; i < isCompost.length; i++) {
+            if (imgName === isCompost[i]){
+                return true
+            }
+        }
+    }
+
+    addScore(img) {
+        img.disableBody(true, true);
+        score += 1;
+        popSound.play();
+        scoreText.setText('Score: ' + score);
+        console.log(img.name)
+    }
+
+    createTrash() {
+        for (let i = 0; i < trashList.length; i++) {
+            setTimeout( () => {
+                trashList[i] = this.physics.add.sprite(gameWidth - 50, 0, itemList[i]);
+                trashList[i].name = itemList[i];
+                trashList[i].setScale(gameWidth / 450);
+                trashList[i].body.setVelocityX(Math.random() * (1000 - 100) - 1000);
+                trashList[i].setGravity(0, Math.random() * 100);
+                trashList[i].setCollideWorldBounds(true);
+
+                // trashList[i].setBounce(0.1);
+                this.physics.add.collider(trashList[i], border);
+            }, i * 3000 );
+
+        }
+    }
+    setCollider() {
+        for (let i = 0; i < binList.length; i++) {
+            for (let j = 0; j < trashList.length; j++) {
+                setInterval( () => {
+                    this.physics.add.overlap(binList[i], trashList[j], this.collectGarbage, null, this);
+                    binList[i].setCollideWorldBounds(true);
+                }, 100 );
+            }
+        }
+    }
 
     // Makes the garbage upon collision with bin
     collectGarbage(bin, img) {
-        img.disableBody(true, true);
-        console.log("Bob is here");
-        score += 1000000;
-        popSound.play();
-        scoreText.setText('Score: ' + score);
-        this.destroyHealth();
-
+        if ((bin.name === 'yellowBin') && (this.isPaper(img.name))) {
+            this.addScore(img)
+        } else if ((bin.name === 'greyBin') && (this.isGlass(img.name))) {
+            this.addScore(img)
+        } else if ((bin.name === 'blackBin') && (this.isTrash(img.name))) {
+            this.addScore(img)
+        } else if ((bin.name === 'blueBin') && (this.isPlastic(img.name))) {
+            this.addScore(img)
+        } else if ((bin.name === 'greenBin') && (this.isCompost(img.name))) {
+            this.addScore(img)
+        } else {
+            img.disableBody(true, true);
+            this.destroyHealth();
+            score -= 1;
+            scoreText.setText('Score: ' + score);
+        }
     }
-
-    // Destorys the health if the wrong trash is entered
+    // Destroys the health if the wrong trash is entered
 
     destroyHealth(){
         if(healthDecreased === 2){
             healthBar.destroy();
             healthBar = this.add.image(50, 100, 'noHeart');
             healthBar.setScale(2.3);
+            this.gameOver();
+            game.scene.pause('Level1');
         } else if (healthDecreased === 1) {
             healthBar.destroy();
             healthBar = this.add.image(50, 100, 'oneHeart');
@@ -96,29 +249,29 @@ class Level1 extends Phaser.Scene {
 
     }
 
-    // onObjectClicked(pointer,gameObject)
-    // {
-    //     gameObject.moveTo(100,500);
-    // }
+    gameOver(){
+        this.scene.launch('GameOver');
+    }
 
     create() {
+
+        // currentMiddleBin = greenBin;
         gameWidth = game.config.width;
         gameHeight = game.config.height;
 
         // Creates border for trash to bounce off of
-        border = this.physics.add.sprite(gameWidth / 2.3 ,50,'border');
+        border = this.physics.add.sprite(gameWidth / 2.3, 50, 'border');
         border.setScale(0.5);
         border.body.immovable = true;
         border.body.moves = false;
 
-
         // creates the music
-        // this.bgmusic = this.sound.add('bgmusic');
-        // this.bgmusic.play();
+        this.bgmusic = this.sound.add('bgmusic');
+        this.bgmusic.play();
 
         // Creates the background image
-        this.backGround = this.add.image(gameWidth / 2, gameHeight / 2, 'bg');
-        this.backGround.setDisplaySize(gameWidth, gameHeight);
+        backGroundImg = this.add.image(gameWidth / 2, gameHeight / 2, 'bg');
+        backGroundImg.setDisplaySize(gameWidth, gameHeight);
 
         // Creates the score bar
         scoreText = this.add.text(10, 20, 'Score:' + score, {
@@ -132,119 +285,73 @@ class Level1 extends Phaser.Scene {
         // this.pop.play();
         // Creates the images on the page
 
-        redBin = this.physics.add.sprite(gameWidth / 8, gameHeight - 50, 'redBin');
-        redBin.setScale(gameWidth/9000);
-        yellowBin = this.physics.add.sprite(gameWidth / 2.7, gameHeight - 50, 'yellowBin');
-        yellowBin.setScale(gameWidth/9000);
-        greyBin = this.physics.add.sprite(gameWidth / 1.6, gameHeight - 50, 'greyBin');
-        greyBin.setScale(gameWidth/9000);
-        blueBin = this.physics.add.sprite(gameWidth / 1.14, gameHeight - 50, 'blueBin');
-        blueBin.setScale(gameWidth/9000);
 
+        // Creates the black bin
+        blackBin = this.physics.add.sprite(gameWidth / 8, gameHeight - 50, 'blackBin');
+        blackBin.setScale(gameWidth / 7000);
+        blackBin.name = 'blackBin';
+
+        // Creates the yellow bin
+        yellowBin = this.physics.add.sprite(gameWidth / 2.7, gameHeight - 50, 'yellowBin');
+        yellowBin.setScale(gameWidth / 7000);
+        yellowBin.name = 'yellowBin';
+
+        // Creates  the grey bin
+        greyBin = this.physics.add.sprite(gameWidth / 1.6, gameHeight - 50, 'greyBin');
+        greyBin.setScale(gameWidth / 7000);
+        greyBin.name = 'greyBin';
+
+        // Creates theb blue bin
+        blueBin = this.physics.add.sprite(gameWidth / 1.14, gameHeight - 50, 'blueBin');
+        blueBin.setScale(gameWidth / 7000);
+        blueBin.name = 'blueBin';
+
+        // Creates the bin to be draggable
         yellowBin.setInteractive();
         greyBin.setInteractive();
-        redBin.setInteractive();
+        blackBin.setInteractive();
         blueBin.setInteractive();
 
+        // Allows users to drag the bins
         this.input.setDraggable(greyBin);
-        this.input.setDraggable(redBin);
+        this.input.setDraggable(blackBin);
         this.input.setDraggable(blueBin);
         this.input.setDraggable(yellowBin);
-
-        // Creates the ground image to hold the items
-        groundImg = this.physics.add.sprite(gameWidth / 1.14, gameHeight / 8, 'ground');
-        groundImg.setScale(0.5);
-        groundImg.body.immovable = true;
-        groundImg.body.moves = false;
 
 
         // Creates the health bar
         healthBar = this.add.image(50, 100, 'health');
         healthBar.setScale(2.3);
 
-
         // Creates the middle bin
         greenBin = this.physics.add.sprite(gameWidth / 2, gameHeight / 1.5, 'greenBin');
-        greenBin.setScale(gameWidth/4500);
+        greenBin.setScale(gameWidth / 7000);
+        greenBin.name = 'greenBin';
 
         greenBin.setInteractive();
         this.input.setDraggable(greenBin);
 
 
+        // List of all the trash variables.
+        trashList = [beerBottleImg, detergentImg, boardBoxImg, bagImg, waterBottleImg, milkImg,
+            newsPaperImg, tinCanImg, pizzaBoxImg, mugImg, plasticBagImg, treeBranchImg, jarImg, sodaCanImg, sprayCanImg];
 
-        // Creates cardboard box image
-        boardBoxImg = this.physics.add.sprite(gameWidth - 50, 0, 'boardBox');
-        boardBoxImg.setScale(gameWidth / 750);
-        boardBoxImg.body.setVelocityX(-1000);
-        boardBoxImg.setGravity(0, 250);
+        // List of all the bins.
+        binList = [greenBin, greyBin, blueBin, blackBin, yellowBin];
 
-        // Creates the falling trash on the page
-        trashImg = this.physics.add.sprite(gameWidth - 50, 0, 'trash');
-        trashImg.setScale(gameWidth / 750);
-        trashImg.setCollideWorldBounds(true);
-        trashImg.setGravity(0, 300);
+        // Creates random trash
+        this.createTrash();
 
-        // Creates bag sprite
-        bagImg = this.physics.add.sprite(gameWidth - 50, 0, 'bags');
-        bagImg.setScale(gameWidth / 450);
-        bagImg.setCollideWorldBounds(true);
-        bagImg.body.setVelocityX(-1000);
-        bagImg.setGravity(0, 100);
+        // Sets collider between trash and the bin
+        this.setCollider();
 
+        muteButton = this.physics.add.sprite(320,30,'notMuted');
 
-        // Creates detergent sprite
-        detergentImg = this.physics.add.sprite(gameWidth - 50, 0, 'detergent');
-        detergentImg.setScale(gameWidth / 450);
-        detergentImg.body.setVelocityX(-1000);
-        detergentImg.setCollideWorldBounds(true);
-        detergentImg.setGravity(0, 2000);
-
-
-
-
-        // Create beer bottle sprite
-        beerBottle = this.physics.add.sprite(gameWidth - 50, 0, 'beerBottle');
-        beerBottle.setScale(gameWidth / 450);
-        beerBottle.body.setVelocityX(-1500);
-        beerBottle.setGravity(0,2000);
-        beerBottle.setCollideWorldBounds(true);
-
-        // garbages = this.physics.add.staticGroup();
-        //
-        //
-        // beerBottle = garbages.create(gameWidth - 50, 0, 'beerBottle').setScale(gameWidth / 450);
-
-
-        this.physics.add.collider(bagImg, groundImg);
-        this.physics.add.collider(bagImg,border);
-        this.physics.add.collider(detergentImg,border);
-        this.physics.add.collider(boardBoxImg,border);
-
-
-
-
-        // creating a container for garbages
-        // container = this.add.container(400,300);
-        // container.add([bagImg,detergentImg]);
-        // this.physics.add.collider(garbages,border);
-
-
-
-
-
-
-
-
-        //Adds the collider for the objects
 
 
     }
 
-
     update(time, delta) {
-        // Destorys the bins once clicked
-        // this.input.on('gameobjectdown',this.onObjectClicked);
-
 
         this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
 
@@ -252,12 +359,32 @@ class Level1 extends Phaser.Scene {
             gameObject.y = dragY;
 
         });
-        this.physics.add.overlap(greenBin, bagImg, this.collectGarbage, null, this);
-        this.physics.add.overlap(greenBin, detergentImg, this.collectGarbage, null, this);
-        this.physics.add.overlap(greenBin, boardBoxImg, this.collectGarbage, null, this);
+
+
+        //  Toggles the sound of the game to on or off
+        muteButton.setInteractive({ useHandCursor: true })
+            .on('pointerdown', () => {
+                if(musicOn) {
+                    muteButton.destroy();
+                    this.bgmusic.pause();
+                    musicOn = false;
+                    muteButton = this.add.sprite(gameWidth, 50, 'muted');
+                    muteButton.setScale(3);
+                }else {
+                    muteButton.destroy();
+                    this.bgmusic.resume();
+                    musicOn = true;
+                    muteButton = this.add.sprite(250, 250, 'notMuted');
+                }
+            }, this);
+
 
 
 
 
     }
 }
+
+
+
+

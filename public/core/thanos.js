@@ -72,7 +72,7 @@ rotate(${15 * (Math.random() - 0.5)}deg)`;
         });
         $('.myContainer').fadeIn(2000);
         setTimeout(()=>{
-            $('.myContainer').css("background-image", "url(https://i.imgur.com/49fWx8Y.gif)")
+            $('.myContainer').css("background-image", "url(./images/background2.gif)")
         }, 3000)
 
     });
