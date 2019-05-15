@@ -62,6 +62,10 @@ document.addEventListener('DOMContentLoaded', event => {
         };
     });
 
+    $(".click").click(function () {
+        buttonSound.play();
+    });
+
     // Click on retButton slides settings element up the screen.
     $(".retButton").click(function(){
         $(".settings").slideUp("fast");
@@ -155,6 +159,11 @@ document.addEventListener('DOMContentLoaded', event => {
             googleSignOut();
         }
 
+    });
+    var buttonSound = new Howl({
+        src: ['./engine/audio/click.wav'],
+        loop: false,
+        volume: 0.2
     });
 
      var sound = new Howl({
