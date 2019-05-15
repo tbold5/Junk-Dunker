@@ -9,7 +9,8 @@ class GameOver extends Phaser.Scene {
         });
     }
 
-    preLoad(){
+
+    preload(){
         // loads the play again button
         this.load.image('resetBtn', 'images/reset.png');
 
@@ -22,11 +23,6 @@ class GameOver extends Phaser.Scene {
     }
 
     create(){
-
-        // creates the music
-        this.bgmusic = this.sound.add('bgmusic');
-        this.bgmusic.play();
-
 
         backGroundImg = this.backGround = this.add.image(gameWidth / 2, gameHeight / 2, 'bg');
         backGroundImg = this.backGround.setDisplaySize(gameWidth, gameHeight);
@@ -44,8 +40,12 @@ class GameOver extends Phaser.Scene {
             fontFamily: 'Courier',
         });
 
-        exitBtn = this.physics.add.sprite(gameWidth / 1.14, gameHeight - 50, 'exitBtn');
+        exitBtn = this.physics.add.sprite(gameWidth / 2, gameHeight / 2, 'exitBtn');
+        exitBtn.setScale(3);
 
+
+        resetBtn = this.physics.add.sprite(gameWidth / 2, gameHeight / 2.5, 'resetBtn');
+        resetBtn.setScale(3);
 
     }
 
