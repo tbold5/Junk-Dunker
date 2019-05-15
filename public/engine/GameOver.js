@@ -1,4 +1,6 @@
 var gameOverText;
+var resetBtn;
+var exitBtn;
 
 class GameOver extends Phaser.Scene {
     constructor() {
@@ -8,6 +10,14 @@ class GameOver extends Phaser.Scene {
     }
 
     preLoad(){
+        // loads the play again button
+        this.load.image('resetBtn', 'images/reset.png');
+
+        // loads the exit button
+        this.load.image('exitBtn', 'images/quit.png');
+
+
+
 
     }
 
@@ -33,6 +43,8 @@ class GameOver extends Phaser.Scene {
             color: 'black',
             fontFamily: 'Courier',
         });
+
+        exitBtn = this.physics.add.sprite(gameWidth / 1.14, gameHeight - 50, 'exitBtn');
 
 
     }

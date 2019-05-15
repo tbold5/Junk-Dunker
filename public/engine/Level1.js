@@ -5,8 +5,6 @@ var greenBin;
 var yellowBin;
 var greyBin;
 var bagImg;
-var backGroundImg;
-var groundImg;
 var boardBoxImg;
 var detergentImg;
 var jarImg;
@@ -16,7 +14,9 @@ var tinCanImg;
 var pizzaBoxImg;
 var plasticBagImg;
 var treeBranchImg;
-var gameOverImg;
+var sodaCanImg;
+var waterBottleImg;
+var sprayCanImg;
 var mugImg;
 var music;
 var platforms;
@@ -33,16 +33,15 @@ var trashList;
 var binList;
 var paperList;
 var muteButton;
+var backGroundImg;
 var musicOn = true;
 var isPaper = ['boardBox', 'bags', 'newsPaper', 'pizzaBox'];
-var isGlass = ['beerBottle'];
+var isGlass = ['beerBottle', 'glass', 'jar', 'sodaCan', 'sprayCan'];
 var isTrash = ['plasticBag'];
 var isPlastic = ['detergent', 'waterBottle', 'milk'];
 var isCompost = ['treeBranch'];
-var greenList = ['boardBoxImg', 'trashImg', 'bagImg', 'detergentImg'];
 var itemList = ['beerBottle', 'detergent', 'boardBox', 'bags', 'waterBottle', 'milk', 'newsPaper',
-    'tinCan', 'pizzaBox', 'mug', 'plasticBag', 'treeBranch'];
-
+    'tinCan', 'pizzaBox', 'mug', 'plasticBag', 'treeBranch', 'jar', 'sodaCan', 'sprayCan'];
 
 class Level1 extends Phaser.Scene {
     constructor() {
@@ -50,8 +49,6 @@ class Level1 extends Phaser.Scene {
             key: 'Level1'
         });
     }
-
-    // Loads all the images and audio files into the game
     preload() {
         // Loads all the audio files
         this.load.audio('bgmusic', ['audio/gameplaymusic.mp3']);
@@ -73,9 +70,6 @@ class Level1 extends Phaser.Scene {
 
         // loads the no heart image
         this.load.image('noHeart', 'images/ZeroHeart.png');
-
-        // loads the platform image
-        this.load.image('ground', 'images/platform.png');
 
         // loads the background image
         this.load.image('bg', 'images/backGround.gif');
@@ -122,12 +116,15 @@ class Level1 extends Phaser.Scene {
         // loads the tree branch image
         this.load.image('treeBranch', 'images/treebranch.png');
 
-        // loads the mute button
-        this.load.image('muteButton', 'images/milk.png');
+        // loads the soda can image
+        this.load.image('sodaCan', 'images/sodacan.png');
 
-        // loads teh game over screen
-        this.load.image('loserScreen', 'images/wooden.png');
+        // loads the spray can image
+        this.load.image('sprayCan', 'images/spraycan.png');
 
+        this.load.image('muted', 'images/muted.png');
+
+        this.load.image('notMuted', 'images/notmuted.png');
     }
 
     // Checks if the garbage is Paper and returns true if it is
@@ -180,6 +177,34 @@ class Level1 extends Phaser.Scene {
         score += 1;
         popSound.play();
         scoreText.setText('Score: ' + score);
+        console.log(img.name)
+    }
+
+    createTrash() {
+        for (let i = 0; i < trashList.length; i++) {
+            setTimeout( () => {
+                trashList[i] = this.physics.add.sprite(gameWidth - 50, 0, itemList[i]);
+                trashList[i].name = itemList[i];
+                trashList[i].setScale(gameWidth / 450);
+                trashList[i].body.setVelocityX(Math.random() * (1000 - 100) - 1000);
+                trashList[i].setGravity(0, Math.random() * 100);
+                trashList[i].setCollideWorldBounds(true);
+
+                // trashList[i].setBounce(0.1);
+                this.physics.add.collider(trashList[i], border);
+            }, i * 3000 );
+
+        }
+    }
+    setCollider() {
+        for (let i = 0; i < binList.length; i++) {
+            for (let j = 0; j < trashList.length; j++) {
+                setInterval( () => {
+                    this.physics.add.overlap(binList[i], trashList[j], this.collectGarbage, null, this);
+                    binList[i].setCollideWorldBounds(true);
+                }, 100 );
+            }
+        }
     }
 
     // Makes the garbage upon collision with bin
@@ -208,7 +233,6 @@ class Level1 extends Phaser.Scene {
             healthBar.destroy();
             healthBar = this.add.image(50, 100, 'noHeart');
             healthBar.setScale(2.3);
-            this.gameOver();
         } else if (healthDecreased === 1) {
             healthBar.destroy();
             healthBar = this.add.image(50, 100, 'oneHeart');
@@ -220,22 +244,12 @@ class Level1 extends Phaser.Scene {
             healthBar.setScale(2.3);
             healthDecreased +=1;
         }
-    }
-
-
-    gameOver(){
-        this.scene.start('GameOver');
-        // this.scene.pause();
 
     }
-    //
-    // onObjectClicked(pointer,gameObject)
-    // {
-    //     this.bgmusic.pause();
-    // }
 
     create() {
 
+        // currentMiddleBin = greenBin;
         gameWidth = game.config.width;
         gameHeight = game.config.height;
 
@@ -251,11 +265,11 @@ class Level1 extends Phaser.Scene {
 
 
         // Creates the pause button image
-        muteButton = this.add.sprite(250, 250, 'muteButton');
+        muteButton = this.add.sprite(250, 250, 'notMuted');
 
         // Creates the background image
-        backGroundImg = this.backGround = this.add.image(gameWidth / 2, gameHeight / 2, 'bg');
-        backGroundImg = this.backGround.setDisplaySize(gameWidth, gameHeight);
+        backGroundImg = this.add.image(gameWidth / 2, gameHeight / 2, 'bg');
+        backGroundImg.setDisplaySize(gameWidth, gameHeight);
 
         // Creates the score bar
         scoreText = this.add.text(10, 20, 'Score:' + score, {
@@ -269,28 +283,25 @@ class Level1 extends Phaser.Scene {
         // this.pop.play();
         // Creates the images on the page
 
-        // Creates the mute button onto the page
-        muteButton = this.physics.add.sprite(250,250,'pizzaBox');
-
 
         // Creates the black bin
         blackBin = this.physics.add.sprite(gameWidth / 8, gameHeight - 50, 'blackBin');
-        blackBin.setScale(gameWidth / 9000);
+        blackBin.setScale(gameWidth / 7000);
         blackBin.name = 'blackBin';
 
         // Creates the yellow bin
         yellowBin = this.physics.add.sprite(gameWidth / 2.7, gameHeight - 50, 'yellowBin');
-        yellowBin.setScale(gameWidth / 9000);
+        yellowBin.setScale(gameWidth / 7000);
         yellowBin.name = 'yellowBin';
 
         // Creates  the grey bin
         greyBin = this.physics.add.sprite(gameWidth / 1.6, gameHeight - 50, 'greyBin');
-        greyBin.setScale(gameWidth / 9000);
+        greyBin.setScale(gameWidth / 7000);
         greyBin.name = 'greyBin';
 
-        // Creates the blue bin
+        // Creates theb blue bin
         blueBin = this.physics.add.sprite(gameWidth / 1.14, gameHeight - 50, 'blueBin');
-        blueBin.setScale(gameWidth / 9000);
+        blueBin.setScale(gameWidth / 7000);
         blueBin.name = 'blueBin';
 
         // Creates the bin to be draggable
@@ -305,12 +316,6 @@ class Level1 extends Phaser.Scene {
         this.input.setDraggable(blueBin);
         this.input.setDraggable(yellowBin);
 
-        // Creates the ground image to hold the items
-        groundImg = this.physics.add.sprite(gameWidth / 1.14, gameHeight / 8, 'ground');
-        groundImg.setScale(0.5);
-        groundImg.body.immovable = true;
-        groundImg.body.moves = false;
-
 
         // Creates the health bar
         healthBar = this.add.image(50, 100, 'health');
@@ -318,7 +323,7 @@ class Level1 extends Phaser.Scene {
 
         // Creates the middle bin
         greenBin = this.physics.add.sprite(gameWidth / 2, gameHeight / 1.5, 'greenBin');
-        greenBin.setScale(gameWidth / 4500);
+        greenBin.setScale(gameWidth / 7000);
         greenBin.name = 'greenBin';
 
         greenBin.setInteractive();
@@ -326,34 +331,19 @@ class Level1 extends Phaser.Scene {
 
 
         // List of all the trash variables.
-        trashList = [beerBottleImg, detergentImg, boardBoxImg, bagImg, jarImg, milkImg,
-            newsPaperImg, tinCanImg, pizzaBoxImg, mugImg, plasticBagImg, treeBranchImg];
+        trashList = [beerBottleImg, detergentImg, boardBoxImg, bagImg, waterBottleImg, milkImg,
+            newsPaperImg, tinCanImg, pizzaBoxImg, mugImg, plasticBagImg, treeBranchImg, jarImg, sodaCanImg, sprayCanImg];
 
         // List of all the bins.
         binList = [greenBin, greyBin, blueBin, blackBin, yellowBin];
 
-        paperList = [boardBoxImg, bagImg];
+        // Creates random trash
+        this.createTrash();
 
-        // Lets trash objects collide with invisible wall
-        for (let i = 0; i < trashList.length; i++) {
-            trashList[i] = this.physics.add.sprite(gameWidth - 50, 0, itemList[i]);
-            trashList[i].name = itemList[i];
-            trashList[i].setScale(gameWidth / 450);
-            trashList[i].body.setVelocityX(Math.random() * -1000);
-            trashList[i].setGravity(0, Math.random() * 100);
-            trashList[i].setCollideWorldBounds(true);
-            trashList[i].setBounce(0.4);
+        // Sets collider between trash and the bin
+        this.setCollider();
 
-            // this.physics.add.collider(trashList[i], border);
-            this.physics.add.collider(trashList[i], groundImg);
-        }
-
-        for (let i = 0; i < binList.length; i++) {
-            for (let j = 0; j < trashList.length; j++) {
-                this.physics.add.overlap(binList[i], trashList[j], this.collectGarbage, null, this);
-                binList[i].setCollideWorldBounds(true);
-            }
-        }
+        muteButton = this.physics.add.sprite(320,30,'notMuted');
 
 
 
@@ -368,22 +358,31 @@ class Level1 extends Phaser.Scene {
 
         });
 
+
         //  Toggles the sound of the game to on or off
-        muteButton.setInteractive({useHandCursor: true})
+        muteButton.setInteractive({ useHandCursor: true })
             .on('pointerdown', () => {
-                if (musicOn) {
+                if(musicOn) {
                     muteButton.destroy();
                     this.bgmusic.pause();
                     musicOn = false;
-                    muteButton = this.add.sprite(250, 250, 'pizzabox');
-
-                } else {
+                    muteButton = this.add.sprite(gameWidth, 50, 'muted');
+                    muteButton.setScale(3);
+                }else {
+                    muteButton.destroy();
                     this.bgmusic.resume();
                     musicOn = true;
-                    muteButton = this.add.sprite(250, 250, 'muteButton');
-
+                    muteButton = this.add.sprite(250, 250, 'notMuted');
                 }
             }, this);
 
+
+
+
+
     }
 }
+
+
+
+
