@@ -11,6 +11,6 @@ var config = {
             }
         }
     },
-    scene: [Level1]
+    scene: [Level1,GameOver]
 };
 var game = new Phaser.Game(config);
