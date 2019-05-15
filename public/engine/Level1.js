@@ -233,8 +233,9 @@ class Level1 extends Phaser.Scene {
             healthBar.destroy();
             healthBar = this.add.image(50, 100, 'noHeart');
             healthBar.setScale(2.3);
+            score = 0;
+            healthDecreased = 0;
             this.gameOver();
-            game.scene.pause('Level1');
         } else if (healthDecreased === 1) {
             healthBar.destroy();
             healthBar = this.add.image(50, 100, 'oneHeart');
@@ -250,7 +251,8 @@ class Level1 extends Phaser.Scene {
     }
 
     gameOver(){
-        this.scene.launch('GameOver');
+        // game.scene.start('GameOver');
+        this.scene.start('GameOver');
     }
 
     create() {
@@ -353,6 +355,7 @@ class Level1 extends Phaser.Scene {
 
     update(time, delta) {
 
+
         this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
 
             gameObject.x = dragX;
@@ -368,13 +371,13 @@ class Level1 extends Phaser.Scene {
                     muteButton.destroy();
                     this.bgmusic.pause();
                     musicOn = false;
-                    muteButton = this.add.sprite(gameWidth, 50, 'muted');
-                    muteButton.setScale(3);
-                }else {
+                    muteButton = this.add.sprite(320, 30, 'muted');
+                    muteButton.setScale(1);
+                } else {
                     muteButton.destroy();
                     this.bgmusic.resume();
                     musicOn = true;
-                    muteButton = this.add.sprite(250, 250, 'notMuted');
+                    muteButton = this.add.sprite(320, 30, 'notMuted');
                 }
             }, this);
 
