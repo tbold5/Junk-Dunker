@@ -40,12 +40,12 @@ class GameOver extends Phaser.Scene {
             fontFamily: 'Courier',
         });
 
-        exitBtn = this.physics.add.sprite(gameWidth / 2, gameHeight / 2, 'exitBtn');
-        exitBtn.setScale(3);
+        exitBtn = this.physics.add.sprite(gameWidth / 2, gameHeight / 1.5, 'exitBtn');
+        exitBtn.setScale(2.5);
 
 
-        resetBtn = this.physics.add.sprite(gameWidth / 2, gameHeight / 2.5, 'resetBtn');
-        resetBtn.setScale(3);
+        resetBtn = this.physics.add.sprite(gameWidth / 2, gameHeight / 2, 'resetBtn');
+        resetBtn.setScale(2.5);
 
     }
 

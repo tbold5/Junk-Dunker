@@ -368,13 +368,13 @@ class Level1 extends Phaser.Scene {
                     muteButton.destroy();
                     this.bgmusic.pause();
                     musicOn = false;
-                    muteButton = this.add.sprite(gameWidth, 50, 'muted');
-                    muteButton.setScale(3);
-                }else {
+                    muteButton = this.add.sprite(320, 30, 'muted');
+                    muteButton.setScale(1);
+                } else {
                     muteButton.destroy();
                     this.bgmusic.resume();
                     musicOn = true;
-                    muteButton = this.add.sprite(250, 250, 'notMuted');
+                    muteButton = this.add.sprite(320, 30, 'notMuted');
                 }
             }, this);
 
