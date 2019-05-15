@@ -233,6 +233,7 @@ class Level1 extends Phaser.Scene {
             healthBar.destroy();
             healthBar = this.add.image(50, 100, 'noHeart');
             healthBar.setScale(2.3);
+            this.gameOver();
         } else if (healthDecreased === 1) {
             healthBar.destroy();
             healthBar = this.add.image(50, 100, 'oneHeart');
@@ -245,6 +246,10 @@ class Level1 extends Phaser.Scene {
             healthDecreased +=1;
         }
 
+    }
+
+    gameOver(){
+        this.scene.start('GameOver');
     }
 
     create() {
@@ -262,10 +267,6 @@ class Level1 extends Phaser.Scene {
         // creates the music
         this.bgmusic = this.sound.add('bgmusic');
         this.bgmusic.play();
-
-
-        // Creates the pause button image
-        muteButton = this.add.sprite(250, 250, 'notMuted');
 
         // Creates the background image
         backGroundImg = this.add.image(gameWidth / 2, gameHeight / 2, 'bg');
