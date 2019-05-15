@@ -37,7 +37,7 @@ h1{
     /*z-index: -1;*/
 /*}*/
 .myContainer{
-    background-image: url("./images/background1.gif");
+    background-image: url("../images/background1.gif");
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
@@ -54,7 +54,7 @@ h1{
 /*}*/
 
 .settingsContainer{
-    background-image: url("./images/background1.gif");
+    background-image: url("../images/background1.gif");
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
@@ -132,12 +132,12 @@ h1{
 .helpBadge{
     display: block;
     margin: 0 auto;
-    margin-top: 5em;
+    /*margin-top: 5em;*/
 }
 .helpBox{
     display: block;
     margin: 0 auto;
-    margin-top: 2em;
+    /*margin-top: 2em;*/
 }
 .blueBin{
     height: 50px;
