@@ -50,7 +50,12 @@ class GameOver extends Phaser.Scene {
     }
 
     update(){
+            resetBtn.setInteractive({ useHandCursor: true })
+                .on('pointerdown', () => {
+                    this.scene.start('Level1');
+                }, this);
 
-    }
+
+        }
 
 }

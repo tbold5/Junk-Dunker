@@ -233,8 +233,9 @@ class Level1 extends Phaser.Scene {
             healthBar.destroy();
             healthBar = this.add.image(50, 100, 'noHeart');
             healthBar.setScale(2.3);
+            score = 0;
+            healthDecreased = 0;
             this.gameOver();
-            game.scene.pause('Level1');
         } else if (healthDecreased === 1) {
             healthBar.destroy();
             healthBar = this.add.image(50, 100, 'oneHeart');
@@ -250,7 +251,8 @@ class Level1 extends Phaser.Scene {
     }
 
     gameOver(){
-        this.scene.launch('GameOver');
+        // game.scene.start('GameOver');
+        this.scene.start('GameOver');
     }
 
     create() {
@@ -352,6 +354,7 @@ class Level1 extends Phaser.Scene {
     }
 
     update(time, delta) {
+
 
         this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
 
