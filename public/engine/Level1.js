@@ -38,9 +38,9 @@ var muteButton;
 var backGroundImg;
 var musicOn = true;
 var isPaper = ['boardBox', 'bags', 'newsPaper', 'pizzaBox'];
-var isGlass = ['beerBottle', 'glass', 'jar', 'sodaCan', 'sprayCan'];
-var isTrash = ['plasticBag'];
-var isPlastic = ['detergent', 'waterBottle', 'milk'];
+var isGlass = ['beerBottle','jar', 'sodaCan', 'sprayCan'];
+var isTrash = ['plasticBag','mug'];
+var isPlastic = ['detergent', 'waterBottle', 'milk','tinCan'];
 var isCompost = ['treeBranch','fish','apple'];
 var itemList = ['beerBottle', 'detergent', 'boardBox', 'bags', 'waterBottle', 'milk', 'newsPaper',
     'tinCan', 'pizzaBox', 'mug', 'plasticBag', 'treeBranch', 'jar', 'sodaCan', 'sprayCan','fish', 'apple'];
@@ -195,7 +195,7 @@ class Level1 extends Phaser.Scene {
                 trashList[i].name = itemList[i];
                 trashList[i].setScale(gameWidth / 450);
                 trashList[i].body.setVelocityX(Math.random() * (1000 - 100) - 1000);
-                trashList[i].setGravity(0, 200);
+                trashList[i].setGravity(0,(score * 25) + (Math.random() * 100));
                 trashList[i].setCollideWorldBounds(true);
                 // trashList[i].setBounce(0.1);
                 this.physics.add.collider(trashList[i], border);
