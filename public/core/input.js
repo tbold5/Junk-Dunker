@@ -50,6 +50,18 @@ document.addEventListener('DOMContentLoaded', event => {
 
     });
 
+    $(".sfxButton").click(function () {
+       if (sfxmuted == false)  {
+           buttonSound.mute(true);
+           sfxmuted = true;
+           document.getElementById('sound').innerHTML = "Sound: OFF";
+       } else {
+           buttonSound.mute(false);
+           sfxmuted = false;
+           document.getElementById('sound').innerHTML = "Sound: ON";
+       }
+    });
+
     // Click on lead-exit element slides element mod up the screen
     $(".lead-exit").click(function () {
         $( ".mod" ).slideUp('slow');
@@ -60,6 +72,10 @@ document.addEventListener('DOMContentLoaded', event => {
         if ( $('.settings').is(":hidden")){
             $(".settings").slideDown("slow");
         };
+    });
+
+    $(".click").click(function () {
+        buttonSound.play();
     });
 
     // Click on retButton slides settings element up the screen.
@@ -155,6 +171,12 @@ document.addEventListener('DOMContentLoaded', event => {
             googleSignOut();
         }
     });
+    var buttonSound = new Howl({
+        src: ['./engine/audio/click.wav'],
+        loop: false,
+        volume: 0.2
+    });
+    var sfxmuted = false;
 
      var sound = new Howl({
          src: ['./engine/audio/newmusic.mp3'],

@@ -10,7 +10,7 @@ class GameOver extends Phaser.Scene {
     }
 
 
-    preload(){
+    preload() {
         // loads the play again button
         this.load.image('resetBtn', 'images/reset.png');
 
@@ -18,11 +18,9 @@ class GameOver extends Phaser.Scene {
         this.load.image('exitBtn', 'images/quit.png');
 
 
-
-
     }
 
-    create(){
+    create() {
 
         backGroundImg = this.backGround = this.add.image(gameWidth / 2, gameHeight / 2, 'bg');
         backGroundImg = this.backGround.setDisplaySize(gameWidth, gameHeight);
@@ -34,23 +32,34 @@ class GameOver extends Phaser.Scene {
             fontFamily: 'Courier',
         });
 
-        scoreText = this.add.text(75,150,'Score:' + score, {
-            fontSize:'40px',
+        scoreText = this.add.text(75, 150, 'Score:' + score, {
+            fontSize: '40px',
             color: 'black',
             fontFamily: 'Courier',
         });
 
-        exitBtn = this.physics.add.sprite(gameWidth / 2, gameHeight / 2, 'exitBtn');
-        exitBtn.setScale(3);
+        exitBtn = this.physics.add.sprite(gameWidth / 2, gameHeight / 1.5, 'exitBtn');
+        exitBtn.setScale(2.5);
 
 
-        resetBtn = this.physics.add.sprite(gameWidth / 2, gameHeight / 2.5, 'resetBtn');
-        resetBtn.setScale(3);
+        resetBtn = this.physics.add.sprite(gameWidth / 2, gameHeight / 2, 'resetBtn');
+        resetBtn.setScale(2.5);
+
+        resetBtn.setInteractive({useHandCursor: true})
+            .on('pointerdown', () => {
+                window.location.href = 'index.html';
+                }, this);
+
+        exitBtn.setInteractive({useHandCursor: true})
+            .on('pointerdown', () => {
+                window.location.href = '../index.html';
+            }, this);
 
     }
 
-    update(){
+
+    update() {
+
 
     }
-
 }
