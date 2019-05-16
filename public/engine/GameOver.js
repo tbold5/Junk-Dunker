@@ -12,10 +12,10 @@ class GameOver extends Phaser.Scene {
 
     preload() {
         // loads the play again button
-        this.load.image('resetBtn', 'images/reset.png');
+        this.load.image('resetBtn', 'images/resetYLW.png');
 
         // loads the exit button
-        this.load.image('exitBtn', 'images/quit.png');
+        this.load.image('exitBtn', 'images/quitRED.png');
 
 
     }
@@ -39,11 +39,11 @@ class GameOver extends Phaser.Scene {
         });
 
         exitBtn = this.physics.add.sprite(gameWidth / 2, gameHeight / 1.5, 'exitBtn');
-        exitBtn.setScale(2.5);
+        exitBtn.setScale(1.8);
 
 
         resetBtn = this.physics.add.sprite(gameWidth / 2, gameHeight / 2, 'resetBtn');
-        resetBtn.setScale(2.5);
+        resetBtn.setScale(2);
 
         resetBtn.setInteractive({useHandCursor: true})
             .on('pointerdown', () => {
