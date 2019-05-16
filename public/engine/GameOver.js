@@ -1,7 +1,9 @@
 var gameOverText;
+var yourScoreText;
 var resetBtn;
 var exitBtn;
 var userName;
+var highScore;
 
 class GameOver extends Phaser.Scene {
     constructor() {
@@ -32,8 +34,15 @@ class GameOver extends Phaser.Scene {
             fontFamily: 'Courier',
         });
 
-        scoreText = this.add.text(75, 150, 'Score:' + score, {
+        scoreText = this.add.text(75, 150, userName + ' Score:' + score, {
             fontSize: '40px',
+            color: 'black',
+            fontFamily: 'Courier',
+        });
+
+
+        yourScoreText = this.add.text(75, 300, 'Your highest Score: ' + highScore, {
+            fontSize: '60px',
             color: 'black',
             fontFamily: 'Courier',
         });
@@ -54,7 +63,8 @@ class GameOver extends Phaser.Scene {
             .on('pointerdown', () => {
                 window.location.href = '../index.html';
             }, this);
-        var highScore = this.checkScore();
+
+        highScore = this.checkScore();
     }
 
     async checkScore() {
@@ -76,7 +86,6 @@ class GameOver extends Phaser.Scene {
     }
 
     updateScore(db) {
-
         db.update({
             HighScore: score
         }).then(function () {
@@ -87,7 +96,7 @@ class GameOver extends Phaser.Scene {
     }
 
     update() {
-
+        
 
     }
 }
