@@ -143,7 +143,7 @@ h1{
     height: 50px;
     width: 50px;
 }
-.redBin{
+.blackBin{
     height: 50px;
     width: 50px;
 }
@@ -242,3 +242,76 @@ h1{
 .balance{
     display: none;
 }
+<<<<<<< HEAD
+=======
+.mug{
+    height: 20px;
+    width: 20px;
+}
+.twig{
+    height: 25px;
+    width: 20px;
+}
+.pizza{
+    height: 25px;
+    width: 25px;
+}
+.apple{
+    height: 25px;
+    width: 30px;
+}
+.leaf{
+    height: 30px;
+    width: 30px;
+}
+.information{
+    height: 15px;
+    width: 15px;
+}
+.testPhoto{
+    height: 70px;
+    width: 75px;
+    float: left;
+}
+.person1{
+    display: block;
+    margin-top: 2em;
+}
+.person1name{
+    font-size: 14px;
+    margin: 0 auto;
+    margin-left: 1em;
+    text-align: center;
+    float: left;
+}
+.person1info{
+    font-size: 14px;
+    display: block;
+    margin: 0 auto;
+    margin-right: 0 auto;
+    float: left;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+.aboutContainer{
+    display: none;
+    position: relative;
+    z-index: 10;
+    overflow-y: scroll;
+}
+.title{
+    margin-bottom: 2em;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+html{
+    scroll-behavior: smooth;
+}
+.storyInfo{
+    font-size: 14px;
+}
+.button{
+    float: left;
+}
+>>>>>>> 487e5e3739bea3833145327394397298a397ba49
