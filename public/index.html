@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html>
+  <!-- Head section for entire game, contents invisible-->
   <head>
+    <!-- Declares character encoding (charset) -->
     <meta charset="utf-8">
+    <!--
+      Visibility of view for user. The width=device-width sets width of the page to 
+      follow the screen-width of device.
+      Initial-scale=1.0 part sets initial zoom level when page is first loaded by the browser. 
+      -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <title>JunkDunker / Super6</title>
+    <!-- @links path for fonts -->
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+     <!-- @links path for cascade style fonts -->
     <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
+     <!-- @script path for Cloudfare jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+    <!-- @link describes presentation of document -->
     <link rel="stylesheet" href="style/style.css">
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <!-- @script source of firebase. Firebase features required for this game-->
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+    
     <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-firestore.js"></script>
+    
     <link rel="shortcut icon" href="images/favicon.ico">
     <!-- include only the Firebase features as you need -->
     <script defer src="/__/firebase/5.11.1/firebase-auth.js"></script>
@@ -143,6 +159,7 @@
     <img class="balance" src="./images/glove.png" alt="./images/sodacan.png">
   </div>
   <script src="/__/firebase/6.0.2/firebase-performance.js"></script>
+  <!--</div>-->
   <script src="core/app.js"></script>
   <script src="core/howler.core.js"></script>
   <script src="core/input.js"></script>
