@@ -184,10 +184,6 @@ class Level1 extends Phaser.Scene {
         }
     }
 
-    collideBin(){
-        this.physics.add.collider(blackBin,greenBin);
-    }
-
     addScore(img) {
         img.destroy();
         score += 1;
@@ -195,7 +191,7 @@ class Level1 extends Phaser.Scene {
         console.log(img.name)
     }
 
-    createTrash() {
+    createTrash(){
         for (let i = 0; i < trashList.length; i++) {
             setTimeout(() => {
                 trashList[i] = this.physics.add.sprite(gameWidth - 50, 0, itemList[i]);
@@ -207,7 +203,6 @@ class Level1 extends Phaser.Scene {
                 // trashList[i].setBounce(0.1);
                 this.physics.add.collider(trashList[i], border);
             }, i * 3000);
-
         }
     }
 
@@ -221,6 +216,7 @@ class Level1 extends Phaser.Scene {
             }
         }
     }
+
 
     // Makes the garbage upon collision with bin
     collectGarbage(bin, img) {
@@ -380,18 +376,18 @@ class Level1 extends Phaser.Scene {
 
         });
 
-
-
-
         //  Toggles the sound of the game to on or off
         muteButton.setInteractive({ useHandCursor: true })
             .on('pointerdown', () => {
                 if(musicOn) {
                     muteButton.destroy();
                     this.bgmusic.pause();
+                    game.paused = false;
                     musicOn = false;
                     muteButton = this.add.sprite(320, 30, 'muted');
                     muteButton.setScale(1);
+                    this.scene.pause();
+                    this.scene.launch('')
                 } else {
                     muteButton.destroy();
                     this.bgmusic.resume();
