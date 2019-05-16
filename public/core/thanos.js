@@ -63,7 +63,7 @@ rotate(${15 * (Math.random() - 0.5)}deg)`;
         hasClicked = true;
         $('.myContainer').fadeOut(3000);
 
-        [...document.querySelectorAll(".myContainer")].forEach(($elm, i) => {
+        [...document.querySelectorAll(".myContainer", "settingsContainer")].forEach(($elm, i) => {
 
             setTimeout(() => {
                 disintegrate($elm)
@@ -74,6 +74,6 @@ rotate(${15 * (Math.random() - 0.5)}deg)`;
         setTimeout(()=>{
             $('.myContainer').css("background-image", "url(./images/background2.gif)")
         }, 3000)
-
+        $('.settingsContainer').css("background-image", "url(./images/background2.gif")
     });
 });
