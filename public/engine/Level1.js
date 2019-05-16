@@ -182,8 +182,6 @@ class Level1 extends Phaser.Scene {
     addScore(img) {
         img.disableBody(true,true);
         score += 1;
-        popSound.play();
-        popSound.stop();
         scoreText.setText('Score: ' + score);
         console.log(img.name)
     }
@@ -291,7 +289,6 @@ class Level1 extends Phaser.Scene {
         });
 
 
-        popSound = this.pop = this.sound.add('pop');
         // this.pop.play();
         // Creates the images on the page
 
