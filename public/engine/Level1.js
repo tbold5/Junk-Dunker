@@ -252,7 +252,9 @@ class Level1 extends Phaser.Scene {
 
     gameOver(){
         // game.scene.start('GameOver');
-        this.scene.start('GameOver');
+        this.scene.launch('GameOver');
+        this.scene.pause();
+
     }
 
     create() {
@@ -380,7 +382,6 @@ class Level1 extends Phaser.Scene {
                     muteButton = this.add.sprite(320, 30, 'notMuted');
                 }
             }, this);
-
 
 
 
