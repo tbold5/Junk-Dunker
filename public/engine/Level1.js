@@ -45,7 +45,7 @@ var isPlastic = ['detergent', 'waterBottle', 'milk','tinCan'];
 var isCompost = ['treeBranch','fish','apple','bone'];
 var itemList = ['beerBottle', 'detergent', 'boardBox', 'bags', 'waterBottle', 'milk', 'newsPaper',
     'tinCan', 'pizzaBox', 'mug', 'plasticBag', 'treeBranch', 'jar', 'sodaCan', 'sprayCan','fish', 'apple','bone'];
-
+var time = 3000;
 class Level1 extends Phaser.Scene {
     constructor() {
         super({
@@ -184,26 +184,35 @@ class Level1 extends Phaser.Scene {
         }
     }
 
+    collideBin(){
+        this.physics.add.collider(blackBin,greenBin);
+    }
+
     addScore(img) {
         img.destroy();
         score += 1;
         scoreText.setText('Score: ' + score);
         console.log(img.name)
     }
-
-    createTrash(){
-        for (let i = 0; i < trashList.length; i++) {
-            setTimeout(() => {
-                trashList[i] = this.physics.add.sprite(gameWidth - 50, 0, itemList[i]);
-                trashList[i].name = itemList[i];
-                trashList[i].setScale(gameWidth / 450);
-                trashList[i].body.setVelocityX(Math.random() * (1000 - 100) - 1000);
-                trashList[i].setGravity(0,(score * 25) + (Math.random() * 100));
-                trashList[i].setCollideWorldBounds(true);
-                // trashList[i].setBounce(0.1);
-                this.physics.add.collider(trashList[i], border);
-            }, i * 3000);
-        }
+    getRandomNumber(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+    createTrash() {
+        let counter = 0;
+        setTimeout(() => {
+            var index = Math.floor(this.getRandomNumber(0, 17))
+            console.log('index: ', index);
+            trashList[counter] = this.physics.add.sprite(gameWidth - 50, 0, itemList[index]);
+            trashList[counter].name = itemList[index];
+            trashList[counter].setScale(gameWidth / 450);
+            trashList[counter].body.setVelocityX(Math.random() * (1000 - 100) - 1000);
+            trashList[counter].setGravity(0, (score * 25) + (Math.random() * 100));
+            trashList[counter].setCollideWorldBounds(true);
+            // trashList[i].setBounce(0.1);
+            this.physics.add.collider(trashList[counter], border);
+            counter++;
+        }, counter * 3000);
+        this.setCollider();
     }
 
     setCollider() {
@@ -216,7 +225,6 @@ class Level1 extends Phaser.Scene {
             }
         }
     }
-
 
     // Makes the garbage upon collision with bin
     collectGarbage(bin, img) {
@@ -355,16 +363,12 @@ class Level1 extends Phaser.Scene {
         binList = [greenBin, greyBin, blueBin, blackBin, yellowBin];
 
         // Creates random trash
-        this.createTrash();
-
-        // Sets collider between trash and the bin
-        this.setCollider();
+        setInterval(() => {
+            this.createTrash()
+        },time -= 1000);
+        // this.createTrash();
 
         muteButton = this.physics.add.sprite(320,30,'notMuted');
-
-
-
-
     }
 
     update(time, delta) {
@@ -382,12 +386,9 @@ class Level1 extends Phaser.Scene {
                 if(musicOn) {
                     muteButton.destroy();
                     this.bgmusic.pause();
-                    game.paused = false;
                     musicOn = false;
                     muteButton = this.add.sprite(320, 30, 'muted');
                     muteButton.setScale(1);
-                    this.scene.pause();
-                    this.scene.launch('')
                 } else {
                     muteButton.destroy();
                     this.bgmusic.resume();
