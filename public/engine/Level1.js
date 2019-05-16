@@ -406,6 +406,7 @@ class Level1 extends Phaser.Scene {
     }
 }
 
+export class Level1 {};
 
 
 
