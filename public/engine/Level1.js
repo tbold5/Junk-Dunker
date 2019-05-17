@@ -20,6 +20,7 @@ var sodaCanImg;
 var waterBottleImg;
 var sprayCanImg;
 var mugImg;
+var boneImg;
 var music;
 var platforms;
 var gameWidth;
@@ -41,11 +42,10 @@ var isPaper = ['boardBox', 'bags', 'newsPaper', 'pizzaBox'];
 var isGlass = ['beerBottle','jar', 'sodaCan', 'sprayCan'];
 var isTrash = ['plasticBag','mug'];
 var isPlastic = ['detergent', 'waterBottle', 'milk','tinCan'];
-var isCompost = ['treeBranch','fish','apple'];
+var isCompost = ['treeBranch','fish','apple','bone'];
 var itemList = ['beerBottle', 'detergent', 'boardBox', 'bags', 'waterBottle', 'milk', 'newsPaper',
-    'tinCan', 'pizzaBox', 'mug', 'plasticBag', 'treeBranch', 'jar', 'sodaCan', 'sprayCan','fish', 'apple'];
-var i = 0;
-
+    'tinCan', 'pizzaBox', 'mug', 'plasticBag', 'treeBranch', 'jar', 'sodaCan', 'sprayCan','fish', 'apple','bone'];
+var time = 3000;
 class Level1 extends Phaser.Scene {
     constructor() {
         super({
@@ -53,15 +53,18 @@ class Level1 extends Phaser.Scene {
         });
     }
     preload() {
+
         // Loads all the audio files
         this.load.audio('bgmusic', ['audio/gameplaymusic.mp3']);
         this.load.audio('pop', ['audio/pop2.mp3']);
+
         // loads all the recycling bins
         this.load.image('greyBin', 'images/greybin1.png');
         this.load.image('blueBin', 'images/bluebin1.png');
         this.load.image('yellowBin', 'images/yellowbin1.png');
         this.load.image('blackBin', 'images/blackbin.png');
         this.load.image('greenBin', 'images/greenbin1.png');
+
         // loads the health bar
         this.load.image('health', 'images/3Heart.png');
 
@@ -132,6 +135,8 @@ class Level1 extends Phaser.Scene {
         this.load.image('fish', 'images/fish.png');
 
         this.load.image('apple', 'images/apple.png');
+
+        this.load.image('bone', 'images/bone.png');
     }
 
     // Checks if the garbage is Paper and returns true if it is
@@ -179,27 +184,35 @@ class Level1 extends Phaser.Scene {
         }
     }
 
+    collideBin(){
+        this.physics.add.collider(blackBin,greenBin);
+    }
+
     addScore(img) {
-        img.disableBody(true,true);
+        img.destroy();
         score += 1;
         scoreText.setText('Score: ' + score);
         console.log(img.name)
     }
-
+    getRandomNumber(min, max) {
+        return Math.random() * (max - min) + min;
+    }
     createTrash() {
-        for (let i = 0; i < trashList.length; i++) {
-            setTimeout(() => {
-                trashList[i] = this.physics.add.sprite(gameWidth - 50, 0, itemList[i]);
-                trashList[i].name = itemList[i];
-                trashList[i].setScale(gameWidth / 450);
-                trashList[i].body.setVelocityX(Math.random() * (1000 - 100) - 1000);
-                trashList[i].setGravity(0,(score * 25) + (Math.random() * 100));
-                trashList[i].setCollideWorldBounds(true);
-                // trashList[i].setBounce(0.1);
-                this.physics.add.collider(trashList[i], border);
-            }, i * 3000);
-
-        }
+        let counter = 0;
+        setTimeout(() => {
+            var index = Math.floor(this.getRandomNumber(0, 17))
+            console.log('index: ', index);
+            trashList[counter] = this.physics.add.sprite(gameWidth - 50, 0, itemList[index]);
+            trashList[counter].name = itemList[index];
+            trashList[counter].setScale(gameWidth / 450);
+            trashList[counter].body.setVelocityX(Math.random() * (1000 - 100) - 1000);
+            trashList[counter].setGravity(0, (score * 25) + (Math.random() * 100));
+            trashList[counter].setCollideWorldBounds(true);
+            // trashList[i].setBounce(0.1);
+            this.physics.add.collider(trashList[counter], border);
+            counter++;
+        }, counter * 3000);
+        this.setCollider();
     }
 
     setCollider() {
@@ -226,7 +239,7 @@ class Level1 extends Phaser.Scene {
         } else if ((bin.name === 'greenBin') && (this.isCompost(img.name))) {
             this.addScore(img)
         } else {
-            img.disableBody(true, true)
+            img.destroy();
             this.destroyHealth();
             score -= 1;
             scoreText.setText('Score: ' + score);
@@ -319,6 +332,8 @@ class Level1 extends Phaser.Scene {
         blackBin.setInteractive();
         blueBin.setInteractive();
 
+
+
         // Allows users to drag the bins
         this.input.setDraggable(greyBin);
         this.input.setDraggable(blackBin);
@@ -341,21 +356,19 @@ class Level1 extends Phaser.Scene {
 
         // List of all the trash variables.
         trashList = [beerBottleImg, detergentImg, boardBoxImg, bagImg, waterBottleImg, milkImg,
-            newsPaperImg, tinCanImg, pizzaBoxImg, mugImg, plasticBagImg, treeBranchImg, jarImg, sodaCanImg, sprayCanImg,fishImg, appleImg];
+            newsPaperImg, tinCanImg, pizzaBoxImg, mugImg, plasticBagImg,
+            treeBranchImg, jarImg, sodaCanImg, sprayCanImg,fishImg, appleImg, boneImg];
 
         // List of all the bins.
         binList = [greenBin, greyBin, blueBin, blackBin, yellowBin];
 
         // Creates random trash
-        this.createTrash();
-
-        // Sets collider between trash and the bin
-        this.setCollider();
+        setInterval(() => {
+            this.createTrash()
+        },time -= 1000);
+        // this.createTrash();
 
         muteButton = this.physics.add.sprite(320,30,'notMuted');
-
-
-
     }
 
     update(time, delta) {
@@ -366,7 +379,6 @@ class Level1 extends Phaser.Scene {
             gameObject.y = dragY;
 
         });
-
 
         //  Toggles the sound of the game to on or off
         muteButton.setInteractive({ useHandCursor: true })
@@ -391,6 +403,7 @@ class Level1 extends Phaser.Scene {
     }
 }
 
+export class Level1 {};
 
 
 

@@ -1,6 +1,9 @@
 var gameOverText;
+var yourScoreText;
 var resetBtn;
 var exitBtn;
+var userName;
+var highScore;
 
 class GameOver extends Phaser.Scene {
     constructor() {
@@ -21,7 +24,6 @@ class GameOver extends Phaser.Scene {
     }
 
     create() {
-
         backGroundImg = this.backGround = this.add.image(gameWidth / 2, gameHeight / 2, 'bg');
         backGroundImg = this.backGround.setDisplaySize(gameWidth, gameHeight);
 
@@ -32,8 +34,15 @@ class GameOver extends Phaser.Scene {
             fontFamily: 'Courier',
         });
 
-        scoreText = this.add.text(75, 150, 'Score:' + score, {
+        scoreText = this.add.text(75, 150, userName + ' Score:' + score, {
             fontSize: '40px',
+            color: 'black',
+            fontFamily: 'Courier',
+        });
+
+
+        yourScoreText = this.add.text(75, 300, 'Your highest Score: ' + highScore, {
+            fontSize: '60px',
             color: 'black',
             fontFamily: 'Courier',
         });
@@ -55,8 +64,36 @@ class GameOver extends Phaser.Scene {
                 window.location.href = '../index.html';
             }, this);
 
+        highScore = this.checkScore();
     }
 
+    async checkScore() {
+        var userId = window.localStorage.getItem('id');
+        var db = firebase.firestore().collection("Users").doc(userId);
+        var data = -4;
+
+        await db.get().then(function (doc) {
+            data = doc.data();
+            console.log(data);
+        });
+        userName = data.UserName;
+        if (data.HighScore < score) {
+            this.updateScore(db);
+            return score;
+        } else {
+            return data.HighScore;
+        }
+    }
+
+    updateScore(db) {
+        db.update({
+            HighScore: score
+        }).then(function () {
+            console.log("Document successfully updated!");
+        }).catch(function(error) {
+            console.error("Error updating document: ", error);
+        });
+    }
 
     update() {
 

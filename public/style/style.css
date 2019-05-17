@@ -113,6 +113,8 @@ h1{
 
 #board > div {
     margin: 0 auto;
+    padding-bottom: 0px;
+    border: 0px;
 }
 
 .leaderTitleSection{
@@ -284,4 +286,9 @@ h1{
 }
 .aboutUsIcon{
     float: right;
+}
+
+.helpBox > div {
+    padding: 10px 0px 0px 0px !important;
+    margin-bottom: 0px !important;
 }
