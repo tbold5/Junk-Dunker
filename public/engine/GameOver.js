@@ -34,25 +34,20 @@ class GameOver extends Phaser.Scene {
             fontFamily: 'Courier',
         });
 
-        scoreText = this.add.text(75, 150, userName + ' Score:' + score, {
+        scoreText = this.add.text(75, 150,'Score:' + score, {
             fontSize: '40px',
             color: 'black',
             fontFamily: 'Courier',
         });
 
 
-        yourScoreText = this.add.text(75, 300, 'Your highest Score: ' + highScore, {
-            fontSize: '60px',
-            color: 'black',
-            fontFamily: 'Courier',
-        });
 
         exitBtn = this.physics.add.sprite(gameWidth / 2, gameHeight / 1.5, 'exitBtn');
-        exitBtn.setScale(1.8);
+        exitBtn.setScale(gameWidth / 256);
 
 
-        resetBtn = this.physics.add.sprite(gameWidth / 2, gameHeight / 2, 'resetBtn');
-        resetBtn.setScale(2);
+        resetBtn = this.physics.add.sprite(gameWidth / 2, gameHeight / 1.9, 'resetBtn');
+        resetBtn.setScale(gameWidth / 256);
 
         resetBtn.setInteractive({useHandCursor: true})
             .on('pointerdown', () => {
