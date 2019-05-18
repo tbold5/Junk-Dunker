@@ -10,7 +10,7 @@
       Initial-scale=1.0 part sets initial zoom level when page is first loaded by the browser. 
       -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <!-- @tag title JunkDunker -->
     <title>JunkDunker / Super6</title>
     <!-- @links path for fonts -->
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
@@ -29,41 +29,49 @@
     
     <link rel="shortcut icon" href="images/favicon.ico">
     <!-- include only the Firebase features as you need -->
+    <!-- 
+      Firebase features required for this game. Defer
+      tells browser only execute script file once the HTML 
+      document has been fully parsed. 
+      -->
     <script defer src="/__/firebase/5.11.1/firebase-auth.js"></script>
   </head>
-
+  <!-- @tag class holds all elements-->
   <body id="yes">
 
   <!--<div class="myContainer">-->
     <div class='nes-container myContainer'>
-      <div>
-        <section class="icon-list">
+      
+        <div class='nes-container myContainer'></div><div>
+        <!--@tag class,  class of list of signin options-->
+          <section class="icon-list">
 
-          <!-- twitter -->
+           <!-- @tag class of twitter -->
           <a href="https://twitter.com/"><i class="nes-icon twitter"></i></a>
 
 
-          <!-- facebook -->
+          <!-- @tag class of facebook -->
           <a href="https://www.facebook.com/"><i class="nes-icon facebook "></i></a>
 
 
-          <!-- instagram -->
+          <!-- @tag class of instagram -->
           <a href="https://www.instagram.com/"><i class="nes-icon instagram"></i></a>
 
 
-          <!-- github -->
+         <!-- @tag class of github -->
           <a href="https://github.com/redlon23/Team-13-COMP-2930"><i class="nes-icon github"></i></a>
 
-
+          <!-- @tag class of AboutUs -->
           <a href="AboutUs.html"><i class="nes-icon heart"></i></a>
 
-        </section>
-      </div>
+        </section><!--#class of signin icons-->
+      </div><!--@tag class, class of list of nes-container myContainer -->
       <br>
       <br>
+      <!--@tag class is image with its path -->
       <div class='gif'>
         <img src="./images/recyclo2.gif" alt="">
-      </div>
+      </div><!--#class gif-->
       <br>
       <br>
       <div class="myTitle">
@@ -74,25 +82,25 @@
             <button type="button" class="nes-btn is-primary click" id="login">Login</button>
             <button type="button" class="nes-btn helpButton item click">Help</button>
             <button type="button" class="nes-btn is-error set click">Settings</button>
-        </div>
-      </div>
-    </div>
+        </div><!-- #class myBlock -->
+      </div><!-- #class myTitle -->
+    </div><!--<div class="myContainer">-->
   <!--</div>-->
   <div class="mod">
     <div class="nes-container is-rounded is-dark">
       <div class="leaderTitleSection">
-        <p class="title">
+        <p class="title"><!-- #class title -->
           The Leader Board
         </p>
         <button type="button" class="nes-btn is-warning lead-exit click">X</button>
-      </div>
+      </div><!-- #class leaderTitleSection -->
 
       <div id="board">
-      </div>
-    </div>
-  </div>
+      </div><!-- #class myContainer -->
+    </div><!-- #class nes-container is-rounded is-dark -->
+  </div><!-- #class mod -->
   <!--Div for settings page-->
-  <div class="settings">
+  <div class="settings"><!--#class for settings page-->
     <div class="settingsContainer">
       <a href="#" class="nes-badge">
           <span class="is-dark">Options</span>
@@ -103,7 +111,7 @@
     </div>
   </div>
     <!--Div for help page-->
-  <div class="help">
+  <div class="help"><!-- div for help page -->
     <div class ="nes-container is-rounded is-dark helpContainer">
       <a href="#" class="nes-badge helpBadge">
         <span class="is-dark">Help</span>
