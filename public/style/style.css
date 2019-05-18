@@ -113,6 +113,8 @@ h1{
 
 #board > div {
     margin: 0 auto;
+    padding-bottom: 0px;
+    border: 0px;
 }
 
 .leaderTitleSection{
@@ -242,8 +244,7 @@ h1{
 .balance{
     display: none;
 }
-<<<<<<< HEAD
-=======
+
 .mug{
     height: 20px;
     width: 20px;
@@ -314,4 +315,10 @@ html{
 .button{
     float: left;
 }
->>>>>>> 487e5e3739bea3833145327394397298a397ba49
+/*>>>>>>> 487e5e3739bea3833145327394397298a397ba49*/
+
+.helpBox > div {
+    padding: 10px 0px 0px 0px !important;
+    margin-bottom: 0px !important;
+}
+/*>>>>>>> 2782ce0238fed5f3968bbfd3f98595075f314a96*/

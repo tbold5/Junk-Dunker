@@ -127,6 +127,7 @@ document.addEventListener('DOMContentLoaded', event => {
             await checkIfHasName(userId);
             //Assigns user data asynchronously 
             userName = await getAllUserData();
+            window.localStorage.setItem('id', userId);
             //Prints asynchronously to console
             await console.log(userName);
             //Prints error message
@@ -271,6 +272,9 @@ document.addEventListener('DOMContentLoaded', event => {
         $(".help").slideUp("fast");
     })
 
+    function updateScore(score) {
+
+    }
     //Doesn't really start the game.
     //function startGame() {
         //let everything = document.getElementById("yes");

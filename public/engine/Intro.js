@@ -1,3 +1,7 @@
+var recyMan;
+var speechBubble;
+var playBtn;
+
 class Intro extends Phaser.Scene {
     constructor() {
         super({
@@ -5,66 +9,43 @@ class Intro extends Phaser.Scene {
         });
     }
     preload() {
-        // this.load.image('recycleMan','/assets/images/recycleman.jpg');
-        this.load.script(
-            'webfont',
-            'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
-        );
+        // loads the background image
+        this.load.image('bg', 'images/comic.gif');
 
-        var progress = this.add.graphics();
-        const self = this;
-        this.load.on('progress', function(value) {
-            progress.clear();
-            progress.fillStyle(0x42f456, 1);
-            progress.fillRect(0, 300, 800 * value, 20);
-        });
+        // loads the recycle man
+        this.load.image('recycleMan', 'images/recyclemans.png');
 
-        this.load.on('complete', function() {
-            progress.destroy();
-        });
+        //  loads the speech bubble
+        this.load.image('speech', 'images/party.png');
+
+
+
     }
     create() {
-        // this.recycleMan = this.add.image(400,300,'recycleMan');
-        this.make.text({
-        	x: 250,
-        	y: 300,
-        	text: 'Press Space Bar',
-        	style: {
-        		fontSize: '20px',
-        		fontFamily: 'Arial',
-        		color: '#ffffff',
-        		align: 'center',
-        		backgroundColor: '#000000',
-        		shadow: {
-        			color: '#000000',
-        			fill: true,
-        			offsetX: 2,
-        			offsetY: 2,
-        			blur: 8
-        		}
-        	}
-        });
-        var add = this.add;
-        var input = this.input;
-        WebFont.load({
-            google: {
-                families: ['Fredericka the Great']
-            },
-            active: function() {
-                add
-                    .text(250, 50, `Junk Dunker`, {
-                        fontFamily: 'Fredericka the Great',
-                        fontSize: 50,
-                        color: 'white'
-                    })
-                    .setShadow(2, 2, '#333333', 2, false, true);
-            }
-        });
-        this.keys = this.input.keyboard.addKeys('SPACE');
+        gameWidth = game.config.width;
+        gameHeight = game.config.height;
+
+        backGroundImg = this.add.image(gameWidth / 2, gameHeight / 2, 'bg');
+        backGroundImg.setDisplaySize(gameWidth, gameHeight);
+
+        recyMan = this.add.image(gameWidth / 4, gameHeight / 1.11, 'recycleMan');
+        recyMan.setScale(0.5);
+
+        speechBubble = this.add.image(gameWidth / 2.8, gameHeight / 1.2, 'speech');
+        speechBubble.setScale(0.4);
+        //
+        // playBtn = this.physics.add.sprite(gameWidth / 1.25, gameHeight / 1.07, 'exitBtn');
+        // playBtn.setScale(2);
+        //
+        //     playBtn.setInteractive({useHandCursor: true})
+        //         .on('pointerdown', () => {
+        //             this.scene.start('Level1');
+        //         }, this);
+        //
+        // }
     }
-    update(delta) {
-        if (this.keys.SPACE.isDown) {
-            this.scene.start('Level1');
-        }
+
+    update() {
+        this.scene.launch('Level1');
     }
 }
