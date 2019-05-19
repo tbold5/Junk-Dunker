@@ -254,12 +254,12 @@ h1{
     width: 20px;
 }
 .pizza{
-    height: 25px;
-    width: 25px;
+    height: 20px;
+    width: 20px;
 }
 .apple{
-    height: 25px;
-    width: 30px;
+    height: 15px;
+    width: 15px;
 }
 .leaf{
     height: 30px;
@@ -316,6 +316,25 @@ html{
     float: left;
 }
 /*>>>>>>> 487e5e3739bea3833145327394397298a397ba49*/
+.bone{
+    height: 15px;
+    width: 20px;
+}
+.plasticBag{
+    height: 20px;
+    width: 20px;
+}
+.fish{
+    height: 20px;
+    width: 20px;
+}
+.informationIcon{
+    height: 40px;
+    width: 40px;
+}
+.aboutUsIcon{
+    float: right;
+}
 
 .helpBox > div {
     padding: 10px 0px 0px 0px !important;
