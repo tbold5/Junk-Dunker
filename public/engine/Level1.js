@@ -256,7 +256,7 @@ class Level1 extends Phaser.Scene {
     // Destroys the health if the wrong trash is entered
 
     destroyHealth(){
-        if(healthDecreased === 10){
+        if(healthDecreased === 2){
             healthBar.destroy();
             healthBar = this.add.image(50, 100, 'noHeart');
             healthBar.setScale(2.3);
