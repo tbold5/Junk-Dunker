@@ -7,6 +7,26 @@
     display: block;
     margin-top: 2em;
 }
+.person2{
+    display: block;
+    margin-top: 2em;
+}
+.person3{
+    display: block;
+    margin-top: 2em;
+}
+.person4{
+    display: block;
+    margin-top: 2em;
+}
+.person5{
+    display: block;
+    margin-top: 2em;
+}
+.person6{
+    display: block;
+    margin-top: 2em;
+}
 .person1name{
     font-size: 14px;
     margin: 0 auto;
@@ -15,6 +35,51 @@
     float: left;
 }
 .person1info{
+    font-size: 14px;
+    display: block;
+    margin: 0 auto;
+    margin-right: 0 auto;
+    float: left;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+.person2info{
+    font-size: 14px;
+    display: block;
+    margin: 0 auto;
+    margin-right: 10em;
+    float: left;
+    margin-top: 1em;
+    margin-bottom: 2em; 
+}
+.person3info{
+    font-size: 14px;
+    display: block;
+    margin: 0 auto;
+    margin-right: 0 auto;
+    float: left;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+.person4info{
+    font-size: 14px;
+    display: block;
+    margin: 0 auto;
+    margin-right: 0 auto;
+    float: left;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+.person5info{
+    font-size: 14px;
+    display: block;
+    margin: 0 auto;
+    margin-right: 0 auto;
+    float: left;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+.person6info{
     font-size: 14px;
     display: block;
     margin: 0 auto;
