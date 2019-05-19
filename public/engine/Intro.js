@@ -9,43 +9,58 @@ class Intro extends Phaser.Scene {
         });
     }
     preload() {
+
         // loads the background image
-        this.load.image('bg', 'images/comic.gif');
+        this.load.image('comicDone', 'images/comicDONE.png');
 
-        // loads the recycle man
-        this.load.image('recycleMan', 'images/recyclemans.png');
 
-        //  loads the speech bubble
-        this.load.image('speech', 'images/party.png');
+        // loads the speech bubble which allows user to exit the game
+        this.load.image('nahBtn', 'images/nah.gif');
+
+        // loads the speech bubble which allows user to play the game
+        this.load.image('yesBtn', 'images/yesBubble.gif');
+
 
 
 
     }
     create() {
+        var nahBtn;
+        var yesBtn;
+        var backGround;
+
+
         gameWidth = game.config.width;
         gameHeight = game.config.height;
 
-        backGroundImg = this.add.image(gameWidth / 2, gameHeight / 2, 'bg');
-        backGroundImg.setDisplaySize(gameWidth, gameHeight);
+        backGround = this.add.image(gameWidth / 2, gameHeight / 2, 'comicDone');
+        backGround.setDisplaySize(gameWidth, gameHeight);
 
-        recyMan = this.add.image(gameWidth / 4, gameHeight / 1.11, 'recycleMan');
-        recyMan.setScale(0.5);
 
-        speechBubble = this.add.image(gameWidth / 2.8, gameHeight / 1.2, 'speech');
-        speechBubble.setScale(0.4);
-        //
-        // playBtn = this.physics.add.sprite(gameWidth / 1.25, gameHeight / 1.07, 'exitBtn');
-        // playBtn.setScale(2);
-        //
-        //     playBtn.setInteractive({useHandCursor: true})
-        //         .on('pointerdown', () => {
-        //             this.scene.start('Level1');
-        //         }, this);
-        //
-        // }
+        yesBtn = this.physics.add.sprite(gameWidth / 1.5, gameHeight / 1.3, 'yesBtn');
+        yesBtn.setScale(0.3);
+
+
+        nahBtn = this.physics.add.sprite(gameWidth / 1.25, gameHeight / 1.2, 'nahBtn');
+        nahBtn.setScale(0.4);
+
+        nahBtn.setInteractive({useHandCursor: true})
+            .on('pointerdown', () => {
+                window.location.href = '../index.html';
+            }, this);
+
+        yesBtn.setInteractive({useHandCursor: true})
+            .on('pointerdown', () => {
+                this.scene.start('Level1');
+            }, this);
+
+
+
+
     }
 
+
     update() {
-        this.scene.launch('Level1');
+
     }
 }
