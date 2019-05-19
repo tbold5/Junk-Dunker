@@ -26,8 +26,7 @@ Git clone
 
 # Configuration 🛠️
 
-1. If y
-2. then do this
+1. Bin Selection ( Not developed yet)
 
 # Usage ⚡️
 
@@ -42,6 +41,7 @@ firebase Serve
 * ✔️  Game Page
 * ✔️  Leader Board
 * ✔️  Easter Egg 
+* ✔️  About us
 
 
 # Disclaimer 📖
