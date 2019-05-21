@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', event => {
 
     $(".click").click(function () {
         buttonSound.play();
+
     });
 
     // Click on retButton slides settings element up the screen.
@@ -100,7 +101,6 @@ document.addEventListener('DOMContentLoaded', event => {
     //$(".balance").click(function() {
         //startGame();
     //});
-    var provider = new firebase.auth.GoogleAuthProvider();
 
 
     // Creates an instance called provider of the Google provider object
