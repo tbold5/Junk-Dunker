@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', event => {
     // userId is the reference that we talked about, use it to create an association between auth and database
     // getScores();
-
+    let error = false;
     let hasUserName;
     let userData;
 
@@ -33,8 +33,7 @@ document.addEventListener('DOMContentLoaded', event => {
     });
 
     $(".confirm").click(function () {
-        createUser();
-        $(".userNameAsk").slideUp('slow');
+        checkUserName();
     });
 
     $(".musicButton").click(function () {
@@ -253,6 +252,32 @@ document.addEventListener('DOMContentLoaded', event => {
     // async function doSomething(){
     //     console.log(userName);
     // }
+    function checkUserName() {
+        let name = $('#name_field').val();
+        if(!/[^a-zA-Z0-9_]/.test(name)) {
+            if (name.length >= 20 || name.length <= 2) {
+                if(error === true) {
+                    $('.warn').detach();
+                }
+                let warn = '<p class="warn" style="color: darkred">Invalid username. Username must be less than 20 characters and more than 2.</p>';
+                $(warn).appendTo($('.field'));
+                error = true;
+            } else {
+                if(error === true) {
+                    $('.warn').detach();
+                }
+                createUser();
+                $(".userNameAsk").slideUp('slow');
+            }
+        } else {
+            if(error === true) {
+                $('.warn').detach();
+            }
+            let warn = '<p class="warn" style="color: darkred">Invalid username. Valid characters are A-Z, 0-9, _.</p>';
+            $(warn).appendTo($('.field'));
+            error = true;
+        }
+    }
 
     function createUser() {
         db.collection('Users').doc(userId).set({
@@ -262,16 +287,14 @@ document.addEventListener('DOMContentLoaded', event => {
             console.log("Doc written successfully");
         })
     }
-    function getCurrentUser() {
-        return userId;
-    }
-    
+
     $('.pixelThanos').click(function(){
         $('.balance').slideDown("fast");
-    })
+    });
+
     $('.balance').click(function(){
         $(".help").slideUp("fast");
-    })
+    });
 
     function updateScore(score) {
 
