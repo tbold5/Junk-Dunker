@@ -147,6 +147,9 @@ document.addEventListener('DOMContentLoaded', event => {
     // Create signout function
     function googleSignOut(){
         // Signs out from game asynchronously
+        console.log(window.localStorage.getItem('id'));
+        window.localStorage.removeItem('id');
+        console.log(window.localStorage.getItem('id'));
         firebase.auth().signOut().then(function() {
             // Prints to console, confirmation of signout
             console.log("We gooooot")
