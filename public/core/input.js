@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', event => {
     // userId is the reference that we talked about, use it to create an association between auth and database
     // getScores();
-
+    let error = false;
     let hasUserName;
     let userData;
 
@@ -255,12 +255,27 @@ document.addEventListener('DOMContentLoaded', event => {
     function checkUserName() {
         let name = $('#name_field').val();
         if(!/[^a-zA-Z0-9_]/.test(name)) {
-            createUser();
-            $('#name_field').attr("placeholder", "Username may include A-Z, 0-9, and underscores");
-            $(".userNameAsk").slideUp('slow');
+            if (name.length >= 20 || name.length <= 2) {
+                if(error === true) {
+                    $('.warn').detach();
+                }
+                let warn = '<p class="warn" style="color: darkred">Invalid username. Username must be less than 20 characters and more than 2.</p>';
+                $(warn).appendTo($('.field'));
+                error = true;
+            } else {
+                if(error === true) {
+                    $('.warn').detach();
+                }
+                createUser();
+                $(".userNameAsk").slideUp('slow');
+            }
         } else {
-            $('#name_field').attr("placeholder", "Invalid username.Only characters A-Z, 0-9, and underscores are allowed");
-            $('#name_field').val("");
+            if(error === true) {
+                $('.warn').detach();
+            }
+            let warn = '<p class="warn" style="color: darkred">Invalid username. Valid characters are A-Z, 0-9, _.</p>';
+            $(warn).appendTo($('.field'));
+            error = true;
         }
     }
 
