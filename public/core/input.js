@@ -33,8 +33,7 @@ document.addEventListener('DOMContentLoaded', event => {
     });
 
     $(".confirm").click(function () {
-        createUser();
-        $(".userNameAsk").slideUp('slow');
+        checkUserName();
     });
 
     $(".musicButton").click(function () {
@@ -253,6 +252,17 @@ document.addEventListener('DOMContentLoaded', event => {
     // async function doSomething(){
     //     console.log(userName);
     // }
+    function checkUserName() {
+        let name = $('#name_field').val();
+        if(!/[^a-zA-Z0-9_]/.test(name)) {
+            createUser();
+            $('#name_field').attr("placeholder", "Username may include A-Z, 0-9, and underscores");
+            $(".userNameAsk").slideUp('slow');
+        } else {
+            $('#name_field').attr("placeholder", "Invalid username.Only characters A-Z, 0-9, and underscores are allowed");
+            $('#name_field').val("");
+        }
+    }
 
     function createUser() {
         db.collection('Users').doc(userId).set({
@@ -262,16 +272,14 @@ document.addEventListener('DOMContentLoaded', event => {
             console.log("Doc written successfully");
         })
     }
-    function getCurrentUser() {
-        return userId;
-    }
-    
+
     $('.pixelThanos').click(function(){
         $('.balance').slideDown("fast");
-    })
+    });
+
     $('.balance').click(function(){
         $(".help").slideUp("fast");
-    })
+    });
 
     function updateScore(score) {
 
