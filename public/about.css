@@ -1,0 +1,109 @@
+.testPhoto{
+    height: 70px;
+    width: 75px;
+    float: left;
+}
+.person1{
+    display: block;
+    margin-top: 2em;
+}
+.person2{
+    display: block;
+    margin-top: 2em;
+}
+.person3{
+    display: block;
+    margin-top: 2em;
+}
+.person4{
+    display: block;
+    margin-top: 2em;
+}
+.person5{
+    display: block;
+    margin-top: 2em;
+}
+.person6{
+    display: block;
+    margin-top: 2em;
+}
+.person1name{
+    font-size: 14px;
+    margin: 0 auto;
+    margin-left: 1em;
+    text-align: center;
+    float: left;
+}
+.person1info{
+    font-size: 14px;
+    display: block;
+    margin: 0 auto;
+    margin-right: 0 auto;
+    float: left;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+.person2info{
+    font-size: 14px;
+    display: block;
+    margin: 0 auto;
+    margin-right: 10em;
+    float: left;
+    margin-top: 1em;
+    margin-bottom: 2em; 
+}
+.person3info{
+    font-size: 14px;
+    display: block;
+    margin: 0 auto;
+    margin-right: 0 auto;
+    float: left;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+.person4info{
+    font-size: 14px;
+    display: block;
+    margin: 0 auto;
+    margin-right: 0 auto;
+    float: left;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+.person5info{
+    font-size: 14px;
+    display: block;
+    margin: 0 auto;
+    margin-right: 0 auto;
+    float: left;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+.person6info{
+    font-size: 14px;
+    display: block;
+    margin: 0 auto;
+    margin-right: 0 auto;
+    float: left;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+.aboutContainer{
+    display: block;
+    overflow-y: scroll;
+}
+.title{
+    margin-bottom: 2em;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+html{
+    scroll-behavior: smooth;
+}
+.storyInfo{
+    font-size: 14px;
+}
+.button{
+    float: left;
+}

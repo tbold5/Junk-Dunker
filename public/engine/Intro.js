@@ -1,70 +1,78 @@
+var bgMusic;
+// Creates the intro page that appears after the Play button is pushed.
+// Sub Class of Phaser Engine is created.
 class Intro extends Phaser.Scene {
+    //Creates constructor for intro object.
     constructor() {
+        // Calls constructor for parent class that uses key value pair.
         super({
             key: 'Intro'
         });
     }
+
+    //Loads first three images to set scene
     preload() {
-        // this.load.image('recycleMan','/assets/images/recycleman.jpg');
-        this.load.script(
-            'webfont',
-            'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
-        );
+        // loads the background image
+        this.load.image('backGround', 'images/comicDONE.png');
 
-        var progress = this.add.graphics();
-        const self = this;
-        this.load.on('progress', function(value) {
-            progress.clear();
-            progress.fillStyle(0x42f456, 1);
-            progress.fillRect(0, 300, 800 * value, 20);
-        });
+        // loads the recycle man
+        this.load.image('yesSpeech', 'images/yesBubble.gif');
 
-        this.load.on('complete', function() {
-            progress.destroy();
-        });
+        //  loads the speech bubble
+        this.load.image('noSpeech', 'images/nah.gif');
+
+        // loads the background music onto the scene
+        this.load.audio('music', 'audio/gameplaymusic.mp3');
     }
+
+    // Creates the intro page with the three images
     create() {
-        // this.recycleMan = this.add.image(400,300,'recycleMan');
-        this.make.text({
-        	x: 250,
-        	y: 300,
-        	text: 'Press Space Bar',
-        	style: {
-        		fontSize: '20px',
-        		fontFamily: 'Arial',
-        		color: '#ffffff',
-        		align: 'center',
-        		backgroundColor: '#000000',
-        		shadow: {
-        			color: '#000000',
-        			fill: true,
-        			offsetX: 2,
-        			offsetY: 2,
-        			blur: 8
-        		}
-        	}
-        });
-        var add = this.add;
-        var input = this.input;
-        WebFont.load({
-            google: {
-                families: ['Fredericka the Great']
-            },
-            active: function() {
-                add
-                    .text(250, 50, `Junk Dunker`, {
-                        fontFamily: 'Fredericka the Great',
-                        fontSize: 50,
-                        color: 'white'
-                    })
-                    .setShadow(2, 2, '#333333', 2, false, true);
-            }
-        });
-        this.keys = this.input.keyboard.addKeys('SPACE');
+        var backGroundImg;
+        var yesSpeech;
+        var noSpeech;
+
+        gameWidth = game.config.width;
+        gameHeight = game.config.height;
+
+        bgMusic = this.sound.add('music');
+        bgMusic.play();
+        // Creates background image to screen and sizes it for screen
+        backGroundImg = this.add.image(gameWidth / 2, gameHeight / 2, 'backGround');
+
+        backGroundImg.setDisplaySize(gameWidth, gameHeight);
+
+        // Creates recycle man image to screen and sizes it for screen
+        yesSpeech = this.physics.add.sprite(gameWidth / 1.5, gameHeight / 1.3, 'yesSpeech');
+
+        // Sets the scale of the speech button
+        yesSpeech.setScale(gameWidth / 1250);
+
+        // Creates speech bubbles and sizes them for the screen
+        noSpeech = this.physics.add.sprite(gameWidth / 1.25, gameHeight / 1.17, 'noSpeech');
+
+        // Sets the scale of the speech button
+        noSpeech.setScale(gameWidth / 1200);
+
+
+        // Sets the speech button to interactive
+        yesSpeech.setInteractive({useHandCursor: true})
+            .on('pointerdown', () => {
+                // Starts the Level 1 scene
+                this.scene.start('Level1');
+            }, this);
+
+
+        // Sets the speech button to interactive
+        noSpeech.setInteractive({useHandCursor: true})
+            .on('pointerdown', () => {
+                // Brings user back to home screen
+                window.location.href = 'index.html';
+            }, this);
+
     }
-    update(delta) {
-        if (this.keys.SPACE.isDown) {
-            this.scene.start('Level1');
-        }
+
+    // Updates the intro scene
+    update() {
+
     }
 }
