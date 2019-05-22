@@ -4,6 +4,7 @@ var resetBtn;
 var exitBtn;
 var userName;
 var highScore;
+
 class GameOver extends Phaser.Scene {
     constructor() {
         super({
