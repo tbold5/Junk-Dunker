@@ -1,7 +1,9 @@
 var bgMusic;
+
 // Creates the intro page that appears after the Play button is pushed.
 // Sub Class of Phaser Engine is created.
 class Intro extends Phaser.Scene {
+
     //Creates constructor for intro object.
     constructor() {
         // Calls constructor for parent class that uses key value pair.
@@ -12,6 +14,7 @@ class Intro extends Phaser.Scene {
 
     //Loads first three images to set scene
     preload() {
+
         // loads the background image
         this.load.image('backGround', 'images/comicDONE.png');
 
