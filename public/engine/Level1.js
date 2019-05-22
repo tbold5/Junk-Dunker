@@ -32,7 +32,6 @@ var gameHeight;
 var scoreText;
 var score = 0;
 var beerBottleImg;
-var popSound;
 var border;
 var container;
 var healthDecreased = 0;
@@ -287,7 +286,7 @@ class Level1 extends Phaser.Scene {
 
     // Destroys the health if the wrong trash is entered
     destroyHealth() {
-        if (healthDecreased === 80) {
+        if (healthDecreased === 2) {
             healthBar.destroy();
             healthBar = this.add.image(50, 100, 'noHeart');
             healthBar.setScale(2.3);
@@ -434,10 +433,8 @@ class Level1 extends Phaser.Scene {
             time -= 500;
             if(time <= 500) {
                 time = 500;
-                console.log('on');
                 this.createTrash();
             } else {
-                console.log('off');
                 this.createTrash();
             }
         },time);
