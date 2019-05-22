@@ -66,8 +66,8 @@ class GameOver extends Phaser.Scene {
         var db = firebase.firestore().collection("Users").doc(userId);
         var data = -4;
 
-        await db.get().then(function (doc) {
-            data = doc.data();
+        await db.get().then(async function (doc) {
+            data = await doc.data();
             console.log(data);
         });
         userName = data.UserName;
