@@ -70,6 +70,9 @@ document.addEventListener('DOMContentLoaded', event => {
     $(".set").click(function(){
         if ( $('.settings').is(":hidden")){
             $(".settings").slideDown("slow");
+            if(!( $('.help').is(":hidden"))){
+                $(".help").slideUp("fast");
+            }
             if (!( $( '.mod' ).is( ":hidden" ) )) {
                 $( ".mod" ).slideUp('slow');
             }
@@ -99,6 +102,16 @@ document.addEventListener('DOMContentLoaded', event => {
     $(".helpReturn").click(function(){
         $(".help").slideUp("fast");
     });
+
+    $(".star").click(function(){
+        $(".abouts").slideDown("slow");
+    })
+
+    $(".lead-exit1").click(function () {
+        $(".abouts").slideUp("slow");
+    })
+
+
 
     //$(".balance").click(function() {
         //startGame();
