@@ -1,26 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Declares character encoding (charset) -->
     <meta charset="utf-8">
+    <!--
+      Visibility of view for user. The width=device-width sets width of the page to
+      follow the screen-width of device.
+      Initial-scale=1.0 part sets initial zoom level when page is first loaded by the browser.
+      -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- @tag title JunkDunker -->
     <title>JunkDunker / Super6</title>
+    <!-- @links path for fonts -->
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <!-- @links path for cascade style fonts -->
     <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+    <!-- @link describes presentation of document -->
     <link rel="stylesheet" href="style/style.css">
+    <!-- @script path for Cloudfare jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <!-- @script source of firebase. Firebase features required for this game-->
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-firestore.js"></script>
+    <!-- @script source of popper js and tootlipjs -->
     <script src="https://unpkg.com/popper.js@1.15.0/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tooltip.js@1.3.2/dist/umd/tooltip.min.js"></script>
     <link rel="shortcut icon" href="images/favicon.ico">
-    <!-- include only the Firebase features as you need -->
     <script defer src="/__/firebase/5.11.1/firebase-auth.js"></script>
   </head>
 
   <body id="yes">
 
-  <!--<div class="myContainer">-->
+
     <div class='nes-container myContainer'>
       <div>
         <section class="icon-list">
@@ -41,7 +53,7 @@
           <a href="https://github.com/redlon23/Team-13-COMP-2930"><i class="nes-icon github"></i></a>
 
 
-          <a href="AboutUs.html"><i class="nes-icon star aboutUsIcon"></i></a>
+         <i class="nes-icon star aboutUsIcon"></i>
 
         </section>
       </div>
@@ -49,7 +61,7 @@
       <br>
       <div class='gif'>
         <img src="./images/recyclo2.gif" alt="">
-      </div>
+      </div><!--#class gif-->
       <br>
       <br>
       <div class="myTitle">
@@ -60,25 +72,25 @@
             <button type="button" class="nes-btn is-primary click" id="login">Login</button>
             <button type="button" class="nes-btn helpButton item click">Tips</button>
             <button type="button" class="nes-btn is-error set click">Settings</button>
-        </div>
-      </div>
-    </div>
+        </div><!-- #class myBlock -->
+      </div><!-- #class myTitle -->
+    </div><!--<div class="myContainer">-->
   <!--</div>-->
   <div class="mod">
     <div class="nes-container is-rounded is-dark">
       <div class="leaderTitleSection">
-        <p class="title">
+        <p class="title"><!-- #class title -->
           The Leaderboard
         </p>
         <button type="button" class="nes-btn is-warning lead-exit click">X</button>
-      </div>
+      </div><!-- #class leaderTitleSection -->
 
       <div id="board">
-      </div>
-    </div>
-  </div>
+      </div><!-- #class myContainer -->
+    </div><!-- #class nes-container is-rounded is-dark -->
+  </div><!-- #class mod -->
   <!--Div for settings page-->
-  <div class="settings">
+  <div class="settings"><!--#class for settings page-->
     <div class="settingsContainer">
       <a href="#" class="nes-badge">
           <span class="is-dark">Options</span>
@@ -86,9 +98,12 @@
       <button type = button id = "music" class ="nes-btn is-primary musicButton click">Music: ON</button>
       <button type = button id = "sound" class ="nes-btn is-primary sfxButton click">Sound: ON</button>
       <button type = button class ="nes-btn is-success retButton click">Return</button>
-    </div>
+    </div><!--#class for settings page-->
   </div>
     <!--Div for help page-->
+    <!-- This section is the help page. data-tooltips are
+     user for popper and tooltip. It contains all the trash
+     that is available in the game-->
   <div class="help">
     <div class ="nes-container is-rounded is-dark helpContainer">
       <a href="#" class="nes-badge helpBadge">
@@ -149,11 +164,127 @@
       </div>
     </div>
   </div>
+    <div class="abouts">
+      <div class="nes-container is-rounded is-dark aboutContainer">
+        <button type="button" class="nes-btn is-warning lead-exit1">X</button>
+        <p class="title1">About Us</p>
+        <div class="story">
+          <p class="littleTitle">Story</p>
+          <p class="storyInfo">Where does this go? I have yet to ask myself that for many months now, Not asking was a mistake to begin with having cost the lives of other living creatures and loved ones around me to suffer. But that mistake has opened my eyes to the truth of my sins, and I will change not only my life but the lives of many including my families and guide them to a better world. A world where no one will ever commit the sins of not recycling properly.</p>
+        </div>
+        <div id="person1" class="person1">
+          <img class="testPhoto" src="./images/Pamir.JPG">
+          <p class="person1name">Pamir Kantar</p>
+          <br>
+          <p class="person1name">Project Manager</p>
+        </div>
+        <div class="testInfo">
+          <br>
+          <p class="person1info"> Beer Manager of Junk Dunker.
+            Software Developer by day, Crypto trader by night.
+            Sun lover, rain hater
+            Wants to make life beautiful for others.
+            Believes that programmers are machines that converts coffee into code.
+          </p>
+        </div>
+        <div id="person3" class="person3">
+          <img class="testPhoto" src="./images/Bryan.jpg">
+          <p class="person1name">Bryan Hill</p>
+          <br>
+          <p class="person1name">Programmer</p>
+        </div>
+        <div class="testInfo">
+          <br>
+          <p class="person3info"> A junior programmer who has been at school full-time for the last year.
+            He was mainly responsible for the development of the backend and the editing and direction
+            of the game's art and audio.
+            In the future, he hopes to further his knowledge of integrating  visuals and audio into his coding.
+          </p>
+        </div>
+        <div id="person4" class="person4">
+          <img class="testPhoto" src="./images/Trae.jpg">
+          <p class="person1name">Trae Bold</p>
+          <br>
+          <p class="person1name">Programmer</p>
+        </div>
+        <div class="testInfo">
+          <br>
+          <p class="person4info"> An aspiring developer,
+            he likes to cook and workout.
+            He is really excited for his new journey in CST program,
+            as he is sure it will be full of surprises and assignments.
+          </p>
+        </div>
+        <div id="person5" class="person5">
+          <img class="testPhoto" src="./images/Craig.jpg">
+          <p class="person1name">Craig Goodison</p>
+          <br>
+          <p class="person1name">Programmer</p>
+        </div>
+        <div class="testInfo">
+          <br>
+          <p class="person5info"> Craig’s interests vary widely.
+            His interest in the technology field interesting enough
+            is not about creating the next best game yet it could be,
+            because technology offers a creative environment for
+            personal play meshed with creativity. He sees a bigger context
+            for his technology creations starting with Junk Dunker;
+            changing the worlds recycling habits one player at a time.
+            And likes to drink beer.
+          </p>
+        </div>
+        <div id="person2" class="person2">
+          <img class="testPhoto" src="./images/Bosco.jpg">
+          <p class="person1name">Bosco Kwan</p>
+          <br>
+          <p class="person1name">Programmer</p>
+        </div>
+        <div class="testInfo">
+          <p class="person2info">
+            Can make minute rice in 59 seconds.
+            PARTY!!!!!!!!!!!!!!!!!!
+          </p>
+        </div>
+        <div id="person6" class="person6">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <img class="testPhoto" src="./images/Ethan.jpg">
+          <p class="person1name">Ethan Lee</p>
+          <br>
+          <p class="person1name">Programmer</p>
+        </div>
+        <div class="testInfo">
+          <br>
+          <p class="person6info"> I just want to eat and sleep.
+            So please let me sleep and eat in peace.
+          </p>
+        </div>
+      </div>
+    </div>
 
 
   <div class="nothing">
     <img class="balance" src="./images/glove.png" alt="./images/sodacan.png">
   </div>
+<!-- This section is for custom scripts and firebase performance   -->
+
   <script src="/__/firebase/6.0.2/firebase-performance.js"></script>
   <script src="core/app.js"></script>
   <script src="core/howler.core.js"></script>
