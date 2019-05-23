@@ -1,8 +1,11 @@
 document.addEventListener('DOMContentLoaded', event => {
     // userId is the reference that we talked about, use it to create an association between auth and database
+
     // getScores();
     let error = false;
+
     let hasUserName;
+    // Declares variabe
     let userData;
 
     // Declares array named userName
@@ -20,16 +23,13 @@ document.addEventListener('DOMContentLoaded', event => {
     $(".lead").click(function() {
         // Determines if  mod element is hidden
         if ( $( '.mod' ).is( ":hidden" ) ) {
-
             getScores();
-
-            //getScores();
             // Mod element moves slowly down the screen
             $( ".mod" ).slideDown( "slow" );
-        } else {
+        } //else {
             // Mod element moves slowly up the screen
-            $( ".mod" ).slideUp('slow');
-        };
+            //$( ".mod" ).slideUp('slow');
+        //};
     });
 
     $(".confirm").click(function () {
@@ -70,6 +70,12 @@ document.addEventListener('DOMContentLoaded', event => {
     $(".set").click(function(){
         if ( $('.settings').is(":hidden")){
             $(".settings").slideDown("slow");
+            if(!( $('.help').is(":hidden"))){
+                $(".help").slideUp("fast");
+            }
+            if (!( $( '.mod' ).is( ":hidden" ) )) {
+                $( ".mod" ).slideUp('slow');
+            }
         };
     });
 
@@ -89,6 +95,9 @@ document.addEventListener('DOMContentLoaded', event => {
         if( $('.help').is(":hidden")){
             // moves help button up the screen
             $(".help").slideDown("slow");
+            if ( !($( '.mod' ).is( ":hidden" )) ) {
+                $( ".mod" ).slideUp('slow');
+            }
         };
     });
 
@@ -96,6 +105,16 @@ document.addEventListener('DOMContentLoaded', event => {
     $(".helpReturn").click(function(){
         $(".help").slideUp("fast");
     });
+
+    $(".star").click(function(){
+        $(".abouts").slideDown("slow");
+    })
+
+    $(".lead-exit1").click(function () {
+        $(".abouts").slideUp("slow");
+    })
+
+
 
     //$(".balance").click(function() {
         //startGame();
@@ -107,7 +126,7 @@ document.addEventListener('DOMContentLoaded', event => {
     // Declared asynchronous function for signin
      async function googleSignin() {
          // Authenticate Firebase using Google provider object.
-         // Promptd users to sign in with their Google Account 
+         // Prompts users to sign in with their Google Account 
          // either by opening a pop-up window or by redirecting to the sign-in page.
         firebase.auth().signInWithPopup(provider).then( async function(result) {
             //Assigns generated token to variable token
