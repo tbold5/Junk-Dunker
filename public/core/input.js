@@ -70,6 +70,9 @@ document.addEventListener('DOMContentLoaded', event => {
     $(".set").click(function(){
         if ( $('.settings').is(":hidden")){
             $(".settings").slideDown("slow");
+            if (!( $( '.mod' ).is( ":hidden" ) )) {
+                $( ".mod" ).slideUp('slow');
+            }
         };
     });
 
