@@ -265,7 +265,6 @@ class Level1 extends Phaser.Scene {
         img.destroy();
         score += 1;
         scoreText.setText('Score: ' + score);
-        console.log(img.name)
     }
 
     /*
@@ -289,13 +288,11 @@ class Level1 extends Phaser.Scene {
         if (lostGame) {
             speed += 40;
             var index = Math.floor(this.getRandomNumber(0, trashList.length - 1));
-            console.log('index: ', index);
             trashList[counter] = this.physics.add.sprite(gameWidth - 50, 0, itemList[index]);
             trashList[counter].name = itemList[index];
             trashList[counter].setScale(gameWidth / 450);
             trashList[counter].body.setVelocityX(-300);
             trashList[counter].setGravity(0,speed);
-            console.log('speed',speed);
             trashList[counter].setCollideWorldBounds(true);
             this.physics.add.collider(trashList[counter], border);
             counter++;
@@ -514,7 +511,6 @@ class Level1 extends Phaser.Scene {
         trashCreator = setInterval(() => {
             time -= 75;
             if(time <= 500) {
-                console.log('time', time);
                 time = 500;
                 this.createTrash();
             } else {
