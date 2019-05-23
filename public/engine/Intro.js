@@ -19,10 +19,10 @@ class Intro extends Phaser.Scene {
         this.load.image('backGround', 'images/comicDONE.png');
 
         // loads the recycle man
-        this.load.image('yesSpeech', 'images/yesBubble.gif');
+        this.load.image('yesSpeech', 'images/yesBubble.png');
 
         //  loads the speech bubble
-        this.load.image('noSpeech', 'images/nah.gif');
+        this.load.image('noSpeech', 'images/nah.png');
 
         // loads the background music onto the scene
         this.load.audio('music', 'audio/gameplaymusic.mp3');
@@ -57,19 +57,17 @@ class Intro extends Phaser.Scene {
         noSpeech.setScale(gameWidth / 1200);
 
 
-        // Sets the speech button to interactive
+        // Sets the speech button to interactive and starts level 1
         yesSpeech.setInteractive({useHandCursor: true})
             .on('pointerdown', () => {
-                // Starts the Level 1 scene
                 this.scene.start('Level1');
             }, this);
 
 
-        // Sets the speech button to interactive
+        // Sets the speech button to interactive on click brings user back to home screen
         noSpeech.setInteractive({useHandCursor: true})
             .on('pointerdown', () => {
-                // Brings user back to home screen
-                window.location.href = 'index.html';
+                window.location.href = '../index.html';
             }, this);
 
     }
