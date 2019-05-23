@@ -19,6 +19,7 @@ var pizzaBoxImg;
 var plasticBagImg;
 var treeBranchImg;
 var sodaCanImg;
+var sodaBottleImg;
 var waterBottleImg;
 var sprayCanImg;
 var wineGlassImg;
@@ -42,6 +43,7 @@ var trashList;
 var binList;
 var muteButton;
 var groundImg;
+var borderImg;
 var backGroundImg;
 
 // Boolean variables.
@@ -51,18 +53,18 @@ var musicOn = true;
 
 // List of trash variables
 var isPaper = ['boardBox', 'bags', 'newsPaper', 'pizzaBox'];
-var isGlass = ['beerBottle','jar', 'sodaCan', 'sprayCan'];
+var isGlass = ['beerBottle','jar', 'sodaCan', 'sprayCan','sodaBottle'];
 var isTrash = ['plasticBag','mug','candy','cig','wineGlass'];
 var isPlastic = ['detergent', 'waterBottle', 'milk','tinCan'];
 var isCompost = ['treeBranch','fish','apple','bone','pizza'];
 var itemList = ['beerBottle', 'detergent', 'boardBox', 'bags', 'waterBottle', 'milk', 'newsPaper',
     'tinCan', 'pizzaBox', 'mug', 'plasticBag', 'treeBranch', 'jar', 'sodaCan', 'sprayCan','fish', 'apple',
-    'bone','pizza','candy','cig','wineGlass'];
+    'bone','pizza','candy','cig','wineGlass', 'sodaBottle'];
 
 // Dynamic variables with numbers.
 var healthDecreased = 0;
 var score = 0;
-var time = 3000;
+var time = 3500;
 var speed = 0;
 var trashCreator;
 
@@ -74,7 +76,7 @@ class Level1 extends Phaser.Scene {
         });
     }
 
-    // Preloads the assets onto the scene
+    // Loads the assets onto the scene
     preload() {
 
         // loads all the grey bin
@@ -152,7 +154,7 @@ class Level1 extends Phaser.Scene {
         // loads the candy image
         this.load.image('candy', 'images/candy.png');
 
-        // loads the cigaraette image
+        // loads the cigarette image
         this.load.image('cig', 'images/cig.png');
 
         // loads the wine glass image
@@ -165,10 +167,10 @@ class Level1 extends Phaser.Scene {
         this.load.image('sprayCan', 'images/spraycan.png');
 
         // loads the muted button
-        this.load.image('muted', 'images/muted.png');
+        this.load.image('muted', 'images/mute.png');
 
         // loads the not muted button
-        this.load.image('notMuted', 'images/notmuted.png');
+        this.load.image('notMuted', 'images/unmute.png');
 
         // loads the fish image
         this.load.image('fish', 'images/fish.png');
@@ -184,6 +186,9 @@ class Level1 extends Phaser.Scene {
 
         // loads the apple image
         this.load.image('pizza', 'images/pizza.png');
+
+        // loads the soda bottle image
+        this.load.image('sodaBottle', 'images/sodabottle.png');
     }
 
     /*
@@ -282,7 +287,7 @@ class Level1 extends Phaser.Scene {
     createTrash() {
         let counter = 0;
         if (lostGame) {
-            speed += 100;
+            speed += 40;
             var index = Math.floor(this.getRandomNumber(0, trashList.length - 1));
             console.log('index: ', index);
             trashList[counter] = this.physics.add.sprite(gameWidth - 50, 0, itemList[index]);
@@ -390,6 +395,15 @@ class Level1 extends Phaser.Scene {
         // Sets the body to immovable
         border.body.moves = false;
 
+        // Creates ground for trash to bounce off of
+        borderImg = this.physics.add.sprite(gameWidth / 2, gameHeight / 8, 'ground');
+
+        // Scales the ground image
+        borderImg.setScale(gameWidth / 533.33);
+
+        // Sets the ground image to immovable
+        borderImg.body.immovable = true;
+
         // Creates the background image
         backGroundImg = this.add.image(gameWidth / 2, gameHeight / 2, 'bg');
 
@@ -404,13 +418,6 @@ class Level1 extends Phaser.Scene {
 
         // Sets the ground image to immovable
         groundImg.body.immovable = true;
-
-        // Creates the score text to display on the screen
-        scoreText = this.add.text(10, 20, 'Score:' + score, {
-            fontSize: '25px',
-            color: 'black',
-            fontFamily: 'Courier',
-        });
 
         // Creates the black bin
         blackBin = this.physics.add.sprite(gameWidth / 8, gameHeight - 50, 'blackBin');
@@ -498,7 +505,7 @@ class Level1 extends Phaser.Scene {
         trashList = [beerBottleImg, detergentImg, boardBoxImg, bagImg, waterBottleImg, milkImg,
             newsPaperImg, tinCanImg, pizzaBoxImg, mugImg, plasticBagImg,
             treeBranchImg, jarImg, sodaCanImg, sprayCanImg, fishImg, appleImg, boneImg, pizzaImg,
-            candyImg,cigImg,wineGlassImg];
+            candyImg, cigImg, wineGlassImg, sodaBottleImg];
 
         // List of all the bins.
         binList = [greenBin, greyBin, blueBin, blackBin, yellowBin];
@@ -507,6 +514,7 @@ class Level1 extends Phaser.Scene {
         trashCreator = setInterval(() => {
             time -= 50;
             if(time <= 500) {
+                console.log('time', time);
                 time = 500;
                 this.createTrash();
             } else {
@@ -514,11 +522,20 @@ class Level1 extends Phaser.Scene {
             }
         },time);
 
+        // this.physics.add.sprite(100,100,'sodaBottle');
+
         // Creates Mute Button
         muteButton = this.physics.add.sprite(gameWidth / 1.154, gameHeight / 20.3, 'notMuted');
 
         // Sets the scale of the mute button
-        muteButton.setScale(gameWidth / 312.5);
+        muteButton.setScale(gameWidth / 2300);
+
+        // Creates the score text to display on the screen
+        scoreText = this.add.text(10, 20, 'Score:' + score, {
+            fontSize: '25px',
+            color: 'black',
+            fontFamily: 'Courier',
+        });
     }
 
     // Updates the level 1 scene
@@ -540,13 +557,13 @@ class Level1 extends Phaser.Scene {
                     bgMusic.pause();
                     musicOn = false;
                     muteButton = this.add.sprite(gameWidth / 1.154, gameHeight / 20.3, 'muted');
-                    muteButton.setScale(gameWidth / 312.5);
+                    muteButton.setScale(gameWidth / 2300);
                 } else {
                     muteButton.destroy();
                     bgMusic.resume();
                     musicOn = true;
                     muteButton = this.add.sprite(gameWidth / 1.154, gameHeight / 20.3, 'notMuted');
-                    muteButton.setScale(gameWidth / 312.5);
+                    muteButton.setScale(gameWidth / 2300);
                 }
             }, this);
 
