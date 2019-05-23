@@ -509,7 +509,7 @@ class Level1 extends Phaser.Scene {
 
         // Creates random trash with time interval
         trashCreator = setInterval(() => {
-            time -= 75;
+            time -= 100;
             if(time <= 500) {
                 time = 500;
                 this.createTrash();
