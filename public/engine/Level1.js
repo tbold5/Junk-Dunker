@@ -64,7 +64,7 @@ var itemList = ['beerBottle', 'detergent', 'boardBox', 'bags', 'waterBottle', 'm
 // Dynamic variables with numbers.
 var healthDecreased = 0;
 var score = 0;
-var time = 3500;
+var time = 3000;
 var speed = 0;
 var trashCreator;
 
@@ -512,7 +512,7 @@ class Level1 extends Phaser.Scene {
 
         // Creates random trash with time interval
         trashCreator = setInterval(() => {
-            time -= 50;
+            time -= 75;
             if(time <= 500) {
                 console.log('time', time);
                 time = 500;
