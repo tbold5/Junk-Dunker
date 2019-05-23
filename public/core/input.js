@@ -95,6 +95,9 @@ document.addEventListener('DOMContentLoaded', event => {
         if( $('.help').is(":hidden")){
             // moves help button up the screen
             $(".help").slideDown("slow");
+            if ( !($( '.mod' ).is( ":hidden" )) ) {
+                $( ".mod" ).slideUp('slow');
+            }
         };
     });
 
